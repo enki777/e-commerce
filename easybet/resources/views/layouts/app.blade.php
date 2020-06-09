@@ -34,7 +34,7 @@
                     <a class="nav-link dropdown-toggle text-white" href="#"
                        data-toggle="dropdown">{{ Auth::user()->username }}</a>
                     <div class="dropdown-menu bg-dark app-dd">
-                        <a class="dropdown-item text-white " href="{{ route('profile', Auth::user()->username) }}">Profile</a>
+                        <a class="dropdown-item text-white " href="{{ route('user.profile') }}">Profile</a>
                         <a class="dropdown-item text-white" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

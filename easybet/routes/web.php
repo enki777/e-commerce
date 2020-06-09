@@ -17,7 +17,12 @@ Route::get('/', function () {
     return view('layouts.app');
 })->name('home');
 
-Route::get('/user/{username}', 'UserController@profile')->name('profile');
+Route::post('/user/email/verify', 'UserController@verifyEmail')->name('user.verify');
+Route::get('/user', 'UserController@profile')->name('user.profile');
+Route::get('/user/edit', 'UserController@edit')->name('user.edit');
+Route::patch('/user/update', 'UserController@update')->name('user.update');
+Route::get('/user/edit/password', 'UserController@editPassword')->name('user.edit-password');
+Route::patch('/user/update/password', 'UserController@updatePassword')->name('user.update-password');
 
 Auth::routes(['verify' => true]);
 
