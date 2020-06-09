@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
@@ -27,16 +30,23 @@ class LoginController extends Controller
      *
      *
      * @param Request $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function login(Request $request)
     {
+        $user = User::where('username', $request->only('username'));
+
+        $validator = Validator::make($request->all(), [
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
+
         $credentials = $request->only('username', 'password');
 
         if (Auth::attempt($credentials)) {
-            return view('layouts.app');
+            return redirect()->route('home');
         } else {
-            return 'nope';
+            return back()->withErrors($validator)->withInput();
         }
     }
 }
