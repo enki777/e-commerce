@@ -9,6 +9,11 @@
                         Change password
                     </div>
                     <div class="card-body">
+                        @if(session()->get('password-success'))
+                            <div class="alert alert-success">
+                                {{ session()->get('password-success') }}
+                            </div>
+                        @endif
                         <form method="post" action="{{ route('user.update-password') }}">
                             @csrf
                             @method('PATCH')
