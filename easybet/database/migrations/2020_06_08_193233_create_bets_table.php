@@ -16,6 +16,7 @@ class CreateBetsTable extends Migration
         Schema::create('bets', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('matches_id')->constrained();
         });
     }
 

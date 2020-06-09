@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes(['verify' => true]);
 Route::get('/', function () {
     return view('layouts.app');
 })->name('home');
@@ -26,5 +27,8 @@ Route::patch('/user/update/password', 'UserController@updatePassword')->name('us
 Route::get('/user/delete', 'UserController@delete')->name('user.delete');
 Route::delete('/user/delete/confirm', 'UserController@deleteConfirm')->name('user.delete-confirm');
 
-Auth::routes(['verify' => true]);
+Route::resource('teams', 'TeamsController');
+
+Route::delete('teams/force/{team}', 'TeamsController@forceDestroy')->name('teams.force.destroy');
+Route::put('teams/restore/{team}', 'TeamsController@restore')->name('teams.restore');
 
