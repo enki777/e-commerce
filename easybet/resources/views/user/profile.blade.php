@@ -59,8 +59,12 @@
                                 <button class="btn btn-primary">Change my password</button>
                             </a>
                         </td>
-                        <td class="text-center">3</td>
-                        <td class="text-center">4</td>
+                        <td></td>
+                        <td class="text-center">
+                            <a href="{{ route('user.delete') }}">
+                                <button class="btn btn-danger">Delete my account</button>
+                            </a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>
