@@ -34,11 +34,15 @@
                     <a class="nav-link dropdown-toggle text-white" href="#"
                        data-toggle="dropdown">{{ Auth::user()->username }}</a>
                     <div class="dropdown-menu bg-dark app-dd">
-                        <a class="dropdown-item text-white " href="{{ route('user.profile') }}">Profile</a>
+                        <a class="dropdown-item text-white" href="{{ route('user.profile') }}">Profile<img
+                                src="{{ asset('images/profile.png') }}" width="25"
+                                class="float-right bg-white rounded-circle"></a>
                         <a class="dropdown-item text-white" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                            {{ __('Logout') }}<img
+                                src="{{ asset('images/logout.png') }}" width="25"
+                                class="float-right bg-white rounded-circle">
                         </a>
                     </div>
                     <form id="logout-form" class="d-none" action="{{ route('logout') }}" method="POST">
