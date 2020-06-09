@@ -28,6 +28,7 @@ Route::get('/user/delete', 'UserController@delete')->name('user.delete');
 Route::delete('/user/delete/confirm', 'UserController@deleteConfirm')->name('user.delete-confirm');
 
 Route::resource('teams', 'TeamsController');
+Route::resource('structures', 'StructuresController');
 
 Route::delete('teams/force/{team}', 'TeamsController@forceDestroy')->name('teams.force.destroy');
 Route::put('teams/restore/{team}', 'TeamsController@restore')->name('teams.restore');
