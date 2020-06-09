@@ -21,6 +21,7 @@ Route::get('/', function () {
 Route::get('/user/{username}', 'UserController@profile')->name('profile');
 
 Route::resource('teams', 'TeamsController');
+Route::resource('structures', 'StructuresController');
 
 Route::delete('teams/force/{team}', 'TeamsController@forceDestroy')->name('teams.force.destroy');
 Route::put('teams/restore/{team}', 'TeamsController@restore')->name('teams.restore');
