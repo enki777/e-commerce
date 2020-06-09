@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <table class="table table-secondary">
+                <table class="table table-striped table-dark">
                     <thead>
                     <tr>
                         <th scope="col" class="text-center">Username</th>
@@ -34,7 +34,7 @@
                         <td class="text-center">{{ $user->birthday }}</td>
                         <td class="text-center">{{ $user->address }}</td>
                         <td class="text-center">{{ $user->city }}</td>
-                        <td class="text-center"><small class="text-muted">{{ $user->created_at }}</small></td>
+                        <td class="text-center">{{ $user->created_at }}</td>
                     </tr>
                     </tbody>
                 </table>

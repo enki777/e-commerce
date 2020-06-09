@@ -18,6 +18,11 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .app-dd a:hover {
+            background: none;
+        }
+    </style>
 </head>
 <body class="bg-secondary">
 <nav class="navbar navbar-expand navbar-dark bg-dark">
@@ -28,9 +33,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle text-white" href="#"
                        data-toggle="dropdown">{{ Auth::user()->username }}</a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="{{ route('profile', Auth::user()->username) }}">Profile</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+                    <div class="dropdown-menu bg-dark app-dd">
+                        <a class="dropdown-item text-white " href="{{ route('profile', Auth::user()->username) }}">Profile</a>
+                        <a class="dropdown-item text-white" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
