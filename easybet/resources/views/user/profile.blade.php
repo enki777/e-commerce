@@ -4,20 +4,26 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                @if(session()->get('verify'))
-                    <div class="alert alert-info mt-2 mb-2 text-center">
-                        <p class="m-0">{{ session()->get('verify') }}</p>
-                        <span>If you didn't receive any email click <a href="#"
-                                                                       onclick="event.preventDefault();
-                                                                       document.getElementById('form-email').submit();">
-                                <u>here</u></a>.</span>
-                        <form method="post" action="{{ route('user.verify') }}" id="form-email" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
-                @endif
+
                 <table class="table table-striped table-dark rounded-bottom">
                     <thead>
+                    @if(session()->get('verify'))
+                        <tr>
+                            <th colspan="4">
+                                <div class="alert alert-info text-center m-0">
+                                    <p class="m-0">{{ session()->get('verify') }}</p>
+                                    <span>If you didn't receive any email click <a href="#"
+                                                                                   onclick="event.preventDefault();
+                                                                       document.getElementById('form-email').submit();">
+                                <u>here</u></a>.</span>
+                                    <form method="post" action="{{ route('user.verify') }}" id="form-email"
+                                          class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </th>
+                        </tr>
+                    @endif
                     <tr>
                         <th scope="col" class="text-center">Username</th>
                         <th scope="col" class="text-center">First name</th>
