@@ -14,14 +14,24 @@
                             <div class="form-group row">
                                 <label class="col-4 col-form-label text-right">Username</label>
                                 <div class="col-6">
-                                    <input class="form-control" type="text" name="username"
+                                    <input class="form-control @error('username') is-invalid @enderror" type="text" name="username"
                                            value="{{ old('username') }}">
+                                    @error('username')
+                                    <span class="invalid-feedback">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label class="col-4 col-form-label text-right">Password</label>
                                 <div class="col-6">
-                                    <input class="form-control" type="password" name="password">
+                                    <input class="form-control @error('password') is-invalid @enderror" type="password" name="password">
+                                    @error('password')
+                                    <span class="invalid-feedback">
+                                        {{ $message }}
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group row">
