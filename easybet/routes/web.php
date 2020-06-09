@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('layouts.app');
 })->name('home');
 
-Route::get('/profile/{username}', 'UserController@profile')->name('profile');
+Route::get('/user/{username}', 'UserController@profile')->name('profile');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
