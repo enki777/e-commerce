@@ -16,7 +16,7 @@
                         </form>
                     </div>
                 @endif
-                <table class="table table-striped table-dark">
+                <table class="table table-striped table-dark rounded-bottom">
                     <thead>
                     <tr>
                         <th scope="col" class="text-center">Username</th>

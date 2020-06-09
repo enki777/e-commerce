@@ -4,65 +4,64 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-8">
-                <div class="card">
-                    <div class="card-header">
-                        Change password
-                    </div>
-                    <div class="card-body">
+                <table class="table table-dark table-striped rounded-bottom">
+                    <form method="post" action="{{ route('user.update-password') }}">
+                        @csrf
+                        @method('PATCH')
+                        <thead>
                         @if(session()->get('password-success'))
-                            <div class="alert alert-success">
-                                {{ session()->get('password-success') }}
-                            </div>
+                            <tr>
+                                <th colspan="3">
+                                    <div class="alert alert-success m-0 text-center">
+                                        {{ session()->get('password-success') }}
+                                    </div>
+                                </th>
+                            </tr>
                         @endif
-                        <form method="post" action="{{ route('user.update-password') }}">
-                            @csrf
-                            @method('PATCH')
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label text-right">Password</label>
-                                <div class="col-6">
-                                    <input class="form-control @error('password') is-invalid @enderror" type="password"
-                                           name="password">
-                                    @error('password')
-                                    <span class="invalid-feedback">
-                                        {{ $message }}
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label text-right">New password</label>
-                                <div class="col-6">
-                                    <input class="form-control @error('new_password') is-invalid @enderror"
-                                           type="password" name="new_password">
-                                    @error('new_password')
-                                    <span class="invalid-feedback">
-                                        {{ $message }}
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-4 col-form-label text-right">New password confirmation</label>
-                                <div class="col-6">
-                                    <input class="form-control @error('new_password_confirmation') is-invalid @enderror"
-                                           type="password" name="new_password_confirmation">
-                                    @error('new_password_confirmation')
-                                    <span class="invalid-feedback">
-                                        {{ $message }}
-                                    </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-6 offset-4">
-                                    <button class="btn btn-success" type="submit">
-                                        Update
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                        <tr>
+                            <th scope="col">Password</th>
+                            <th scope="col">New password</th>
+                            <th scope="col">New password confirmation</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <input class="form-control @error('password') is-invalid @enderror" type="password"
+                                       name="password">
+                                @error('password')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+                            </td>
+                            <td>
+                                <input class="form-control @error('new_password') is-invalid @enderror" type="password"
+                                       name="new_password">
+                                @error('new_password')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+                            </td>
+                            <td>
+                                <input class="form-control @error('new_password_confirmation') is-invalid @enderror" type="password"
+                                       name="new_password_confirmation">
+                                @error('new_password_confirmation')
+                                <span class="invalid-feedback">
+                                    {{ $message }}
+                                </span>
+                                @enderror
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button class="btn btn-success">Update</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </form>
+                </table>
                 <a href="{{ route('user.profile') }}">
                     <button class="btn btn-dark mt-2">Back</button>
                 </a>
