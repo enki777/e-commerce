@@ -123,6 +123,9 @@
                         </form>
                     </div>
                 </div>
+                <a href="{{ route('user.profile') }}">
+                    <button class="btn btn-dark mt-2">Back</button>
+                </a>
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@
                                     <input class="form-control @error('password') is-invalid @enderror" type="password"
                                            name="password">
                                     @error('password')
-                                        <span class="invalid-feedback">
+                                    <span class="invalid-feedback">
                                             {{ $message }}
                                         </span>
                                     @enderror
@@ -32,6 +32,9 @@
                         </form>
                     </div>
                 </div>
+                <a href="{{ route('user.profile') }}">
+                    <button class="btn btn-dark mt-2">Back</button>
+                </a>
             </div>
         </div>
     </div>
