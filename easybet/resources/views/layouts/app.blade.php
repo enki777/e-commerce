@@ -29,9 +29,16 @@
                     <a class="nav-link dropdown-toggle text-white" href="#"
                        data-toggle="dropdown">{{ Auth::user()->username }}</a>
                     <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="#">Logout</a>
+                        <a class="dropdown-item" href="{{ route('profile', Auth::user()->username) }}">Profile</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
                     </div>
+                    <form id="logout-form" class="d-none" action="{{ route('logout') }}" method="POST">
+                        @csrf
+                    </form>
                 </li>
             @else
                 <li class="nav-item">
