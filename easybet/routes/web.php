@@ -23,6 +23,8 @@ Route::get('/user/edit', 'UserController@edit')->name('user.edit');
 Route::patch('/user/update', 'UserController@update')->name('user.update');
 Route::get('/user/edit/password', 'UserController@editPassword')->name('user.edit-password');
 Route::patch('/user/update/password', 'UserController@updatePassword')->name('user.update-password');
+Route::get('/user/delete', 'UserController@delete')->name('user.delete');
+Route::delete('/user/delete/confirm', 'UserController@deleteConfirm')->name('user.delete-confirm');
 
 Auth::routes(['verify' => true]);
 

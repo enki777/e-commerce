@@ -127,4 +127,38 @@ class UserController extends Controller
         return back()
             ->with('password-success', 'Your password has been successfully updated !');
     }
+
+    /**
+     * Show form to delete user's account
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function delete()
+    {
+        return view('user.delete');
+    }
+
+    public function deleteConfirm(Request $request)
+    {
+        $user = User::find(Auth::id());
+
+        $validator = Validator::make($request->all(), [
+            'password' => ['required', function ($attribute, $value, $fails) {
+                if (!Hash::check($value, Auth::user()->getAuthPassword())) {
+                    $fails('Wrong ' . $attribute . '.');
+                }
+            }],
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator);
+        }
+
+        $user->delete();
+
+        return redirect()
+            ->route('register')
+            ->with('delete', 'Your account has been deleted !');
+    }
 }
