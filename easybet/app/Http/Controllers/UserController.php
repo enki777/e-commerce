@@ -14,7 +14,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show user profile
+     * Show user's profile
      *
      * @param $username
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
