@@ -15,9 +15,10 @@ class CreateMatchesTable extends Migration
     {
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
+            $table->string('name');
             $table->timestamps();
-            $table->foreignId('games_id')->constrained();
+            $table->foreignId('games_id')->constrained()->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 

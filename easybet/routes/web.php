@@ -28,9 +28,10 @@ Route::get('/user/delete', 'UserController@delete')->name('user.delete');
 Route::delete('/user/delete/confirm', 'UserController@deleteConfirm')->name('user.delete-confirm');
 
 
+Route::resource('game', 'GameController');
+// routes pour gerer les softDeletes des games
 Route::put('/game/restore/{id}', 'GameController@restore')->name('game.restore');
 Route::delete('/game/delete/{id}', 'GameController@delete')->name('game.delete');
-Route::resource('game', 'GameController');
 
 Route::resource('teams', 'TeamsController');
 // routes pour gerer les softDeletes des teams
@@ -46,3 +47,8 @@ Route::resource('players','PlayersController');
 // routes pour gerer les softDeletes des structures
 Route::delete('players/force/{player}', 'PlayersController@forceDestroy')->name('players.force.destroy');
 Route::put('players/restore/{player}', 'PlayersController@restore')->name('players.restore');
+
+Route::resource('matches','MatchesController');
+// routes pour gerer les softDeletes des matchs
+Route::delete('matches/force/{match}', 'MatchesController@forceDestroy')->name('matches.force.destroy');
+Route::put('matches/restore/{match}', 'MatchesController@restore')->name('matches.restore');
