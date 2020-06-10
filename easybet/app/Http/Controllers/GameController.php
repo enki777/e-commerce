@@ -6,6 +6,7 @@ use App\Game;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\Game as GameRequest;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class GameController extends Controller
@@ -48,7 +49,15 @@ class GameController extends Controller
      */
     public function store(GameRequest $request)
     {
-        Game::create($request->all());
+        $path = null;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $path = Storage::put('images', $request->file('image'));
+        }
+
+        Game::create([
+            'name' => $request->input('name'),
+            'image' => $path,
+        ]);
         return redirect()
             ->route('game.index')
             ->with('store', 'New game created !');

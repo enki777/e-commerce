@@ -14,7 +14,11 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="align-middle">{{ $game->image }}</td>
+                        <td class="align-middle">
+                            <img src="{{ asset($game->image) }}">
+                            <br>
+                            {{ $game->image }}
+                        </td>
                         <td class="align-middle">{{ $game->name }}</td>
                         <td class="align-middle">{{ $game->updated_at }}</td>
                     </tr>
