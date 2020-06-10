@@ -78,7 +78,7 @@ class StructuresController extends Controller
     public function update(StructuresRequest $structuresRequest, Structures $structure)
     {
         $structure->update($structuresRequest->all());
-        return redirect()->route('structures.index')->with('status', "The structure has been updated successfully !");
+        return redirect()->route('structures.index')->with('status', "The structure $structure->name has been updated successfully !");
     }
 
     /**
@@ -90,7 +90,7 @@ class StructuresController extends Controller
     public function destroy(Structures $structure)
     {
         $structure->delete();
-        return back()->with('status', 'the structure has been moved into the crobe !');
+        return back()->with('status', "the structure $structure->name has been moved into the crobe !");
     }
 
     public function forceDestroy($id)
