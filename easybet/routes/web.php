@@ -30,8 +30,10 @@ Route::delete('/user/delete/confirm', 'UserController@deleteConfirm')->name('use
 Route::resource('teams', 'TeamsController');
 Route::resource('structures', 'StructuresController');
 
+// routes pour gerer les softDeletes des teams
 Route::delete('teams/force/{team}', 'TeamsController@forceDestroy')->name('teams.force.destroy');
 Route::put('teams/restore/{team}', 'TeamsController@restore')->name('teams.restore');
 
-Route::resource('game', 'GameController');
-
+// routes pour gerer les softDeletes des structures
+Route::delete('structures/force/{structure}', 'StructuresController@forceDestroy')->name('structures.force.destroy');
+Route::put('structures/restore/{structure}', 'StructuresController@restore')->name('structures.restore');

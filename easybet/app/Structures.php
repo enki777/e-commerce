@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Structures extends Model
 {
-    protected $variable = ['name'] ;
+    use SoftDeletes;
+    protected $fillable = ['name'] ;
     
     public function teams()
     {

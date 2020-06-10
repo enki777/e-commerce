@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Structures;
+use App\Http\Requests\Structures as StructuresRequest;
 
 class StructuresController extends Controller
 {
@@ -14,7 +15,7 @@ class StructuresController extends Controller
      */
     public function index()
     {
-        $structures = Structures::all();
+        $structures = Structures::withTrashed()->latest('updated_at')->get();
         return view('structures.index', compact('structures'));
     }
 
@@ -25,7 +26,7 @@ class StructuresController extends Controller
      */
     public function create()
     {
-        
+        return view('structures.create');
     }
 
     /**
@@ -34,9 +35,10 @@ class StructuresController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StructuresRequest $Structuresrequest)
     {
-        //
+        Structures::create($Structuresrequest->all());
+        return redirect()->route('structures.index')->with('status', "The structure $Structuresrequest->name has been added successfully !");
     }
 
     /**
@@ -61,9 +63,9 @@ class StructuresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Structures $structure)
     {
-        //
+        return view('structures.edit',compact('structure'));
     }
 
     /**
@@ -73,9 +75,10 @@ class StructuresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StructuresRequest $structuresRequest, Structures $structure)
     {
-        //
+        $structure->update($structuresRequest->all());
+        return redirect()->route('structures.index')->with('status', "The structure has been updated successfully !");
     }
 
     /**
@@ -84,8 +87,21 @@ class StructuresController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Structures $structure)
     {
-        //
+        $structure->delete();
+        return back()->with('status', 'the structure has been moved into the crobe !');
+    }
+
+    public function forceDestroy($id)
+    {
+        Structures::withTrashed()->whereId($id)->firstOrFail()->forceDelete();
+        return back()->with('status', 'The structure has been deleted permanently !');
+    }
+
+    public function restore($id)
+    {
+        Structures::withTrashed()->whereId($id)->firstOrFail()->restore();
+        return back()->with('status', 'The structure has been restaured successfully !');
     }
 }

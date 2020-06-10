@@ -21,7 +21,7 @@
                     @foreach($teams as $team)
                     <tr>
                         <td>{{$team->name}}</td>
-                        <td><a class="btn btn-primary float-right mr-4" href="{{ route('teams.show', $team->id) }}">Details</a></td>
+                        <td><a class="btn btn-info float-right mr-4" href="{{ route('teams.show', $team->id) }}">Details</a></td>
                     </tr>
                     @endforeach
                 </tbody>

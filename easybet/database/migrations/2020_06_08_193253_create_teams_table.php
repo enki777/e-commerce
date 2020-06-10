@@ -19,7 +19,7 @@ class CreateTeamsTable extends Migration
             $table->string('name');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreignId('structures_id')->constrained()->onDelete('restrict')->onUpdate('restrict');
+            $table->foreignId('structures_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
