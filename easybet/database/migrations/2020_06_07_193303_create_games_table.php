@@ -15,9 +15,10 @@ class CreateGamesTable extends Migration
     {
         Schema::create('games', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->binary('image')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

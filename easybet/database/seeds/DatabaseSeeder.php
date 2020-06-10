@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
                 $structures->teams()->save(factory(App\Teams::class)->make());
             }
         });
+        factory(App\Game::class, 10)->create();
         // factory(App\Teams::class, 10)->create();
     }
 }

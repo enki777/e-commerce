@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>E'asyBet</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -37,6 +37,7 @@
                         <a class="dropdown-item text-white" href="{{ route('user.profile') }}">Profile<img
                                 src="{{ asset('images/profile.png') }}" width="25"
                                 class="float-right bg-white rounded-circle"></a>
+                        <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-white" href="{{ route('logout') }}"
                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -63,6 +64,8 @@
         </ul>
     </div>
 </nav>
-@yield('content')
+<main>
+    @yield('content')
+</main>
 </body>
 </html>

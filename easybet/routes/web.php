@@ -33,3 +33,5 @@ Route::resource('structures', 'StructuresController');
 Route::delete('teams/force/{team}', 'TeamsController@forceDestroy')->name('teams.force.destroy');
 Route::put('teams/restore/{team}', 'TeamsController@restore')->name('teams.restore');
 
+Route::resource('game', 'GameController');
+
