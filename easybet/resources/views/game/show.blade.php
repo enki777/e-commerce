@@ -9,18 +9,18 @@
                     <tr>
                         <th scope="col">Image</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Updated at</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
                         <td class="align-middle">
-                            <img src="{{ asset($game->image) }}">
-                            <br>
-                            {{ $game->image }}
+                            @if($game->image)
+                                <img src="{{ asset('storage/'.$game->image) }}" alt="game" class="img-thumbnail p-0" width="50">
+                            @else
+                                #
+                            @endif
                         </td>
                         <td class="align-middle">{{ $game->name }}</td>
-                        <td class="align-middle">{{ $game->updated_at }}</td>
                     </tr>
                     </tbody>
                 </table>

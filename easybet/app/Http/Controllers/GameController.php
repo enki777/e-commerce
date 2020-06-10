@@ -49,7 +49,15 @@ class GameController extends Controller
      */
     public function store(GameRequest $request)
     {
-        Game::create($request->all());
+        $file = null;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $file = $request->file('image')->store('images', 'public');
+        }
+
+        Game::create([
+            'name' => $request->name,
+            'image' => $file,
+        ]);
         return redirect()
             ->route('game.index')
             ->with('store', 'New game created !');
@@ -98,7 +106,16 @@ class GameController extends Controller
                 ->withInput();
         }
 
-        $game->update($request->all());
+        $file = null;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $file = $request->file('image')->store('images', 'public');
+        }
+
+        $game->update([
+            'name' => $request->name,
+            'image' => $file,
+        ]);
+
         return redirect()
             ->route('game.index')
             ->with('update', 'Game updated !');

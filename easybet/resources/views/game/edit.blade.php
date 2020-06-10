@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-8">
                 <table class="table table-dark table-striped rounded-bottom">
-                    <form method="post" action="{{ route('game.update', $game->id) }}">
+                    <form method="post" action="{{ route('game.update', $game->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
                         <thead>
@@ -27,7 +27,7 @@
                             </td>
                             <td>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input @error('image') is-invalid @enderror"
+                                    <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror"
                                            id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                 </div>

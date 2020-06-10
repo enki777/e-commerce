@@ -8,7 +8,7 @@
                     <thead>
                     @if(session()->get('store'))
                         <tr>
-                            <th colspan="5">
+                            <th colspan="6">
                                 <div class="alert alert-success text-center m-0">
                                     {{ session()->get('store') }}
                                 </div>
@@ -16,7 +16,7 @@
                         </tr>
                     @elseif(session()->get('update'))
                         <tr>
-                            <th colspan="5">
+                            <th colspan="6">
                                 <div class="alert alert-success text-center m-0">
                                     {{ session()->get('update') }}
                                 </div>
@@ -24,7 +24,7 @@
                         </tr>
                     @elseif(session()->get('delete'))
                         <tr>
-                            <th colspan="5">
+                            <th colspan="6">
                                 <div class="alert alert-danger text-center m-0">
                                     {{ session()->get('delete') }}
                                 </div>
@@ -32,7 +32,7 @@
                         </tr>
                     @elseif(session()->get('restore'))
                         <tr>
-                            <th colspan="5">
+                            <th colspan="6">
                                 <div class="alert alert-success text-center m-0">
                                     {{ session()->get('restore') }}
                                 </div>
@@ -40,11 +40,11 @@
                         </tr>
                     @endif
                     <tr>
-                        <th scope="col" class="align-middle">Game</th>
-                        <th scope="col" colspan="2" class="align-middle">Updated at</th>
+                        <th scope="col" class="align-middle">Image</th>
+                        <th scope="col" colspan="2" class="align-middle">Game</th>
                         @if(Auth::user()->admin == 1)
                             <th></th>
-                            <th scope="col">
+                            <th scope="col" class="align-middle">
                                 <a href="{{ route('game.create') }}" class="my-auto">
                                     <button class="btn btn-primary">
                                         Create
@@ -57,22 +57,28 @@
                     <tbody>
                     @foreach($games as $game)
                         <tr>
-                            <td class="align-middle break-long-words">{{ $game->name }}</td>
-                            <td class="align-middle">{{ $game->updated_at }}</td>
-                            <td>
+                            <td class="align-middle">
+                                @if($game->image)
+                                    <img src="{{ asset('storage/'.$game->image) }}" alt="game" class="img-thumbnail p-0" width="50">
+                                @else
+                                    #
+                                @endif
+                            </td>
+                            <td class="align-middle">{{ $game->name }}</td>
+                            <td class="align-middle">
                                 <a href="{{ route('game.show', $game->id) }}">
                                     <button class="btn btn-primary">Details</button>
                                 </a>
                             </td>
                             @if(Auth::user()->admin == 1)
-                                <td>
+                                <td class="align-middle">
                                     <a href="{{ route('game.edit', $game->id) }}">
                                         <button class="btn btn-success">
                                             Update
                                         </button>
                                     </a>
                                 </td>
-                                <td>
+                                <td class="align-middle">
                                     <form method="post" action="{{ route('game.destroy', $game->id) }}">
                                         @csrf
                                         @method('DELETE')
