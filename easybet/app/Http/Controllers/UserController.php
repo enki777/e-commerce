@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Http\Requests\User as UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -51,34 +52,12 @@ class UserController extends Controller
     /**
      * Update user's profile
      *
-     * @param Request $request
+     * @param UserRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request)
+    public function update(UserRequest $request)
     {
         $user = User::find(Auth::id());
-
-        $validador = Validator::make($request->all(), [
-            'username' => ['required', 'unique:users,username,' . Auth::id(), 'max:255'],
-            'first_name' => ['required', 'max:255'],
-            'last_name' => ['required', 'max:255'],
-            'birthday' => ['required', 'date'],
-            'address' => ['required', 'max:255'],
-            'city' => ['required', 'max:255'],
-            'email' => ['required', 'email', 'max:255'],
-            'password' => ['required', function ($attribute, $value, $fails) {
-                if (!Hash::check($value, Auth::user()->getAuthPassword())) {
-                    $fails('Wrong ' . $attribute . '.');
-                }
-            }, 'max:255'],
-        ]);
-
-        if ($validador->fails()) {
-            return back()
-                ->withErrors($validador)
-                ->withInput();
-        }
-
         $user->fill($request->except('password'));
         $user->save();
 

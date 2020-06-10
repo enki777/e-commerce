@@ -55,7 +55,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="3">
                                 <button class="btn btn-success">Update</button>
                             </td>
                         </tr>

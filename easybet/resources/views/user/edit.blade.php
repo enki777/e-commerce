@@ -130,7 +130,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td colspan="2">
                                 <button class="btn btn-success" type="submit">Update</button>
                             </td>
                         </tr>
