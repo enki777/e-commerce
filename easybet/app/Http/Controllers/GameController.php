@@ -6,13 +6,16 @@ use App\Game;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\Game as GameRequest;
+use Illuminate\Support\Facades\Validator;
 
 class GameController extends Controller
 {
     public function __construct()
     {
         $this->middleware('admin')
-            ->except('index');
+            ->except('index', 'show');
+        $this->middleware('auth')
+            ->only('index', 'show');
     }
 
     /**
@@ -22,8 +25,9 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::all();
-        return view('game.index', compact('games'));
+        $games = Game::latest('updated_at')->paginate(10);
+        $deleted_games = Game::onlyTrashed()->latest('updated_at')->get();
+        return view('game.index', compact('games', 'deleted_games'));
     }
 
     /**
@@ -47,7 +51,7 @@ class GameController extends Controller
         Game::create($request->all());
         return redirect()
             ->route('game.index')
-            ->with('created', 'New game created !');
+            ->with('store', 'New game created !');
     }
 
     /**
@@ -72,26 +76,72 @@ class GameController extends Controller
         return view('game.edit', compact('game'));
     }
 
+
     /**
      * Update the specified resource in storage.
      *
-     * @param \Illuminate\Http\Request $request
-     * @param \App\Game $game
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Game $game
+     * @return RedirectResponse
      */
     public function update(Request $request, Game $game)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'unique:games,name,' . $game->id, 'max:30'],
+            'image' => ['nullable', 'image'],
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $game->update($request->all());
+        return redirect()
+            ->route('game.index')
+            ->with('update', 'Game updated !');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param \App\Game $game
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|RedirectResponse|\Illuminate\Routing\Redirector
+     * @throws \Exception
      */
     public function destroy(Game $game)
     {
-        //
+        $game->delete();
+        return redirect()
+            ->route('game.index');
+    }
+
+    /**
+     * Force delete a game
+     *
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function delete($id)
+    {
+        Game::onlyTrashed()->find($id)->forceDelete();
+        return redirect()
+            ->route('game.index')
+            ->with('delete', 'Game deleted !');
+    }
+
+    /**
+     * Restore deleted game
+     *
+     * @param int $id
+     * @return RedirectResponse
+     */
+    public function restore($id)
+    {
+        Game::onlyTrashed()->find($id)->restore();
+        return redirect()
+            ->route('game.index')
+            ->with('restore', 'Game restored !');
     }
 }

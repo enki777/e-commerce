@@ -63,7 +63,7 @@
                     </form>
                 </table>
                 <a href="{{ route('user.profile') }}">
-                    <button class="btn btn-dark mt-2">Back</button>
+                    <button class="btn btn-light">Back</button>
                 </a>
             </div>
         </div>

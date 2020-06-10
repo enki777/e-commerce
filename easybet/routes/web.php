@@ -27,6 +27,9 @@ Route::patch('/user/update/password', 'UserController@updatePassword')->name('us
 Route::get('/user/delete', 'UserController@delete')->name('user.delete');
 Route::delete('/user/delete/confirm', 'UserController@deleteConfirm')->name('user.delete-confirm');
 
+
+Route::put('/game/restore/{id}', 'GameController@restore')->name('game.restore');
+Route::delete('/game/delete/{id}', 'GameController@delete')->name('game.delete');
 Route::resource('game', 'GameController');
 
 Route::resource('teams', 'TeamsController');
