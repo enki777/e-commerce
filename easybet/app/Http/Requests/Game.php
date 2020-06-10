@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class Game extends FormRequest
 {
@@ -24,7 +25,7 @@ class Game extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'max:255', 'unique:games'],
+            'name' => ['required', 'max:30', 'unique:games'],
             'image' => ['nullable', 'image'],
         ];
     }

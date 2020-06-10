@@ -20,6 +20,11 @@
                     </tr>
                     </tbody>
                 </table>
+                <a href="{{ route('game.index') }}">
+                    <button class="btn btn-light">
+                        Back
+                    </button>
+                </a>
             </div>
         </div>
     </div>

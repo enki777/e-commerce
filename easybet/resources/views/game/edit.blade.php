@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-8">
                 <table class="table table-dark table-striped rounded-bottom">
-                    <form method="post" action="{{ route('game.update') }}">
+                    <form method="post" action="{{ route('game.update', $game->id) }}">
                         @csrf
                         @method('PATCH')
                         <thead>
@@ -38,9 +38,21 @@
                                 @enderror
                             </td>
                         </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button class="btn btn-success" type="submit">
+                                    Update
+                                </button>
+                            </td>
+                        </tr>
                         </tbody>
                     </form>
                 </table>
+                <a href="{{ route('game.index') }}">
+                    <button class="btn btn-light">
+                        Back
+                    </button>
+                </a>
             </div>
         </div>
     </div>
