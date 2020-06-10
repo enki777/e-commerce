@@ -12,8 +12,4 @@ class Game extends Model
     protected $fillable = [
         'name', 'image',
     ];
-
-    public function matches(){
-        return $this->hasMany(Matches::class);
-    }
 }
