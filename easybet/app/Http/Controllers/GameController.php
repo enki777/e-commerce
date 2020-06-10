@@ -49,15 +49,7 @@ class GameController extends Controller
      */
     public function store(GameRequest $request)
     {
-        $path = null;
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $path = Storage::put('images', $request->file('image'));
-        }
-
-        Game::create([
-            'name' => $request->input('name'),
-            'image' => $path,
-        ]);
+        Game::create($request->all());
         return redirect()
             ->route('game.index')
             ->with('store', 'New game created !');
