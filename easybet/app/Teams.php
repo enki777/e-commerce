@@ -14,4 +14,8 @@ class Teams extends Model
     {
         return $this->belongsTo(Structures::class);
     }
+
+    public function players(){
+        return $this->hasMany(Players::class);
+    }
 }

@@ -15,12 +15,13 @@ class CreatePlayersTable extends Migration
     {
         Schema::create('players', function (Blueprint $table) {
             $table->id();
-            $table->string('fristname');
+            $table->string('firstname');
             $table->string('lastname');
-            $table->string('pseudo');
+            $table->string('pseudo')->unique();
             $table->integer('age');
             $table->timestamps();
             $table->foreignId('teams_id')->constrained()->onDelete('cascade');
+            $table->softDeletes();
         });
     }
 

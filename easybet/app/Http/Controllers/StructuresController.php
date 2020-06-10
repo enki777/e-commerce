@@ -50,10 +50,6 @@ class StructuresController extends Controller
     public function show(Structures $structure)
     {
         $teams = $structure->teams;
-        // foreach($teams as $team){
-        //     echo $team;
-        // }
-        // return ;
         return view('structures/show',compact('teams','structure'));
     }
 
