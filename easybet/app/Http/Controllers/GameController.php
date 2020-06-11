@@ -6,7 +6,6 @@ use App\Game;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Requests\Game as GameRequest;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class GameController extends Controller
@@ -27,7 +26,6 @@ class GameController extends Controller
     public function index()
     {
         $games = Game::latest('updated_at')->paginate(10);
-        $deleted_games = Game::onlyTrashed()->latest('updated_at')->get();
         return view('game.index', compact('games', 'deleted_games'));
     }
 
