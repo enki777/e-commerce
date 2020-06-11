@@ -117,12 +117,6 @@ class GameController extends Controller
             $file = $request->file('image')->store('images', 'public');
         }
 
-//        if($game->categories()->get()->contains('id', '=', 1)) {
-//            return 'true';
-//        } else {
-//            return 'false';
-//        }
-
         $game->update([
             'name' => $request->name,
             'image' => $file,
