@@ -18,7 +18,6 @@ class CreateGamesTable extends Migration
             $table->string('name')->unique();
             $table->binary('image')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

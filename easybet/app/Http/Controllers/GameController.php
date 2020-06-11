@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Game;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -26,8 +27,7 @@ class GameController extends Controller
     public function index()
     {
         $games = Game::latest('updated_at')->paginate(10);
-        $deleted_games = Game::onlyTrashed()->latest('updated_at')->get();
-        return view('game.index', compact('games', 'deleted_games'));
+        return view('game.index', compact('games'));
     }
 
     /**
@@ -37,7 +37,8 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('game.create');
+        $categories = Category::all();
+        return view('game.create', compact('categories'));
     }
 
     /**
@@ -48,7 +49,19 @@ class GameController extends Controller
      */
     public function store(GameRequest $request)
     {
-        Game::create($request->all());
+        $file = null;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $file = $request->file('image')->store('images', 'public');
+        }
+
+        $g = Game::create([
+            'name' => $request->name,
+            'image' => $file,
+        ]);
+
+        $game = Game::find($g->id);
+        $game->categories()->attach($request->category);
+
         return redirect()
             ->route('game.index')
             ->with('store', 'New game created !');
@@ -62,7 +75,8 @@ class GameController extends Controller
      */
     public function show(Game $game)
     {
-        return view('game.show', compact('game'));
+        $categories = $game->categories()->get();
+        return view('game.show', compact('game', 'categories'));
     }
 
     /**
@@ -73,7 +87,8 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view('game.edit', compact('game'));
+        $categories = Category::all();
+        return view('game.edit', compact('game', 'categories'));
     }
 
 
@@ -97,7 +112,18 @@ class GameController extends Controller
                 ->withInput();
         }
 
-        $game->update($request->all());
+        $file = null;
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $file = $request->file('image')->store('images', 'public');
+        }
+
+        $game->update([
+            'name' => $request->name,
+            'image' => $file,
+        ]);
+
+        $game->categories()->sync($request->category);
+
         return redirect()
             ->route('game.index')
             ->with('update', 'Game updated !');
@@ -114,34 +140,7 @@ class GameController extends Controller
     {
         $game->delete();
         return redirect()
-            ->route('game.index');
-    }
-
-    /**
-     * Force delete a game
-     *
-     * @param int $id
-     * @return RedirectResponse
-     */
-    public function delete($id)
-    {
-        Game::onlyTrashed()->find($id)->forceDelete();
-        return redirect()
             ->route('game.index')
             ->with('delete', 'Game deleted !');
-    }
-
-    /**
-     * Restore deleted game
-     *
-     * @param int $id
-     * @return RedirectResponse
-     */
-    public function restore($id)
-    {
-        Game::onlyTrashed()->find($id)->restore();
-        return redirect()
-            ->route('game.index')
-            ->with('restore', 'Game restored !');
     }
 }

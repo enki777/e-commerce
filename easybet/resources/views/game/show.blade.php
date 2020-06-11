@@ -9,14 +9,24 @@
                     <tr>
                         <th scope="col">Image</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Updated at</th>
+                        <th scope="col">Categories</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td class="align-middle">{{ $game->image }}</td>
+                        <td class="align-middle">
+                            @if($game->image)
+                                <img src="{{ asset('storage/'.$game->image) }}" alt="game" class="img-thumbnail p-0" width="50">
+                            @else
+                                #
+                            @endif
+                        </td>
                         <td class="align-middle">{{ $game->name }}</td>
-                        <td class="align-middle">{{ $game->updated_at }}</td>
+                        <td class="align-middle">
+                            @foreach($categories as $category)
+                                {{ $category->name }}
+                            @endforeach
+                        </td>
                     </tr>
                     </tbody>
                 </table>

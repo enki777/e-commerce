@@ -8,7 +8,7 @@
                     <thead>
                     @if(session()->get('store'))
                         <tr>
-                            <th colspan="6">
+                            <th colspan="5">
                                 <div class="alert alert-success text-center m-0">
                                     {{ session()->get('store') }}
                                 </div>
@@ -16,7 +16,7 @@
                         </tr>
                     @elseif(session()->get('update'))
                         <tr>
-                            <th colspan="6">
+                            <th colspan="5">
                                 <div class="alert alert-success text-center m-0">
                                     {{ session()->get('update') }}
                                 </div>
@@ -24,7 +24,7 @@
                         </tr>
                     @elseif(session()->get('delete'))
                         <tr>
-                            <th colspan="6">
+                            <th colspan="5">
                                 <div class="alert alert-danger text-center m-0">
                                     {{ session()->get('delete') }}
                                 </div>
@@ -32,12 +32,11 @@
                         </tr>
                     @endif
                     <tr>
-                        <th scope="col" class="align-middle text-center">Image</th>
-                        <th scope="col" colspan="2" class="align-middle">Game</th>
+                        <th scope="col" class="align-middle">Name</th>
+                        <th scope="col" colspan="3" class="align-middle">Updated at</th>
                         @if(Auth::user()->admin == 1)
-                            <th></th>
                             <th scope="col" class="align-middle">
-                                <a href="{{ route('game.create') }}" class="my-auto">
+                                <a href="{{ route('category.create') }}">
                                     <button class="btn btn-primary">
                                         Create
                                     </button>
@@ -47,35 +46,32 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($games as $game)
+                    @foreach($categories as $category)
                         <tr>
-                            <td class="align-middle text-center">
-                                @if($game->image)
-                                    <img src="{{ asset('storage/'.$game->image) }}" alt="game" class="img-thumbnail p-0"
-                                         width="50">
-                                @else
-                                    #
-                                @endif
-                            </td>
-                            <td class="align-middle">{{ $game->name }}</td>
+                            <td class="align-middle">{{ $category->name }}</td>
+                            <td class="align-middle">{{ $category->updated_at }}</td>
                             <td class="align-middle">
-                                <a href="{{ route('game.show', $game->id) }}">
-                                    <button class="btn btn-primary">Details</button>
+                                <a href="{{ route('category.show', $category->id) }}">
+                                    <button class="btn btn-primary">
+                                        Details
+                                    </button>
                                 </a>
                             </td>
                             @if(Auth::user()->admin == 1)
                                 <td class="align-middle">
-                                    <a href="{{ route('game.edit', $game->id) }}">
+                                    <a href="{{ route('category.edit', $category->id) }}">
                                         <button class="btn btn-success">
                                             Update
                                         </button>
                                     </a>
                                 </td>
                                 <td class="align-middle">
-                                    <form method="post" action="{{ route('game.destroy', $game->id) }}">
+                                    <form method="post" action="{{ route('category.destroy', $category->id) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger">Delete</button>
+                                        <button class="btn btn-danger" type="submit">
+                                            Delete
+                                        </button>
                                     </form>
                                 </td>
                             @endif
@@ -83,9 +79,6 @@
                     @endforeach
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center">
-                    {{ $games->links() }}
-                </div>
             </div>
         </div>
     </div>

@@ -54,3 +54,4 @@ Route::delete('matches/force/{match}', 'MatchesController@forceDestroy')->name('
 Route::put('matches/restore/{match}', 'MatchesController@restore')->name('matches.restore');
 
 Route::resource('matchesteams', 'MatchesTeamsController');
+Route::resource('category', 'CategoryController');
