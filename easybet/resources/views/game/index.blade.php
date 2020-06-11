@@ -30,17 +30,9 @@
                                 </div>
                             </th>
                         </tr>
-                    @elseif(session()->get('restore'))
-                        <tr>
-                            <th colspan="6">
-                                <div class="alert alert-success text-center m-0">
-                                    {{ session()->get('restore') }}
-                                </div>
-                            </th>
-                        </tr>
                     @endif
                     <tr>
-                        <th scope="col" class="align-middle">Image</th>
+                        <th scope="col" class="align-middle text-center">Image</th>
                         <th scope="col" colspan="2" class="align-middle">Game</th>
                         @if(Auth::user()->admin == 1)
                             <th></th>
@@ -57,9 +49,10 @@
                     <tbody>
                     @foreach($games as $game)
                         <tr>
-                            <td class="align-middle">
+                            <td class="align-middle text-center">
                                 @if($game->image)
-                                    <img src="{{ asset('storage/'.$game->image) }}" alt="game" class="img-thumbnail p-0" width="50">
+                                    <img src="{{ asset('storage/'.$game->image) }}" alt="game" class="img-thumbnail p-0"
+                                         width="50">
                                 @else
                                     #
                                 @endif
@@ -94,38 +87,6 @@
                     {{ $games->links() }}
                 </div>
             </div>
-            @if(Auth::user()->admin == 1)
-                <div class="col-4">
-                    <table class="table table-dark table-striped rounded-bottom">
-                        <thead>
-                        <tr>
-                            <th scope="col" colspan="3">Deleted games</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($deleted_games as $game)
-                            <tr>
-                                <td class="align-middle">{{ $game->name }}</td>
-                                <td class="align-middle">
-                                    <form method="post" action="{{ route('game.restore', $game->id) }}">
-                                        @csrf
-                                        @method('PUT')
-                                        <button class="btn btn-success">Restore</button>
-                                    </form>
-                                </td>
-                                <td class="align-middle">
-                                    <form method="post" action="{{ route('game.delete', $game->id) }}">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-danger">Delete</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            @endif
         </div>
     </div>
 @endsection

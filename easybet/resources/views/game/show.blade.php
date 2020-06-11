@@ -9,6 +9,7 @@
                     <tr>
                         <th scope="col">Image</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Categories</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -21,6 +22,11 @@
                             @endif
                         </td>
                         <td class="align-middle">{{ $game->name }}</td>
+                        <td class="align-middle">
+                            @foreach($categories as $category)
+                                {{ $category->name }}
+                            @endforeach
+                        </td>
                     </tr>
                     </tbody>
                 </table>

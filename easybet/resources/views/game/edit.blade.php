@@ -10,8 +10,8 @@
                         @method('PATCH')
                         <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Image</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Image</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,6 +36,21 @@
                                     {{ $message }}
                                 </span>
                                 @enderror
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col" colspan="2">Categories</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                {{ null  }}
+                                @foreach($categories as $category)
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="category[]"
+                                               value="{{ $category->id }}" @if($game->categories()->get()->contains('id', '=', $category->id)) checked @endif>
+                                        <label class="form-check-label">{{ $category->name }}</label>
+                                    </div>
+                                @endforeach
                             </td>
                         </tr>
                         <tr>

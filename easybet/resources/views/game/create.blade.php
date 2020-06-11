@@ -26,7 +26,8 @@
                             </td>
                             <td>
                                 <div class="custom-file">
-                                    <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror"
+                                    <input type="file" name="image"
+                                           class="custom-file-input @error('image') is-invalid @enderror"
                                            id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                 </div>
@@ -35,6 +36,20 @@
                                     {{ $message }}
                                 </span>
                                 @enderror
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col" colspan="2">Categories</th>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                @foreach($categories as $category)
+                                    <div class="form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="category[]"
+                                               value="{{ $category->id }}">
+                                        <label class="form-check-label">{{ $category->name }}</label>
+                                    </div>
+                                @endforeach
                             </td>
                         </tr>
                         <tr>

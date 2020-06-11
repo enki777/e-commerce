@@ -9,6 +9,14 @@ use Illuminate\Support\Facades\Validator;
 
 class CategoryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')
+            ->except('index', 'show');
+        $this->middleware('auth')
+            ->only('index', 'show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -87,6 +95,8 @@ class CategoryController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
+
+        $category->update($request->all());
 
         return redirect()
             ->route('category.index')
