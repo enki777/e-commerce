@@ -35,16 +35,20 @@
                         <select name="teams_id" class="browser-default custom-select form-control @error('teams_id') is-invalid @enderror mb-3">
                             <option selected value="{{$curTeam1->id}}">{{$curTeam1->name}}</option>
                             @foreach($teams1 as $team)
+                            @if($curTeam1->id != $team->id)
                             <option value="{{$team->id}}">{{$team->name}}</option>
+                            @endif
                             @endforeach
                             @error('teams_id')
                             <span class="invalid-feedback">{{$message}}</span>
                             @enderror
                         </select>
                         <select name="teams2_id" class="browser-default custom-select form-control @error('teams2_id') is-invalid @enderror">
-                            <option selected disabled value="{{$team2->id}}">{{$team2->name}}</option>
+                            <option selected value="{{$curTeam2->id}}">{{$curTeam2->name}}</option>
                             @foreach($teams2 as $team)
+                            @if($curTeam2->id != $team->id)
                             <option value="{{$team->id}}">{{$team->name}}</option>
+                            @endif
                             @endforeach
                             @error('teams2_id')
                             <span class="invalid-feedback">{{$message}}</span>
