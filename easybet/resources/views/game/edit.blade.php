@@ -27,7 +27,8 @@
                             </td>
                             <td>
                                 <div class="custom-file">
-                                    <input type="file" name="image" class="custom-file-input @error('image') is-invalid @enderror"
+                                    <input type="file" name="image"
+                                           class="custom-file-input @error('image') is-invalid @enderror"
                                            id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                                     <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                                 </div>
@@ -47,7 +48,8 @@
                                 @foreach($categories as $category)
                                     <div class="form-check-inline">
                                         <input class="form-check-input" type="checkbox" name="category[]"
-                                               value="{{ $category->id }}" @if($game->categories()->get()->contains('id', '=', $category->id)) checked @endif>
+                                               value="{{ $category->id }}"
+                                               @if($game->categories()->get()->contains('id', '=', $category->id)) checked @endif>
                                         <label class="form-check-label">{{ $category->name }}</label>
                                     </div>
                                 @endforeach
