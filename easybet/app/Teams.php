@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Teams extends Model
 {
     use SoftDeletes;
-    protected $fillable = ['name', 'structures_id','teams_id','teams2_id'];
+    protected $fillable = ['name', 'structures_id','teams_id'];
 
     public function structures()
     {
@@ -20,10 +20,6 @@ class Teams extends Model
     }
 
     public function matches(){
-        return $this->belongsToMany(Matches::class,'matches_teams','teams_id','matches_id');
-    }
-
-    public function matches2(){
-        return $this->belongsToMany(Matches::class,'matches_teams','teams2_id','matches_id');
+        return $this->hasMany(Matches::class);
     }
 }

@@ -19,11 +19,11 @@ class Matches extends Model
         return $this->belongsToMany(User::class, 'matches_user', 'matches_id','users_id')->as('bet')->withPivot('created_at','updated_at','outcome');
     }
 
-    public function teams(){
-        return $this->belongsToMany(Teams::class,'matches_teams','matches_id','teams_id');
+    public function team1(){
+        return $this->belongsTo(Teams::class,'teams_id');
     }
 
-    public function teams2(){
-        return $this->belongsToMany(Teams::class,'matches_teams','matches_id','teams2_id');
+    public function team2(){
+        return $this->belongsTo(Teams::class,'teams2_id');
     }
 }

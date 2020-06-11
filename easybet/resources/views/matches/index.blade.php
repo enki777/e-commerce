@@ -18,13 +18,9 @@
                         <th scope="col">
                             <p class="text-primary m-0">Matches</p>
                         </th>
-                        <th>
-                            <p class="text-primary m-0">Team 1</p>
-                        </th>
-                        <th>VS</th>
-                        <th>
-                            <p class="text-primary m-0">Team 2</p>
-                        </th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                         @if(Auth::user()->admin == 1)
                         <th colspan="4"><a href="{{route('matches.create')}}"><button class="btn btn-primary float-right mr-4">Create Match</button></a></th>
                         @endif
@@ -35,9 +31,9 @@
                     <tr>
                         <td>{{$match->updated_at}}</td>
                         <td>{{$match->name}}</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$match->team1->name}}</td>
+                        <td><p class="text-primary">VS</p></td>
+                        <td>{{$match->team2->name}}</td>
                         @if(Auth::user()->admin == 1)
                         @if($match->deleted_at)
                         <form action="{{ route('matches.restore', $match->id) }}" method="post">

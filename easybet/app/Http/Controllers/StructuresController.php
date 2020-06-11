@@ -22,6 +22,7 @@ class StructuresController extends Controller
     public function index()
     {
         $structures = Structures::withTrashed()->latest('updated_at')->get();
+        // return $structures; // for JSON
         return view('structures.index', compact('structures'));
     }
 

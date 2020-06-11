@@ -55,3 +55,4 @@ Route::put('matches/restore/{match}', 'MatchesController@restore')->name('matche
 
 Route::resource('matchesteams', 'MatchesTeamsController');
 Route::resource('category', 'CategoryController');
+

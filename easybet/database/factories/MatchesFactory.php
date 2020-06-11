@@ -9,5 +9,7 @@ $factory->define(Matches::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
         'games_id'=>rand(1,10),
+        'teams_id'=>rand(1,10),
+        'teams2_id'=>rand(1,10),
     ];
 });
