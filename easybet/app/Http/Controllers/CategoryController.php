@@ -38,7 +38,6 @@ class CategoryController extends Controller
         return view('category.create');
     }
 
-
     /**
      * Store a newly created resource in storage.
      *
@@ -108,6 +107,7 @@ class CategoryController extends Controller
      *
      * @param \App\Category $category
      * @return \Illuminate\Http\RedirectResponse
+     * @throws \Exception
      */
     public function destroy(Category $category)
     {

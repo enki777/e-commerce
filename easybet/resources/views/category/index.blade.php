@@ -32,8 +32,7 @@
                         </tr>
                     @endif
                     <tr>
-                        <th scope="col" class="align-middle">Name</th>
-                        <th scope="col" colspan="3" class="align-middle">Updated at</th>
+                        <th scope="col" colspan="3" class="align-middle">Name</th>
                         @if(Auth::user()->admin == 1)
                             <th scope="col" class="align-middle">
                                 <a href="{{ route('category.create') }}">
@@ -49,7 +48,6 @@
                     @foreach($categories as $category)
                         <tr>
                             <td class="align-middle">{{ $category->name }}</td>
-                            <td class="align-middle">{{ $category->updated_at }}</td>
                             <td class="align-middle">
                                 <a href="{{ route('category.show', $category->id) }}">
                                     <button class="btn btn-primary">
