@@ -18,7 +18,9 @@
                         <th scope="col">
                             <p class="text-primary m-0">Players pseudo</p>
                         </th>
+                        @if(Auth::user()->admin == 1)
                         <th colspan="4"><a href="{{route('players.create')}}"><button class="btn btn-primary float-right mr-4">Create Player</button></a></th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +28,7 @@
                     <tr>
                         <td>{{$player->updated_at}}</td>
                         <td>{{$player->pseudo}}</td>
+                        @if(Auth::user()->admin == 1)
                         @if($player->deleted_at)
                         <form action="{{ route('players.restore', $player->id) }}" method="post">
                             @csrf
@@ -44,6 +47,9 @@
                             @method('DELETE')
                             <td colspan="2"><button class="btn btn-danger" type="submit">Delete</button></td>
                         </form>
+                        @else 
+                        <td><a class="btn btn-primary" href="{{ route('players.show', $player->id) }}">Details</a></td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

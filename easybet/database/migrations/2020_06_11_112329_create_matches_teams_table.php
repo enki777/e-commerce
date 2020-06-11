@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBetsTable extends Migration
+class CreateMatchesTeamsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateBetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('bets', function (Blueprint $table) {
+        Schema::create('matches_teams', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('matches_id');
+            $table->bigInteger('teams_id');
+            $table->bigInteger('teams2_id');
             $table->timestamps();
-            $table->foreignId('matches_id')->constrained();
         });
     }
 
@@ -27,6 +29,6 @@ class CreateBetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bets');
+        Schema::dropIfExists('matches_teams');
     }
 }

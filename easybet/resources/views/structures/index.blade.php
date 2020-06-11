@@ -18,7 +18,9 @@
                         <th scope="col">
                             <p class="text-primary m-0">Structure names</p>
                         </th>
+                        @if(Auth::user()->admin == 1)
                         <th colspan="4"><a href="{{route('structures.create')}}"><button class="btn btn-primary float-right mr-4">Create Structure</button></a></th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -26,24 +28,28 @@
                     <tr>
                         <td>{{$structure->updated_at}}</td>
                         <td>{{$structure->name}}</td>
-                        @if($structure->deleted_at)
-                        <form action="{{ route('structures.restore', $structure->id) }}" method="post">
-                            @csrf
-                            @method('PUT')
-                            <td colspan="2"><button class="btn btn-primary" type="submit">Restore</button></td>
-                        </form>
-                        @else
-                        <td><a class="btn btn-primary" href="{{ route('structures.show', $structure->id) }}">Details</a></td>
-                        @endif
-                        @if($structure->deleted_at)
-                        @else
-                        <td><a class="btn btn-success" href="{{ route('structures.edit', $structure->id) }}">Edit</a></td>
-                        @endif
+                        @if(Auth::user()->admin == 1)
+                            @if($structure->deleted_at)
+                            @else
+                            <td><a class="btn btn-success" href="{{ route('structures.edit', $structure->id) }}">Edit</a></td>
+                            @endif
+                            @if($structure->deleted_at)
+                            <form action="{{ route('structures.restore', $structure->id) }}" method="post">
+                                @csrf
+                                @method('PUT')
+                                <td colspan="2"><button class="btn btn-primary" type="submit">Restore</button></td>
+                            </form>
+                            @else
+                            <td><a class="btn btn-primary" href="{{ route('structures.show', $structure->id) }}">Details</a></td>
+                            @endif
                         <form action="{{ route($structure->deleted_at? 'structures.force.destroy' : 'structures.destroy', $structure->id) }}" method="post">
                             @csrf
                             @method('DELETE')
                             <td><button class="btn btn-danger" type="submit">Delete</button></td>
                         </form>
+                        @else
+                        <td><a class="btn btn-primary" href="{{ route('structures.show', $structure->id) }}">Details</a></td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

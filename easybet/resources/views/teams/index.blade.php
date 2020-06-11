@@ -7,7 +7,9 @@
             <div class="card mt-5">
                 <div class="card-header">
                     <h1 class="float-left">Teams</h1>
-                    <a href="{{ route('teams.create') }}"><button class="btn btn-info float-right">Créer une team</button></a>
+                    @if(Auth::user()->admin == 1)
+                    <a href="{{ route('teams.create') }}"><button class="btn btn-info float-right">Create team</button></a>
+                    @endif
                 </div>
 
                 <div class="card-body">
@@ -18,7 +20,7 @@
                     @endif
                     @foreach($teams as $team)
                     <div class="row m-2">
-
+                        @if(Auth::user()->admin == 1)
                         <div class="col-6">
                             <h4>{{$team->name}}</h4>
                         </div>
@@ -27,17 +29,17 @@
                             <form action="{{ route('teams.restore', $team->id) }}" method="post">
                                 @csrf
                                 @method('PUT')
-                                <button class="btn btn-primary" type="submit">Restaurer</button>
+                                <button class="btn btn-primary" type="submit">Restore</button>
                             </form>
                             @else
-                            <a class="btn btn-primary" href="{{ route('teams.show', $team->id) }}">Voir</a>
+                            <a class="btn btn-primary" href="{{ route('teams.show', $team->id) }}">Details</a>
                             @endif
                         </div>
                         <div class="col-2">
 
                             @if($team->deleted_at)
                             @else
-                            <a class="btn btn-warning" href="{{ route('teams.edit', $team->id) }}">Modifier</a>
+                            <a class="btn btn-warning" href="{{ route('teams.edit', $team->id) }}">Edit</a>
                             @endif
                         </div>
                         <div class="col-2">
@@ -47,6 +49,14 @@
                                 <button class="btn btn-danger" type="submit">Supprimer</button>
                             </form>
                         </div>
+                        @else
+                        <div class="col-8">
+                            <h4>{{$team->name}}</h4>
+                        </div>
+                        <div class="col-4">
+                        <a class="btn btn-primary" href="{{ route('teams.show', $team->id) }}">Details</a>
+                        </div>
+                        @endif
                     </div>
                     @endforeach
 

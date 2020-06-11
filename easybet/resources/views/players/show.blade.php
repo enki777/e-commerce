@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{$player->fisrtname}}</td>
+                        <td>{{$player->firstname}}</td>
                         <td>{{$player->lastname}}</td>
                         <td>{{$player->pseudo}}</td>
                         <td>{{$player->age}}</td>

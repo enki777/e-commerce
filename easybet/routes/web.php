@@ -52,3 +52,5 @@ Route::resource('matches','MatchesController');
 // routes pour gerer les softDeletes des matchs
 Route::delete('matches/force/{match}', 'MatchesController@forceDestroy')->name('matches.force.destroy');
 Route::put('matches/restore/{match}', 'MatchesController@restore')->name('matches.restore');
+
+Route::resource('matchesteams', 'MatchesTeamsController');

@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\{Matches,Game};
+use App\{Matches, Game, Teams};
 use Illuminate\Http\Request;
 use App\Http\Requests\Matches as MatchesRequest;
+use GuzzleHttp\Middleware;
+use Illuminate\Support\Facades\DB;
 
 class MatchesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->except('index', 'show');
+        $this->middleware('auth')->only('index', 'show');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +22,10 @@ class MatchesController extends Controller
      */
     public function index()
     {
+
         $matches = Matches::withTrashed()->latest('updated_at')->get();
-        return view('matches.index',compact('matches'));
+        // return $matches; 
+        return view('matches.index', compact('matches'));
     }
 
     /**
@@ -27,7 +36,9 @@ class MatchesController extends Controller
     public function create()
     {
         $games = Game::all();
-        return view('matches.create',compact('games'));
+        $team1 = Teams::all();
+        $team2 = Teams::all();
+        return view('matches.create', compact('games', 'team1', 'team2'));
     }
 
     /**
@@ -38,8 +49,28 @@ class MatchesController extends Controller
      */
     public function store(MatchesRequest $matchesRequest)
     {
-        Matches::create($matchesRequest->all());
-        return redirect()->route('matches.index')->with('status',"The Match $matchesRequest->name has been created successfully !");
+        // return $matchesRequest;
+
+        //     $match = Matches::find($id->id);
+        //     $match->teams()->attach($matchesRequest->teams_id);
+        //     $match->teams2()->attach($matchesRequest->teams2_id);
+
+        // $game = Game::find($g->id);
+        // $game->categories()->attach($request->category);
+
+        $id = Matches::create([
+            'name' => $matchesRequest->name,
+            'games_id' => $matchesRequest->games_id
+        ]);
+        $match = Matches::where('name', '=', $matchesRequest->name)->get();
+        $matchId = $match[0]->id;
+        DB::table('matches_teams')->insert([
+            'matches_id' => $matchId,
+            'teams_id' => $matchesRequest->teams_id,
+            'teams2_id' => $matchesRequest->teams2_id,
+        ]);
+
+        return redirect()->route('matches.index')->with('status', "The Match $matchesRequest->name has been created successfully !");
     }
 
     /**
@@ -51,7 +82,16 @@ class MatchesController extends Controller
     public function show(Matches $match)
     {
         $game = $match->games;
-        return view('matches.show',compact('match','game'));
+        $team1Id = $match->teams()->get(['teams_id'])[0]->teams_id;
+        $team2Id = $match->teams2()->get(['teams2_id'])[0]->teams2_id;
+        
+        // return $team2Id;
+        $team1 = Teams::find($team1Id)->name;
+        $team2 = Teams::find($team2Id)->name;
+
+        // return [$team1,$team2];
+
+        return view('matches.show', compact('match', 'game','team1','team2'));
     }
 
     /**
@@ -63,7 +103,7 @@ class MatchesController extends Controller
     public function edit(Matches $match)
     {
         $games = Game::all();
-        return view('matches.edit',compact('match','games'));
+        return view('matches.edit', compact('match', 'games'));
     }
 
     /**
@@ -76,7 +116,7 @@ class MatchesController extends Controller
     public function update(MatchesRequest $matchesRequest, Matches $match)
     {
         $match->update($matchesRequest->all());
-        return redirect()->route('matches.index')->with('status',"The Match $match->name has been updated successfully !");
+        return redirect()->route('matches.index')->with('status', "The Match $match->name has been updated successfully !");
     }
 
     /**
@@ -88,7 +128,7 @@ class MatchesController extends Controller
     public function destroy(Matches $match)
     {
         $match->delete();
-        return back()->with('status',"The Macth $match->name has been moved to the corbe");
+        return back()->with('status', "The Macth $match->name has been moved to the corbe");
     }
 
     public function forceDestroy($id)
