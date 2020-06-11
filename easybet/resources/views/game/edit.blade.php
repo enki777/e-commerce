@@ -44,7 +44,6 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                {{ null  }}
                                 @foreach($categories as $category)
                                     <div class="form-check-inline">
                                         <input class="form-check-input" type="checkbox" name="category[]"
