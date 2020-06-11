@@ -35,6 +35,8 @@ class MatchesController extends Controller
      */
     public function create()
     {
+
+        
         $games = Game::all();
         $team1 = Teams::all();
         $team2 = Teams::all();
