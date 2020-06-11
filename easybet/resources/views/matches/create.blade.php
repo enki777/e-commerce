@@ -20,10 +20,22 @@
                             <span class="invalid-feedback">{{$message}}</span>
                             @enderror
                         </div>
-                        <select name="games_id" class="browser-default custom-select">
-                            <option selected disabled>Please choose a Team</option>
+                        <select name="games_id" class="browser-default custom-select mb-3">
+                            <option selected disabled>Please choose a Game</option>
                             @foreach($games as $game)
                             <option value="{{$game->id}}">{{$game->name}}</option>
+                            @endforeach
+                        </select>
+                        <select name="teams_id" class="browser-default custom-select mb-3">
+                            <option selected disabled>Please choose a Team</option>
+                            @foreach($team1 as $team)
+                            <option value="{{$team->id}}">{{$team->name}}</option>
+                            @endforeach
+                        </select>
+                        <select name="teams2_id" class="browser-default custom-select">
+                            <option selected disabled>Please choose a Team</option>
+                            @foreach($team2 as $team)
+                            <option value="{{$team->id}}">{{$team->name}}</option>
                             @endforeach
                         </select>
                     </div>
