@@ -62,3 +62,7 @@ Route::resource('matchesteams', 'MatchesTeamsController');
 Route::resource('category', 'CategoryController');
 
 Route::get('matches/{match}/teams/{team1}/{team2}','MatchesController@teamDetails')->name('matches.teams.details');
+
+Route::get('/test', function (){
+    return view('index.main');
+});
