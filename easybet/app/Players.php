@@ -10,7 +10,7 @@ class Players extends Model
     use SoftDeletes;
     protected $fillable = ['firstname','lastname','pseudo','age','teams_id'];
 
-    public function teams(){
+    public function team(){
         return $this->belongsTo(Teams::class);
     }
 }

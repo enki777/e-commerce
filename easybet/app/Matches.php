@@ -26,4 +26,16 @@ class Matches extends Model
     public function team2(){
         return $this->belongsTo(Teams::class,'teams2_id');
     }
+
+    // public function players1()
+    // {
+    //     return $this->hasManyThrough(
+    //         Players::class,
+    //         Teams::class,
+    //         'country_id', 
+    //         'user_id',
+    //         'id', 
+    //         'id' 
+    //     );
+    // }
 }

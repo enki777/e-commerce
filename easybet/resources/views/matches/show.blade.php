@@ -35,10 +35,10 @@
                         <td class="align-middle">{{$game->name}}</td>
                         <td class="align-middle">{{$match->created_at}}</td>
                         <td></td>
-                        <td class="align-middle">{{$team1}}</td>
+                        <td class="align-middle">{{$team1->name}}</td>
                         <td class="align-middle text-primary">VS</td>
-                        <td class="align-middle">{{$team2}}</td>
-                        <td><a href="{{route('game.show', $game->id)}}"><button class="btn btn-info">Teams Details</button></a></td>
+                        <td class="align-middle">{{$team2->name}}</td>
+                        <td><a href="{{route('matches.teams.details', [$match->id,$team1->id,$team2->id])}}"><button class="btn btn-info">Teams Details</button></a></td>
                     </tr>
                 </tbody>
             </table>

@@ -15,8 +15,8 @@ class MatchesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->except('index', 'show');
-        $this->middleware('auth')->only('index', 'show');
+        $this->middleware('admin')->except('index', 'show','teamDetails');
+        $this->middleware('auth')->only('index', 'show','teamDetails');
     }
     /**
      * Display a listing of the resource.
@@ -63,8 +63,8 @@ class MatchesController extends Controller
      */
     public function show(Matches $match)
     {
-       $team1 = $match->team1->name;
-       $team2 = $match->team2->name;
+       $team1 = $match->team1;
+       $team2 = $match->team2;
        $game = $match->games;
         return view('matches.show', compact('match', 'game','team1','team2'));
     }
@@ -120,5 +120,15 @@ class MatchesController extends Controller
     {
         Matches::withTrashed()->whereId($id)->firstOrFail()->restore();
         return back()->with('status', 'the Macth has been restored !');
+    }
+
+    public function teamDetails($match, $team1, $team2){
+        $t1 = Teams::find($team1);
+        $t2 = Teams::find($team2);
+
+        $t1Players = $t1->players;
+        $t2Players = $t2->players;
+        
+       return view('matches.teamsDetails',compact('t1Players','t2Players','t1','t2','match'));
     }
 }

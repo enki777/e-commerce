@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         factory(App\Category::class, 3)->create();
 
         factory(App\Matches::class, 10)->create();
-
+        
+        factory(App\Players::class, 40)->create();
+        
     }
 }

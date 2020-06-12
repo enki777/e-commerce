@@ -16,7 +16,7 @@ class CreateTeamsTable extends Migration
         Schema::disableForeignKeyConstraints(); // desactive erreur : Cannot add foreign key constraint
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('structures_id')->constrained()->onDelete('cascade')->onUpdate('cascade');

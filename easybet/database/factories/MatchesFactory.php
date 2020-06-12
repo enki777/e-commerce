@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Matches::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'name' => $faker->unique()->name,
         'games_id'=>rand(1,10),
         'teams_id'=>rand(1,10),
         'teams2_id'=>rand(1,10),
