@@ -56,6 +56,7 @@
                         @else
                         <td><a class="btn btn-primary" href="{{ route('matches.show', $match->id) }}">Details</a></td>
                         @endif
+                        <td><a href="{{ route('bet', $match->id) }}"><button class="btn btn-success">Bet</button></a></td>
                     </tr>
                     @endforeach
                 </tbody>
