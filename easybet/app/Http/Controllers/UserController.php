@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Game;
+use App\Matches;
+use App\Teams;
 use App\User;
 use App\Http\Requests\User as UserRequest;
 use Illuminate\Http\Request;
@@ -139,5 +142,39 @@ class UserController extends Controller
         return redirect()
             ->route('register')
             ->with('delete', 'Your account has been deleted !');
+    }
+
+    public function wallet()
+    {
+        return view('user.wallet.add');
+    }
+
+    public function addFunds(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'wallet' => ['required', 'integer', 'max:100'],
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $user = User::find(Auth::id());
+        $user->wallet += $request->wallet;
+        $user->save();
+
+        return redirect()
+            ->route('home');
+    }
+
+    public function bet()
+    {
+//        $user = User::find(Auth::id())->bets;
+//        $game = Game::find($user[0]->games_id)->categories;
+//        $teams_1 = Matches::find($user[0]->games_id)->teams;
+//        $teams_2 = Matches::find($user[0]->games_id)->teams2;
+//        return [$user, $game, $teams_1, $teams_2];
     }
 }

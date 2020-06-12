@@ -40,4 +40,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function matches(){
         return $this->belongsToMany(Matches::class,'matches_user','users_id', 'matches_id')->as('bet');
     }
+
+    public function bets(){
+        return $this->belongsToMany(Matches::class, 'bets', 'user_id', 'match_id')->withPivot('user_bet');
+    }
 }

@@ -50,6 +50,14 @@
                         @csrf
                     </form>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('wallet') }}" class="nav-link">
+                        <p class="m-0 text-white">
+                            <img src="{{ asset('images/wallet.png') }}" class="img-thumbnail p-0 mr-1" width="25">
+                            {{ Auth::user()->wallet }} €
+                        </p>
+                    </a>
+                </li>
             @else
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('register') }}">Sign up</a>

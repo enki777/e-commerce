@@ -27,15 +27,20 @@ class Matches extends Model
         return $this->belongsTo(Teams::class,'teams2_id');
     }
 
+
+    public function bets(){
+        return $this->belongsToMany(User::class, 'bets', 'match_id', 'user_id');
+    }
+
     // public function players1()
     // {
     //     return $this->hasManyThrough(
     //         Players::class,
     //         Teams::class,
-    //         'country_id', 
+    //         'country_id',
     //         'user_id',
-    //         'id', 
-    //         'id' 
+    //         'id',
+    //         'id'
     //     );
     // }
 }
