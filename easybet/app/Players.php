@@ -10,7 +10,11 @@ class Players extends Model
     use SoftDeletes;
     protected $fillable = ['firstname','lastname','pseudo','age','teams_id'];
 
-    public function team(){
+    public function teams(){
         return $this->belongsTo(Teams::class);
+    }
+
+    public function structure(){
+        return $this->hasOneThrough(Structures::class,Teams::class);
     }
 }
