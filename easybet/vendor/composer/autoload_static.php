@@ -485,6 +485,7 @@ class ComposerStaticInit3c288963f1f8240a90643d2abf1d6bd1
     );
 
     public static $classMap = array (
+        'App\\Category' => __DIR__ . '/../..' . '/app/Category.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Game' => __DIR__ . '/../..' . '/app/Game.php',
@@ -494,6 +495,7 @@ class ComposerStaticInit3c288963f1f8240a90643d2abf1d6bd1
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\Auth\\VerificationController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/VerificationController.php',
+        'App\\Http\\Controllers\\CategoryController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategoryController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\GameController' => __DIR__ . '/../..' . '/app/Http/Controllers/GameController.php',
         'App\\Http\\Controllers\\MatchesController' => __DIR__ . '/../..' . '/app/Http/Controllers/MatchesController.php',
@@ -511,6 +513,7 @@ class ComposerStaticInit3c288963f1f8240a90643d2abf1d6bd1
         'App\\Http\\Middleware\\TrustHosts' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustHosts.php',
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
+        'App\\Http\\Requests\\Category' => __DIR__ . '/../..' . '/app/Http/Requests/Category.php',
         'App\\Http\\Requests\\Game' => __DIR__ . '/../..' . '/app/Http/Requests/Game.php',
         'App\\Http\\Requests\\Matches' => __DIR__ . '/../..' . '/app/Http/Requests/Matches.php',
         'App\\Http\\Requests\\Players' => __DIR__ . '/../..' . '/app/Http/Requests/Players.php',

@@ -26,4 +26,8 @@ class Matches extends Model
     public function teams2(){
         return $this->belongsToMany(Teams::class,'matches_teams','matches_id','teams2_id');
     }
+
+    public function bets(){
+        return $this->belongsToMany(User::class, 'bets', 'match_id', 'user_id');
+    }
 }
