@@ -24,8 +24,10 @@ class Matches extends FormRequest
     public function rules()
     {
         return [
-            'name'=>['required','max:40'],
-            'teams_id'=> ['integer']
+            'name'=>['required','max:40', 'unique:games'],
+            'games_id'=>['required','integer'],
+            'teams_id'=>['required','integer'],
+            'teams2_id'=>['required','different:teams_id'],
         ];
     }
 }
