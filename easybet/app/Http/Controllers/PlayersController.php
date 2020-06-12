@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\{Players,Teams};
+use App\{Players, Teams};
 use Illuminate\Http\Request;
 use App\Http\Requests\Players as PlayersRequest;
 
@@ -10,8 +10,8 @@ class PlayersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->except('index','show');
-        $this->middleware('auth')->only('index','show');
+        $this->middleware('admin')->except('index', 'show');
+        $this->middleware('auth')->only('index', 'show');
     }
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class PlayersController extends Controller
     public function index()
     {
         $players = Players::withTrashed()->latest('updated_at')->get();
-        return view('players.index',compact('players'));
+        return view('players.index', compact('players'));
     }
 
     /**
@@ -32,7 +32,7 @@ class PlayersController extends Controller
     public function create()
     {
         $teams = Teams::all();
-        return view('players.create',compact('teams'));
+        return view('players.create', compact('teams'));
     }
 
     /**
@@ -56,7 +56,9 @@ class PlayersController extends Controller
     public function show(Players $player)
     {
         $team = $player->teams;
-        return view('players.show',compact('player','team'));
+        $structure = Teams::find($team->id)->structures;
+        // return $structure;
+        return view('players.show', compact('player', 'team', 'structure'));
     }
 
     /**
@@ -68,7 +70,7 @@ class PlayersController extends Controller
     public function edit(Players $player)
     {
         $teams = Teams::all();
-        return view('players.edit',compact('player','teams'));
+        return view('players.edit', compact('player', 'teams'));
     }
 
     /**
@@ -91,7 +93,7 @@ class PlayersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy(Players $player)
-    {   
+    {
         $player->delete();
         return back()->with('status', "The player $player->pseudo has been added to the corbe !");
     }
