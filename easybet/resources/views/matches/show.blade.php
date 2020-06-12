@@ -16,12 +16,9 @@
                         <th scope="col">
                             <p class="text-primary m-0">Match's opening</p>
                         </th>
-                        <th scope="col">
+                        <th scope="col" colspan="4">
                             <p class="text-primary m-0">Match's closing</p>
                         </th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                         <th>
                             <a href="{{ route('matches.index') }}">
                                 <button class="btn btn-primary float-right mr-4 pl-3 pr-3">Back</button>
@@ -33,8 +30,8 @@
                     <tr>
                         <td class="align-middle">{{$match->name}}</td>
                         <td class="align-middle">{{$game->name}}</td>
-                        <td class="align-middle">{{$match->created_at}}</td>
-                        <td></td>
+                        <td class="align-middle">{{$match->openning}}</td>
+                        <td class="align-middle">date fin fin</td>
                         <td class="align-middle">{{$team1->name}}</td>
                         <td class="align-middle text-primary">VS</td>
                         <td class="align-middle">{{$team2->name}}</td>

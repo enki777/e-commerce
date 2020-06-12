@@ -20,8 +20,9 @@ class CreateMatchesTable extends Migration
             $table->timestamps();
             $table->foreignId('games_id')->constrained()->onDelete('cascade');
             $table->foreignId('teams_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
-            // $table->foreignId('teams2_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('teams2_id')->references('id')->on('teams');
+            $table->timestamp('openning')->nullable();
+            $table->timestamp('ending')->nullable();
             $table->softDeletes();
         });
     }

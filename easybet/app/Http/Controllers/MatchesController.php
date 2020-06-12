@@ -30,7 +30,9 @@ class MatchesController extends Controller
     public function index()
     {
 
-        $matches = Matches::withTrashed()->latest('updated_at')->get();
+        $matches = Matches::withTrashed()->oldest('openning')->get();
+        // $date = $matches->openning;
+        // return $matches;
         return view('matches.index', compact('matches'));
     }
 
@@ -131,7 +133,6 @@ class MatchesController extends Controller
     {
         $t1 = Teams::find($team1);
         $t2 = Teams::find($team2);
-
         $t1Players = $t1->players;
         $t2Players = $t2->players;
 
