@@ -26,6 +26,7 @@ Route::get('/user/edit/password', 'UserController@editPassword')->name('user.edi
 Route::patch('/user/update/password', 'UserController@updatePassword')->name('user.update-password');
 Route::get('/user/delete', 'UserController@delete')->name('user.delete');
 Route::delete('/user/delete/confirm', 'UserController@deleteConfirm')->name('user.delete-confirm');
+Route::get('/user/bet', 'UserController@bet')->name('test');
 
 
 Route::resource('game', 'GameController');
@@ -57,8 +58,4 @@ Route::resource('matchesteams', 'MatchesTeamsController');
 
 Route::resource('category', 'CategoryController');
 
-<<<<<<< HEAD
-Route::get('/test', 'UserController@bet')->name('test');
-=======
 Route::get('matches/{match}/teams/{team1}/{team2}','MatchesController@teamDetails')->name('matches.teams.details');
->>>>>>> 47cc5c7e98d3142e0ee5dbaa605f9cf71c0a8463
