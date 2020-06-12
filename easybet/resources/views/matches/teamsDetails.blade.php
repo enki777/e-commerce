@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col--8">
             <table class="table table-dark table-striped rounded-bottom mt-5">
-                <!-- <thead> -->
+                <thead>
                 <tr>
                     <th scope="col" class="align-middle">
                         <p class="text-primary m-0">Players in Team : {{$t1->name}}</p>
@@ -13,13 +13,13 @@
                     <th scope="col" class="align-middle">
                         <p class="text-primary m-0">Players in Team : {{$t2->name}}</p>
                     </th>
-                    <!-- <th>
-                            <a href="{{ route('matches.show', $match) }}">
-                                <button class="btn btn-primary float-right mr-4 pl-3 pr-3">Back</button>
-                            </a>
-                        </th> -->
+                    <th>
+                        <a href="{{ route('matches.show', $match) }}">
+                            <button class="btn btn-primary float-right mr-4 pl-3 pr-3">Back</button>
+                        </a>
+                    </th>
                 </tr>
-                <!-- </thead> -->
+                </thead>
                 <!-- <tbody> -->
                 <tr>
                 @foreach($t1Players as $player)
