@@ -26,7 +26,9 @@ Route::get('/user/edit/password', 'UserController@editPassword')->name('user.edi
 Route::patch('/user/update/password', 'UserController@updatePassword')->name('user.update-password');
 Route::get('/user/delete', 'UserController@delete')->name('user.delete');
 Route::delete('/user/delete/confirm', 'UserController@deleteConfirm')->name('user.delete-confirm');
-Route::get('/user/bet', 'UserController@bet')->name('test');
+Route::get('/user/funds', 'UserController@wallet')->name('wallet');
+Route::post('/user/funds/confirm', 'UserController@addFunds')->name('add-funds');
+Route::get('/user/bet', 'UserController@bet')->name('bet');
 
 
 Route::resource('game', 'GameController');
