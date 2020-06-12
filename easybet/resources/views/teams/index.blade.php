@@ -4,9 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card mt-5">
+            <div class="card mt-5 bg-dark">
                 <div class="card-header">
-                    <h1 class="float-left">Teams</h1>
+                    <h1 class="float-left text-white">Teams</h1>
                     @if(Auth::user()->admin == 1)
                     <a href="{{ route('teams.create') }}"><button class="btn btn-info float-right">Create team</button></a>
                     @endif
@@ -20,10 +20,10 @@
                     @endif
                     @foreach($teams as $team)
                     <div class="row m-2">
-                        @if(Auth::user()->admin == 1)
-                        <div class="col-6">
+                        <div class="col-6 text-primary">
                             <h4>{{$team->name}}</h4>
                         </div>
+                        @if(Auth::user()->admin == 1)
                         <div class="col-2">
                             @if($team->deleted_at)
                             <form action="{{ route('teams.restore', $team->id) }}" method="post">
@@ -54,14 +54,14 @@
                             <h4>{{$team->name}}</h4>
                         </div>
                         <div class="col-4">
-                        <a class="btn btn-primary" href="{{ route('teams.show', $team->id) }}">Details</a>
+                            <a class="btn btn-primary" href="{{ route('teams.show', $team->id) }}">Details</a>
                         </div>
                         @endif
                     </div>
                     @endforeach
 
                 </div>
-                <div class="card-footer">
+                <div class="card-footer d-flex justify-content-center pt-4">
                     {{ $teams->links() }}
                 </div>
             </div>
