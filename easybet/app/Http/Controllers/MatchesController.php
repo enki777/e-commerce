@@ -163,7 +163,7 @@ class MatchesController extends Controller
 //        return [$user, $game, $teams_1, $teams_2];
     }
 
-    public function betConfirm
+    public function betConfirm()
     {
 
 
