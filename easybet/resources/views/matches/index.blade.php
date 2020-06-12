@@ -3,24 +3,21 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-8">
-            <table class="table table-dark table-striped rounded-bottom mt-1">
+        <div class="col-10">
+            <table class="table table-dark table-striped rounded-bottom">
                 <thead>
                     @if(session()->has('status'))
-                    <div class="alert alert-success mt-3">
+                    <div class="alert alert-success">
                         {{ session('status') }}
                     </div>
                     @endif
                     <tr>
                         <th scope="col">
-                            <p class="text-primary m-0">Updated at</p>
+                            <p class="text-primary m-0">Openning</p>
                         </th>
-                        <th scope="col">
+                        <th scope="col" colspan="6">
                             <p class="text-primary m-0">Matches</p>
                         </th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
                         @if(Auth::user()->admin == 1)
                         <th colspan="4"><a href="{{route('matches.create')}}"><button class="btn btn-primary float-right mr-4">Create Match</button></a></th>
                         @endif
@@ -29,10 +26,10 @@
                 <tbody>
                     @foreach($matches as $match)
                     <tr>
-                        <td>{{$match->updated_at}}</td>
+                        <td class="text-success">{{$match->openning}}</td>
                         <td>{{$match->name}}</td>
                         <td>{{$match->team1->name}}</td>
-                        <td><p class="text-primary">VS</p></td>
+                        <td><p class="text-primary"> in {{date('d', strtotime($match->openning))}} Days</p></td>
                         <td>{{$match->team2->name}}</td>
                         @if(Auth::user()->admin == 1)
                         @if($match->deleted_at)
