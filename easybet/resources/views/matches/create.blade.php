@@ -20,23 +20,32 @@
                             <span class="invalid-feedback">{{$message}}</span>
                             @enderror
                         </div>
-                        <select name="games_id" class="browser-default custom-select mb-3">
+                        <select name="games_id" class="browser-default custom-select mb-3 form-control @error('games_id') is-invalid @enderror">
                             <option selected disabled>Please choose a Game</option>
                             @foreach($games as $game)
                             <option value="{{$game->id}}">{{$game->name}}</option>
                             @endforeach
+                            @error('games_id')
+                            <span class="invalid-feedback">{{$message}}</span>
+                            @enderror
                         </select>
-                        <select name="teams_id" class="browser-default custom-select mb-3">
+                        <select name="teams_id" class="browser-default custom-select mb-3 form-control @error('teams_id') is-invalid @enderror">
                             <option selected disabled>Please choose a Team</option>
                             @foreach($team1 as $team)
                             <option value="{{$team->id}}">{{$team->name}}</option>
                             @endforeach
+                            @error('teams_id')
+                            <span class="invalid-feedback">{{$message}}</span>
+                            @enderror
                         </select>
-                        <select name="teams2_id" class="browser-default custom-select">
-                            <option selected disabled>Please choose a Team</option>
+                        <select name="teams2_id" class="browser-default custom-select form-control @error('teams2_id') is-invalid @enderror">
+                            <option selected disabled>Please choose a different Team</option>
                             @foreach($team2 as $team)
                             <option value="{{$team->id}}">{{$team->name}}</option>
                             @endforeach
+                            @error('teams2_id')
+                            <span class="invalid-feedback">{{$message}}</span>
+                            @enderror
                         </select>
                     </div>
                     <div class="card-footer">

@@ -7,13 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests\Matches as MatchesRequest;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\DB;
+// use Illuminate\Validation\Rule;
+// use Illuminate\Support\Facades\Validator;
+
 
 class MatchesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->except('index', 'show');
-        $this->middleware('auth')->only('index', 'show');
+        $this->middleware('admin')->except('index', 'show','teamDetails');
+        $this->middleware('auth')->only('index', 'show','teamDetails');
     }
     /**
      * Display a listing of the resource.
@@ -22,9 +25,8 @@ class MatchesController extends Controller
      */
     public function index()
     {
-
+        
         $matches = Matches::withTrashed()->latest('updated_at')->get();
-        // return $matches; 
         return view('matches.index', compact('matches'));
     }
 
@@ -35,8 +37,6 @@ class MatchesController extends Controller
      */
     public function create()
     {
-
-        
         $games = Game::all();
         $team1 = Teams::all();
         $team2 = Teams::all();
@@ -51,27 +51,7 @@ class MatchesController extends Controller
      */
     public function store(MatchesRequest $matchesRequest)
     {
-        // return $matchesRequest;
-
-        //     $match = Matches::find($id->id);
-        //     $match->teams()->attach($matchesRequest->teams_id);
-        //     $match->teams2()->attach($matchesRequest->teams2_id);
-
-        // $game = Game::find($g->id);
-        // $game->categories()->attach($request->category);
-
-        $id = Matches::create([
-            'name' => $matchesRequest->name,
-            'games_id' => $matchesRequest->games_id
-        ]);
-        $match = Matches::where('name', '=', $matchesRequest->name)->get();
-        $matchId = $match[0]->id;
-        DB::table('matches_teams')->insert([
-            'matches_id' => $matchId,
-            'teams_id' => $matchesRequest->teams_id,
-            'teams2_id' => $matchesRequest->teams2_id,
-        ]);
-
+        Matches::create($matchesRequest->all());
         return redirect()->route('matches.index')->with('status', "The Match $matchesRequest->name has been created successfully !");
     }
 
@@ -83,16 +63,9 @@ class MatchesController extends Controller
      */
     public function show(Matches $match)
     {
-        $game = $match->games;
-        $team1Id = $match->teams()->get(['teams_id'])[0]->teams_id;
-        $team2Id = $match->teams2()->get(['teams2_id'])[0]->teams2_id;
-        
-        // return $team2Id;
-        $team1 = Teams::find($team1Id)->name;
-        $team2 = Teams::find($team2Id)->name;
-
-        // return [$team1,$team2];
-
+       $team1 = $match->team1;
+       $team2 = $match->team2;
+       $game = $match->games;
         return view('matches.show', compact('match', 'game','team1','team2'));
     }
 
@@ -104,8 +77,13 @@ class MatchesController extends Controller
      */
     public function edit(Matches $match)
     {
+        $curGame = $match->games;
+        $curTeam1 = $match->team1;
+        $curTeam2 = $match->team2;
         $games = Game::all();
-        return view('matches.edit', compact('match', 'games'));
+        $teams1 = Teams::all();
+        $teams2 = Teams::all();
+        return view('matches.edit', compact('match','curGame','curTeam1','curTeam2','games', 'teams1','teams2'));
     }
 
     /**
@@ -142,5 +120,15 @@ class MatchesController extends Controller
     {
         Matches::withTrashed()->whereId($id)->firstOrFail()->restore();
         return back()->with('status', 'the Macth has been restored !');
+    }
+
+    public function teamDetails($match, $team1, $team2){
+        $t1 = Teams::find($team1);
+        $t2 = Teams::find($team2);
+
+        $t1Players = $t1->players;
+        $t2Players = $t2->players;
+        
+       return view('matches.teamsDetails',compact('t1Players','t2Players','t1','t2','match'));
     }
 }
