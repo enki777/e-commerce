@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\{Matches, Game, Teams};
+use Illuminate\Support\Facades\Validator;
+use App\{Matches, Game, Teams, User};
 use Illuminate\Http\Request;
 use App\Http\Requests\Matches as MatchesRequest;
+use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\DB;
 
@@ -16,8 +18,8 @@ class MatchesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->except('index', 'show', 'teamDetails', 'bet');
-        $this->middleware('auth')->only('index', 'show', 'teamDetails', 'bet');
+        $this->middleware('admin')->except('index', 'show', 'teamDetails', 'bet', 'betConfirm');
+        $this->middleware('auth')->only('index', 'show', 'teamDetails', 'bet', 'betConfirm');
     }
 
     /**
@@ -143,38 +145,35 @@ class MatchesController extends Controller
     public function bet($id)
     {
         $match = Matches::find($id);
-        $team_1 = $match->team1;
-        $team_2 = $match->team2;
+        $team1 = $match->team1;
+        $team2 = $match->team2;
         $game = $match->games;
-
-        echo '<pre>';
-        print_r($match);
-        print_r($team_1);
-        print_r($team_2);
-        print_r($game);
-        echo '</pre>';
-
-        return;
-        return view('matches.user.bet');
-//        $user = User::find(Auth::id())->bets;
-//        $game = Game::find($user[0]->games_id)->categories;
-//        $teams_1 = Matches::find($user[0]->games_id)->teams;
-//        $teams_2 = Matches::find($user[0]->games_id)->teams2;
-//        return [$user, $game, $teams_1, $teams_2];
+        return view('matches.user.bet', compact('match', 'team1', 'team2', 'game'));
     }
 
-    public function betConfirm()
+    public function betConfirm(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'amount' => ['required', 'regex:/^[1-9]{1}+[0-9]*(\.[1-9]{1})?$/'],
+        ]);
 
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
 
-
-
-
-
-
-
-
-
-
+        $user = User::find(Auth::id());
+        if (($user->wallet - $request->amount) >= 0) {
+            $match = Matches::find($id);
+            $user->bets()->attach($match, ['user_bet' => $request->amount]);
+            $user->wallet -= $request->amount;
+            $user->save();
+        } else {
+            return back()
+                ->with('negative', 'Action not possible.')
+                ->withInput();
+        }
+        return 'Maybe success';
     }
 }
