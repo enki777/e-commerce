@@ -15,11 +15,11 @@
                                 <label class="col-4 col-form-label text-right">Add funds</label>
                                 <div class="col-6">
                                     <input class="form-control @error('wallet') is-invalid @enderror" type="number"
-                                           name="wallet">
+                                           step="0.1" name="wallet">
                                     @error('wallet')
                                     <span class="invalid-feedback">
-                                {{ $message }}
-                            </span>
+                                        {{ $message }}
+                                    </span>
                                     @enderror
                                 </div>
                             </div>

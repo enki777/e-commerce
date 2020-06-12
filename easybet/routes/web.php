@@ -28,6 +28,7 @@ Route::get('/user/delete', 'UserController@delete')->name('user.delete');
 Route::delete('/user/delete/confirm', 'UserController@deleteConfirm')->name('user.delete-confirm');
 Route::get('/user/funds', 'UserController@wallet')->name('wallet');
 Route::post('/user/funds/confirm', 'UserController@addFunds')->name('add-funds');
+Route::get('/user/bets', 'UserController@getBets')->name('get-bets');
 
 Route::resource('game', 'GameController');
 // routes pour gerer les softDeletes des games
@@ -50,6 +51,7 @@ Route::delete('players/force/{player}', 'PlayersController@forceDestroy')->name(
 Route::put('players/restore/{player}', 'PlayersController@restore')->name('players.restore');
 
 Route::get('/match/{id}/bet', 'MatchesController@bet')->name('bet');
+Route::post('/match/{id}/bet/confirm', 'MatchesController@betConfirm')->name('bet-confirm');
 Route::resource('matches','MatchesController');
 // routes pour gerer les softDeletes des matchs
 Route::delete('matches/force/{match}', 'MatchesController@forceDestroy')->name('matches.force.destroy');
@@ -61,6 +63,6 @@ Route::resource('category', 'CategoryController');
 
 Route::get('matches/{match}/teams/{team1}/{team2}','MatchesController@teamDetails')->name('matches.teams.details');
 
-Route::get('/test',function (){
+Route::get('/test', function (){
     return view('index.main');
 });

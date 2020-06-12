@@ -152,7 +152,7 @@ class UserController extends Controller
     public function addFunds(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'wallet' => ['required', 'integer', 'max:100'],
+            'wallet' => ['required', 'regex:/^[1-9]{1}+[0-9]*(\.[1-9]{1})?$/'],
         ]);
 
         if ($validator->fails()) {
@@ -167,5 +167,11 @@ class UserController extends Controller
 
         return redirect()
             ->route('home');
+    }
+
+    public function getBets()
+    {
+        $user = User::find(Auth::id());
+        return $user->bets;
     }
 }
