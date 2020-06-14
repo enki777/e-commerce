@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Validator;
-use App\{Matches, Game, Teams, User};
+use App\{Matches, Game, Teams, User, Category};
 use Illuminate\Http\Request;
 use App\Http\Requests\Matches as MatchesRequest;
 use Illuminate\Support\Facades\Auth;
@@ -31,9 +31,11 @@ class MatchesController extends Controller
     {
 
         $matches = Matches::withTrashed()->oldest('openning')->get();
-        // $date = $matches->openning;
-        // return $matches;
-        return view('matches.index', compact('matches'));
+        $available = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as days'))->where('openning', '>', now())->orderBy('openning')->get();
+        $finished = Matches::select(DB::raw('*,DATEDIFF(now(),openning) as days'))->where('openning', '<', now())->orderBy('ending')->get();
+        $games = Game::all();
+        $categories = Category::all();
+        return view('matches.index', compact('games', 'categories', 'available', 'finished'));
     }
 
     /**
@@ -178,5 +180,26 @@ class MatchesController extends Controller
 
         return redirect()
             ->route('get-bets');
+    }
+
+    public function customShow(Request $request)
+    {
+        $validatedData = $request->validate([
+            'title' => 'nullable',
+            'description' => 'nullable',
+            'categories' => 'nullable',
+        ]);
+
+        // $matches = ;
+
+        // $articles = DB::table('articles')
+        //     ->join('users', 'users.id', '=', 'articles.user_id')
+        //     ->join('categories', 'categories.id', '=', 'articles.categorie_id')
+        //     ->select('articles.*', 'users.name', 'categories.nom')
+        //     ->whereRaw('concat(title," ",description," ",categories.nom) like "%' . $validatedData['title'] . '%' . $validatedData['description'] . '%' . $validatedData['categories'] . '%" ')
+        //     ->orderBy('articles.updated_at', 'desc')
+        //     ->paginate(5);
+
+        return view('matches.index', compact('matches',));
     }
 }

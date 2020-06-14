@@ -31,7 +31,7 @@
                         <td class="align-middle">{{$match->name}}</td>
                         <td class="align-middle">{{$game->name}}</td>
                         <td class="align-middle">{{$match->openning}}</td>
-                        <td class="align-middle">date fin fin</td>
+                        <td class="align-middle">{{$match->ending ?? "date unavailable"}}</td>
                         <td class="align-middle">{{$team1->name}}</td>
                         <td class="align-middle text-primary">VS</td>
                         <td class="align-middle">{{$team2->name}}</td>
