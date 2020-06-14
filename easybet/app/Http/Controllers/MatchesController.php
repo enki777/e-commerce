@@ -167,7 +167,7 @@ class MatchesController extends Controller
         $user = User::find(Auth::id());
         if (($user->wallet - $request->amount) >= 0) {
             $match = Matches::find($id);
-            $user->bets()->attach($match, ['user_bet' => $request->amount]);
+            $user->bets()->attach($match, ['user_bet' => $request->amount, 'created_at' => now('Europe/Paris'), 'updated_at' => now('Europe/Paris')]);
             $user->wallet -= $request->amount;
             $user->save();
         } else {
@@ -175,6 +175,8 @@ class MatchesController extends Controller
                 ->with('negative', 'Action not possible.')
                 ->withInput();
         }
-        return 'Maybe success';
+
+        return redirect()
+            ->route('get-bets');
     }
 }

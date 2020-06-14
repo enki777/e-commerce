@@ -29,7 +29,7 @@ class Matches extends Model
 
 
     public function bets(){
-        return $this->belongsToMany(User::class, 'bets', 'match_id', 'user_id');
+        return $this->belongsToMany(User::class, 'bets', 'match_id', 'user_id')->withPivot('id', 'user_bet', 'created_at');
     }
 
     // public function players1()

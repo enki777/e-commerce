@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Game;
-use App\Matches;
 use App\Teams;
 use App\User;
 use App\Http\Requests\User as UserRequest;
@@ -171,7 +170,7 @@ class UserController extends Controller
 
     public function getBets()
     {
-        $user = User::find(Auth::id());
-        return $user->bets;
+        $user = User::find(Auth::id())->bets;
+        return view('user.bet.bet', compact('user'));
     }
 }
