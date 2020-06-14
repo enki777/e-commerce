@@ -29,7 +29,16 @@ class User extends FormRequest
             'username' => ['required', 'unique:users,username,' . Auth::id(), 'max:255'],
             'first_name' => ['required', 'max:255'],
             'last_name' => ['required', 'max:255'],
-            'birthday' => ['required', 'date'],
+            'birthday' => ['required', 'date', function ($attribute, $value, $fails) {
+                $now = new \DateTime(date('Y-m-d'), new \DateTimeZone('Europe/Paris'));
+                $value = new \DateTime($value, new \DateTimeZone('Europe/Paris'));
+
+                $diff = date_diff($now, $value);
+
+                if ($diff->y < 18) {
+                    $fails('You must be of legal age.');
+                }
+            }],
             'address' => ['required', 'max:255'],
             'city' => ['required', 'max:255'],
             'email' => ['required', 'email', 'max:255'],
