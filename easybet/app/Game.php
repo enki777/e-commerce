@@ -14,4 +14,8 @@ class Game extends Model
     {
         return $this->belongsToMany(Category::class);
     }
+
+    public function matches(){
+        return $this->belongsToMany(Matches::class);
+    }
 }

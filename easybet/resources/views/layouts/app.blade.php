@@ -29,7 +29,7 @@
 </head>
 
 <body class="bg-secondary">
-    <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <nav class="navbar navbar-expand navbar-dark bg-dark" style="position: sticky; z-index: 999; top: 0;">
         <div class="container">
             <a class="navbar-brand" href="{{ route('home') }}">E'asyBet</a>
             <ul class="navbar-nav">

@@ -14,9 +14,7 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes(['verify' => true]);
-Route::get('/', function () {
-    return view('layouts.app');
-})->name('home');
+Route::get('/', 'MatchesController@index')->name('home');
 
 Route::post('/user/email/verify', 'UserController@verifyEmail')->name('user.verify');
 Route::get('/user', 'UserController@profile')->name('user.profile');
@@ -52,7 +50,9 @@ Route::put('players/restore/{player}', 'PlayersController@restore')->name('playe
 
 Route::get('/match/{id}/bet', 'MatchesController@bet')->name('bet');
 Route::post('/match/{id}/bet/confirm', 'MatchesController@betConfirm')->name('bet-confirm');
-Route::resource('matches','MatchesController');
+Route::get('matches/game/{id}', 'MatchesController@customShowGames')->name('matches.game');
+Route::get('matches/categories/game/{id}', 'MatchesController@customShowCategories')->name('matches.categories.game');
+Route::resource('matches','MatchesController')->except('index');
 // routes pour gerer les softDeletes des matchs
 Route::delete('matches/force/{match}', 'MatchesController@forceDestroy')->name('matches.force.destroy');
 Route::put('matches/restore/{match}', 'MatchesController@restore')->name('matches.restore');

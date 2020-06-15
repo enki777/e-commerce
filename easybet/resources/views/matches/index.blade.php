@@ -66,7 +66,7 @@
                     <div class="card-body">
                         <ul class="list-group">
                             @foreach($categories as $category)
-                            <li class="list-group-item text-dark">{{$category->name}}</li>
+                            <a href="{{route('matches.categories.game', $category->id)}}"><li class="list-group-item text-dark">{{$category->name}}</li></a>
                             @endforeach
                         </ul>
                     </div>
@@ -77,11 +77,11 @@
         <div class="col-8 p-0">
             <div class="row">
                 <div class="col-12">
-                    <!-- <nav class="navbar navbar-dark bg-dark"> -->
-                    <ul class="nav nav-pills bg-dark">
+                    <!-- GAMES -->
+                    <ul class="nav nav-pills bg-dark rounded justify-content-center p-4">
                         @foreach($games as $game)
                         <li class="nav-item p-2 mr-5">
-                            <a href=""><img src="{{asset('storage/'.$game->image)}}" alt="" class="img-thumbnail p-0" width="40"></a>
+                            <a href="{{route('matches.game', $game->id)}}"><img src="{{asset('storage/'.$game->image)}}" alt="" class="img-thumbnail p-0" width="60"></a>
                         </li>
                         @endforeach
                     </ul>
@@ -101,9 +101,13 @@
                         <th scope="col">
                             <p class="text-primary m-0">Openning</p>
                         </th>
-                        <th scope="col" colspan="6">
+                        <th scope="col">
                             <p class="text-primary m-0">Matches</p>
                         </th>
+                        <th scope="col" colspan="6">
+                            <p class="text-primary m-0">Game</p>
+                        </th>
+                        
                         @if(Auth::user()->admin == 1)
                         <th colspan="4"><a href="{{route('matches.create')}}"><button class="btn btn-primary float-right mr-4">Create Match</button></a></th>
                         @endif
@@ -114,6 +118,7 @@
                     <tr>
                         <td class="text-success">{{$match->openning}}</td>
                         <td>{{$match->name}}</td>
+                        <td>{{$match->games->name}}</td>
                         <td>{{$match->team1->name}}</td>
                         <td>
                             <p class="text-primary"> in {{$match->days}} Days</p>
@@ -147,13 +152,17 @@
                 </tbody>
             </table>
             <br><br>
+            <!-- FINISHED MATCHES  -->
             <h4 class="text-white">Finished Matches</h4>
             <table class="table table-dark table-striped rounded-bottom">
                 <thead>
                     <tr>
                         <th><p class="text-primary m-0">Ended</p></th>
-                        <th scope="col" colspan="6">
+                        <th scope="col">
                             <p class="text-primary m-0">Matches</p>
+                        </th>
+                        <th scope="col" colspan="6">
+                            <p class="text-primary m-0">Game</p>
                         </th>
                     </tr>
                 </thead>
@@ -162,6 +171,7 @@
                     <tr>
                         <td class="text-danger">{{$match->ending}}</td>
                         <td>{{$match->name}}</td>
+                        <td>{{$match->games->name}}</td>
                         <td>{{$match->team1->name}}</td>
                         <td class="text-primary">ended {{$match->days}} days ago</td>
                         <td>{{$match->team2->name}}</td>

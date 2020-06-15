@@ -18,8 +18,8 @@ class MatchesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->except('index', 'show', 'teamDetails', 'bet', 'betConfirm');
-        $this->middleware('auth')->only('index', 'show', 'teamDetails', 'bet', 'betConfirm');
+        $this->middleware('admin')->except('index', 'show', 'teamDetails', 'bet', 'betConfirm', 'customShowGames', 'customShowCategories');
+        $this->middleware('auth')->only('index', 'show', 'teamDetails', 'bet', 'betConfirm', 'customShowGames', 'customShowCategories');
     }
 
     /**
@@ -182,13 +182,39 @@ class MatchesController extends Controller
             ->route('get-bets');
     }
 
-    public function customShow(Request $request)
+    public function customShowCategories($id)
     {
-        $validatedData = $request->validate([
-            'title' => 'nullable',
-            'description' => 'nullable',
-            'categories' => 'nullable',
-        ]);
+        $category = Category::find($id);
+        $matches = $category->matches;
+        
+        return $matches;
+        return view('matches.index', compact( 'games', 'categories'));
+    }
+
+    public function customShowGames($id)
+    {
+        $categories = Category::all();
+        $games = Game::all();
+        $available = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as days'))
+            ->where('openning', '>', now())
+            ->where('games_id', $id)
+            ->orderBy('openning')->get();
+
+        $finished = Matches::select(DB::raw('*,DATEDIFF(now(),openning) as days'))
+            ->where('openning', '<', now())
+            ->where('games_id', $id)
+            ->orderBy('ending')->get();
+
+        return view('matches.index', compact('games', 'categories', 'available', 'finished'));
+    }
+
+    public function customSearch()
+    {
+        // $validatedData = $request->validate([
+        //     'title' => 'nullable',
+        //     'description' => 'nullable',
+        //     'categories' => 'nullable',
+        // ]);
 
         // $matches = ;
 
@@ -199,7 +225,5 @@ class MatchesController extends Controller
         //     ->whereRaw('concat(title," ",description," ",categories.nom) like "%' . $validatedData['title'] . '%' . $validatedData['description'] . '%' . $validatedData['categories'] . '%" ')
         //     ->orderBy('articles.updated_at', 'desc')
         //     ->paginate(5);
-
-        return view('matches.index', compact('matches',));
     }
 }
