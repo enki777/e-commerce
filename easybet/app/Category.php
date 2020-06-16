@@ -16,6 +16,6 @@ class Category extends Model
     }
 
     public function matches(){
-        return $this->hasManyThrough(Matches::class, Game::class,'category_id','games_id','id','id');
+        return $this->hasManyThrough(Matches::class, Game::class);
     }
 }
