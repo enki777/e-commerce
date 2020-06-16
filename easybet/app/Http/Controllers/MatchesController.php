@@ -190,11 +190,23 @@ class MatchesController extends Controller
 
     public function customShowCategories($id)
     {
-        $category = Category::find($id);
-        $matches = $category->matches;
+        $available = Matches::select(DB::raw('matches.*,DATEDIFF(openning,now()) as days'))
+            ->join('games', 'matches.games_id', '=', 'games.id')
+            ->join('category_game', 'games.id', '=', 'category_game.game_id')
+            ->where('category_game.category_id', $id)
+            ->where('openning', '>', now())
+            ->orderBy('openning')->get();
 
-        return $matches;
-        return view('matches.index', compact('games', 'categories'));
+        $finished = Matches::select(DB::raw('matches.*,DATEDIFF(openning,now()) as days'))
+            ->join('games', 'matches.games_id', '=', 'games.id')
+            ->join('category_game', 'games.id', '=', 'category_game.game_id')
+            ->where('category_game.category_id', $id)
+            ->where('openning', '<', now())
+            ->orderBy('openning')->get();
+
+        $categories = Category::all();
+        $games = Game::all();
+        return view('matches.index', compact('games','categories', 'available', 'finished'));
     }
 
     public function customShowGames($id)
