@@ -29,15 +29,19 @@ class MatchesController extends Controller
      */
     public function index()
     {
-
-        $matches = Matches::withTrashed()->oldest('openning')->get();
         $available = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as days'))->where('openning', '>', now())->orderBy('openning')->get();
+        $most_popular = [];
+        foreach ($available as $value) {
+            if ($value->bets != '[]' | null) {
+                $count[$value->id] = $value->bets->count();
+                $most_popular[$value->id] = Matches::find($value->id);
+            }
+        }
+
         $finished = Matches::select(DB::raw('*,DATEDIFF(now(),openning) as days'))->where('openning', '<', now())->orderBy('ending')->get();
         $games = Game::all();
         $categories = Category::all();
-        $mostBets = DB::table('bets')->select(DB::raw('count(match_id) as nb_bet'))->groupBy('match_id')->get();
-        // return $mostBets;
-        return view('matches.index', compact('games', 'categories', 'available', 'finished'));
+        return view('matches.index', compact('games', 'categories', 'available', 'finished', 'most_popular'));
     }
 
     /**
