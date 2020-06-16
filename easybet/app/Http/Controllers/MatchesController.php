@@ -35,6 +35,8 @@ class MatchesController extends Controller
         $finished = Matches::select(DB::raw('*,DATEDIFF(now(),openning) as days'))->where('openning', '<', now())->orderBy('ending')->get();
         $games = Game::all();
         $categories = Category::all();
+        $mostBets = DB::table('bets')->select(DB::raw('count(match_id) as nb_bet'))->groupBy('match_id')->get();
+        // return $mostBets;
         return view('matches.index', compact('games', 'categories', 'available', 'finished'));
     }
 
@@ -184,11 +186,23 @@ class MatchesController extends Controller
 
     public function customShowCategories($id)
     {
-        $category = Category::find($id);
-        $matches = $category->matches;
-        
-        return $matches;
-        return view('matches.index', compact( 'games', 'categories'));
+        $available = Matches::select(DB::raw('matches.*,DATEDIFF(openning,now()) as days'))
+            ->join('games', 'matches.games_id', '=', 'games.id')
+            ->join('category_game', 'games.id', '=', 'category_game.game_id')
+            ->where('category_game.category_id', $id)
+            ->where('openning', '>', now())
+            ->orderBy('openning')->get();
+
+        $finished = Matches::select(DB::raw('matches.*,DATEDIFF(openning,now()) as days'))
+            ->join('games', 'matches.games_id', '=', 'games.id')
+            ->join('category_game', 'games.id', '=', 'category_game.game_id')
+            ->where('category_game.category_id', $id)
+            ->where('openning', '<', now())
+            ->orderBy('openning')->get();
+
+        $categories = Category::all();
+        $games = Game::all();
+        return view('matches.index', compact('games','categories', 'available', 'finished'));
     }
 
     public function customShowGames($id)
