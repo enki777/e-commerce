@@ -31,7 +31,7 @@
                                         </svg>
                                     </button>
                                 </a>
-                                <form method="post" action="{{-- route('admin.game-delete', $game->id) --}}">
+                                <form method="post" action="{{ route('admin.category-delete', $category->id) }}">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn-lg btn-danger" type="submit">
