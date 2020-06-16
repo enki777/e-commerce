@@ -21,55 +21,7 @@
   <component name="ChangeListManager">
     <list default="true" id="7418526c-6801-45d1-8be7-1eb3e465ae8d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/config/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/config/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/database/migrations/2014_10_12_000000_create_users_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/database/migrations/2014_10_12_000000_create_users_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/resources/lang/en/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/resources/lang/en/auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/easybet/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/routes/web.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/guzzlehttp/guzzle/src/Handler/StreamHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/guzzlehttp/guzzle/src/Handler/StreamHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/guzzlehttp/guzzle/src/RequestOptions.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/guzzlehttp/guzzle/src/RequestOptions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/AuthManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/AuthManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/AuthenticationException.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/AuthenticationException.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Attempting.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Attempting.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Authenticated.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Authenticated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/CurrentDeviceLogout.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/CurrentDeviceLogout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Failed.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Failed.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Login.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Logout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/OtherDeviceLogout.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/OtherDeviceLogout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Validated.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Events/Validated.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/RequestGuard.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/RequestGuard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/SessionGuard.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/SessionGuard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/TokenGuard.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Auth/TokenGuard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Broadcasting/BroadcastManager.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Broadcasting/BroadcastManager.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/Broadcaster.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/Broadcaster.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/PusherBroadcaster.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/RedisBroadcaster.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/RedisBroadcaster.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/UsePusherChannelConventions.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Broadcasting/Broadcasters/UsePusherChannelConventions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Contracts/Broadcasting/Broadcaster.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Contracts/Broadcasting/Broadcaster.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Http/Client/PendingRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Http/Client/PendingRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Support/Facades/Auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/laravel/framework/src/Illuminate/Support/Facades/Auth.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/scrivo/highlight.php/demo/highlight.pack.js" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/scrivo/highlight.php/demo/highlight.pack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/CramMd5Authenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/CramMd5Authenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/LoginAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/LoginAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/NTLMAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/NTLMAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/PlainAuthenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/PlainAuthenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/XOAuth2Authenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Auth/XOAuth2Authenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/AuthHandler.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/AuthHandler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Authenticator.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/lib/classes/Swift/Transport/Esmtp/Authenticator.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/tests/unit/Swift/Transport/Esmtp/Auth/CramMd5AuthenticatorTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/tests/unit/Swift/Transport/Esmtp/Auth/CramMd5AuthenticatorTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/tests/unit/Swift/Transport/Esmtp/Auth/LoginAuthenticatorTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/tests/unit/Swift/Transport/Esmtp/Auth/LoginAuthenticatorTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/tests/unit/Swift/Transport/Esmtp/Auth/NTLMAuthenticatorTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/tests/unit/Swift/Transport/Esmtp/Auth/NTLMAuthenticatorTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/tests/unit/Swift/Transport/Esmtp/Auth/PlainAuthenticatorTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/swiftmailer/swiftmailer/tests/unit/Swift/Transport/Esmtp/Auth/PlainAuthenticatorTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/easybet/vendor/symfony/http-foundation/Request.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/vendor/symfony/http-foundation/Request.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,6 +169,10 @@
       <workItem from="1591628825249" duration="201000" />
       <workItem from="1591634580824" duration="757000" />
       <workItem from="1591635382264" duration="42000" />
+      <workItem from="1592047535691" duration="11281000" />
+      <workItem from="1592136730982" duration="14285000" />
+      <workItem from="1592219974790" duration="7113000" />
+      <workItem from="1592297620537" duration="19521000" />
     </task>
     <servers />
   </component>
@@ -244,9 +200,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591650381007" />
-    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1591642445068">
+    <state x="794" y="443" key="NewPhpFileDialog" timestamp="1592315645532">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591642445068" />
+    <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1592315645532" />
+    <state x="701" y="222" key="RollbackChangesDialog" timestamp="1592300372234">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="701" y="222" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1592300372234" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1592318166477">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1592318166477" />
   </component>
 </project>
