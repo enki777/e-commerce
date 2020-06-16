@@ -66,10 +66,17 @@ Route::get('matches/{match}/teams/{team1}/{team2}', 'MatchesController@teamDetai
 
 // Admin
 Route::get('/admin', 'AdminController@dashboard')->name('admin.dashboard');
+// Game
 Route::get('/admin/game/create', 'AdminController@gameCreate')->name('admin.game-create');
 Route::post('/admin/game/store', 'AdminController@gameStore')->name('admin.game-store');
 Route::get('/admin/game/{id}/show', 'AdminController@gameShow')->name('admin.game-show');
 Route::get('admin/game/{id}/edit', 'AdminController@gameEdit')->name('admin.game-edit');
 Route::post('admin/game/{id}/update', 'AdminController@gameUpdate')->name('admin.game-update');
 Route::delete('admin/game/{id}/delete', 'AdminController@gameDelete')->name('admin.game-delete');
-
+// Category
+Route::get('/admin/category/create', 'AdminController@categoryCreate')->name('admin.category-create');
+Route::post('/admin/category/store', 'AdminController@categoryStore')->name('admin.category-store');
+Route::get('/admin/category/{id}/show', 'AdminController@categoryShow')->name('admin.category-show');
+Route::get('/admin/category/{id}/edit', 'AdminController@categoryEdit')->name('admin.category-edit');
+Route::post('/admin/category/{id}/update', 'AdminController@categoryUpdate')->name('admin.category-update');
+Route::delete('/admin/category/{id}/delete', 'AdminController@categoryDelete')->name('admin.category-delete');

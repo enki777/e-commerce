@@ -166,15 +166,67 @@
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th class="align-middle text-center"><p class="m-0 ml-n2">Categories</p></th>
+                                        <th class="align-middle">Categories</th>
                                         <th class="text-right">
-                                            <a href="#">
+                                            <a href="{{ route('admin.category-create') }}">
                                                 <button class="btn btn-primary">
                                                     Create category
                                                 </button>
                                             </a>
                                         </th>
                                     </tr>
+                                    @if(session()->get('category-created'))
+                                        <tr>
+                                            <th colspan="2" class="p-0">
+                                                <div class="alert alert-success m-0 rounded-0 text-center">
+                                                    <svg class="bi bi-info-circle mb-1 mr-2" width="20"
+                                                         viewBox="0 0 16 16" fill="currentColor"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                        <path
+                                                            d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                                        <circle cx="8" cy="4.5" r="1"/>
+                                                    </svg>
+                                                    {{ session()->get('category-created') }}
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    @elseif(session()->get('category-updated'))
+                                        <tr>
+                                            <th colspan="2" class="p-0">
+                                                <div class="alert alert-success m-0 rounded-0 text-center">
+                                                    <svg class="bi bi-info-circle mb-1 mr-2" width="20"
+                                                         viewBox="0 0 16 16" fill="currentColor"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                        <path
+                                                            d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                                        <circle cx="8" cy="4.5" r="1"/>
+                                                    </svg>
+                                                    {{ session()->get('category-updated') }}
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    @elseif(session()->get('category-deleted'))
+                                        <tr>
+                                            <th colspan="2" class="p-0">
+                                                <div class="alert alert-success m-0 rounded-0 text-center">
+                                                    <svg class="bi bi-info-circle mb-1 mr-2" width="20"
+                                                         viewBox="0 0 16 16" fill="currentColor"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd"
+                                                              d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                                                        <path
+                                                            d="M8.93 6.588l-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588z"/>
+                                                        <circle cx="8" cy="4.5" r="1"/>
+                                                    </svg>
+                                                    {{ session()->get('category-deleted') }}
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    @endif
                                     </thead>
                                     <tbody>
                                     @foreach($categories as $category)
@@ -182,7 +234,7 @@
                                             <td colspan="2">
                                                 <strong>{{ $category->name }}</strong>
                                                 <div class="float-right">
-                                                    <a href="{{----}}"
+                                                    <a href="{{ route('admin.category-show', $category->id) }}"
                                                        class="text-decoration-none mr-3">
                                                         <svg class="bi bi-eye-fill" width="25"
                                                              viewBox="0 0 16 16" fill="gray"
@@ -192,7 +244,7 @@
                                                                   d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
                                                         </svg>
                                                     </a>
-                                                    <a href="{{----}}"
+                                                    <a href="{{ route('admin.category-edit', $category->id) }}"
                                                        class="text-decoration-none mr-3">
                                                         <svg class="bi bi-pencil-square" width="20"
                                                              viewBox="0 0 16 16" fill="green"
@@ -203,7 +255,7 @@
                                                                   d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                                         </svg>
                                                     </a>
-                                                    <a href="{{----}}"
+                                                    <a href="{{ route('admin.category-delete', $category->id) }}"
                                                        onclick="event.preventDefault(); document.getElementById('category-delete').submit()"
                                                        class="text-decoration-none mr-1">
                                                         <svg class="bi bi-trash-fill" width="20"
@@ -214,7 +266,7 @@
                                                         </svg>
                                                     </a>
                                                     <form id="category-delete" class="d-none" method="post"
-                                                          action="{{----}}">
+                                                          action="{{ route('admin.category-delete', $category->id) }}">
                                                         @csrf
                                                         @method('DELETE')
                                                     </form>

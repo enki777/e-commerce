@@ -22,11 +22,12 @@ class AdminController extends Controller
      */
     public function dashboard()
     {
-        $games = Game::latest()->get();
-        $categories = Category::latest()->get();
+        $games = Game::latest('updated_at')->get();
+        $categories = Category::latest('updated_at')->get();
         return view('admin.dashboard', compact('games', 'categories'));
     }
 
+    //GAMES
     public function gameCreate()
     {
         $categories = Category::all();
@@ -36,7 +37,7 @@ class AdminController extends Controller
     public function gameStore(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'max:35', 'unique:games'],
+            'name' => ['required', 'max:35', 'string', 'unique:games'],
             'image' => ['nullable', 'image'],
             'categories.*' => ['nullable', 'integer'],
         ]);
@@ -81,7 +82,7 @@ class AdminController extends Controller
     public function gameUpdate(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'max:35', 'unique:games,id,' . $id],
+            'name' => ['required', 'max:35', 'string', 'unique:games,name,' . $id],
             'image' => ['nullable', 'image'],
             'categories.*' => ['nullable', 'integer'],
         ]);
@@ -114,5 +115,72 @@ class AdminController extends Controller
         return redirect()
             ->route('admin.dashboard')
             ->with('game-deleted', 'Game deleted !');
+    }
+
+    public function categoryCreate()
+    {
+        return view('admin.category.create');
+    }
+
+    // CATEGORIES
+    public function categoryStore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:30', 'unique:categories'],
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        Category::create($request->all());
+
+        return redirect()
+            ->route('admin.dashboard')
+            ->with('category-created', 'Category created !');
+    }
+
+    public function categoryShow($id)
+    {
+        $category = Category::find($id);
+        $games = $category->games;
+        return view('admin.category.show', compact('category', 'games'));
+    }
+
+    public function categoryEdit($id)
+    {
+        $category = Category::find($id);
+        return view('admin.category.edit', compact('category'));
+    }
+
+    public function categoryUpdate(Request $request, $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'max:30', 'unique:categories,name,' . $id],
+        ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $category = Category::find($id);
+        $category->name = $request->name;
+        $category->save();
+
+        return redirect()
+            ->route('admin.dashboard')
+            ->with('category-updated', 'Category updated !');
+    }
+
+    public function categoryDelete($id)
+    {
+        Category::find($id)->delete();
+        return redirect()
+            ->route('admin.dashboard')
+            ->with('category-deleted', 'Category deleted !');
     }
 }

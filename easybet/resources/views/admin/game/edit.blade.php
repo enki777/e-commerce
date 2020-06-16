@@ -6,7 +6,7 @@
             <div class="col-8">
                 <div class="card">
                     <div class="card-header">
-                        {{ $game->name }}
+                        Edit game
                     </div>
                     <div class="card-body">
                         <form method="post" action="{{ route('admin.game-update', $game->id) }}"
