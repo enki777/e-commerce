@@ -52,6 +52,7 @@ Route::get('/match/{id}/bet', 'MatchesController@bet')->name('bet');
 Route::post('/match/{id}/bet/confirm', 'MatchesController@betConfirm')->name('bet-confirm');
 Route::get('matches/game/{id}', 'MatchesController@customShowGames')->name('matches.game');
 Route::get('matches/categories/game/{id}', 'MatchesController@customShowCategories')->name('matches.categories.game');
+Route::get('matches/search','MatchesController@customSearch')->name('matches.search');
 Route::resource('matches','MatchesController')->except('index');
 // routes pour gerer les softDeletes des matchs
 Route::delete('matches/force/{match}', 'MatchesController@forceDestroy')->name('matches.force.destroy');

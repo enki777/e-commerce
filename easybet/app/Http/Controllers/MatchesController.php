@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Validator;
 use App\{Matches, Game, Teams, User, Category};
 use Illuminate\Http\Request;
 use App\Http\Requests\Matches as MatchesRequest;
+use App\Http\Requests\SearchMatches as SearchMatchesRequest;
 use Illuminate\Support\Facades\Auth;
 use GuzzleHttp\Middleware;
 use Illuminate\Support\Facades\DB;
@@ -18,8 +19,8 @@ class MatchesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->except('index', 'show', 'teamDetails', 'bet', 'betConfirm', 'customShowGames', 'customShowCategories');
-        $this->middleware('auth')->only('index', 'show', 'teamDetails', 'bet', 'betConfirm', 'customShowGames', 'customShowCategories');
+        $this->middleware('admin')->except('index', 'show', 'teamDetails', 'bet', 'betConfirm', 'customShowGames', 'customShowCategories','customSearch');
+        $this->middleware('auth')->only('index', 'show', 'teamDetails', 'bet', 'betConfirm', 'customShowGames', 'customShowCategories','customSearch');
     }
 
     /**
@@ -80,6 +81,7 @@ class MatchesController extends Controller
         $team1 = $match->team1;
         $team2 = $match->team2;
         $game = $match->games;
+        // return $match;
         return view('matches.show', compact('match', 'game', 'team1', 'team2'));
     }
 
@@ -204,9 +206,17 @@ class MatchesController extends Controller
             ->where('openning', '<', now())
             ->orderBy('openning')->get();
 
+        $most_popular = [];
+        foreach ($available as $value) {
+            if ($value->bets != '[]' | null) {
+                $count[$value->id] = $value->bets->count();
+                $most_popular[$value->id] = Matches::find($value->id);
+            }
+        }
+
         $categories = Category::all();
         $games = Game::all();
-        return view('matches.index', compact('games','categories', 'available', 'finished'));
+        return view('matches.index', compact('games', 'categories', 'available', 'finished', 'most_popular'));
     }
 
     public function customShowGames($id)
@@ -223,25 +233,39 @@ class MatchesController extends Controller
             ->where('games_id', $id)
             ->orderBy('ending')->get();
 
-        return view('matches.index', compact('games', 'categories', 'available', 'finished'));
+        $most_popular = [];
+        foreach ($available as $value) {
+            if ($value->bets != '[]' | null) {
+                $count[$value->id] = $value->bets->count();
+                $most_popular[$value->id] = Matches::find($value->id);
+            }
+        }
+
+        return view('matches.index', compact('games', 'categories', 'available', 'finished', 'most_popular'));
     }
 
-    public function customSearch()
+    public function customSearch(SearchMatchesRequest $searchMatchesRequest)
     {
-        // $validatedData = $request->validate([
-        //     'title' => 'nullable',
-        //     'description' => 'nullable',
-        //     'categories' => 'nullable',
-        // ]);
+        $categories = Category::all();
+        $games = Game::all();
+        $available = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as days'))
+            ->where('openning', '>', now())
+            ->where('name', 'like', '%' . $searchMatchesRequest['name'] . '%')
+            ->orderBy('openning')->get();
 
-        // $matches = ;
+        $finished = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as days'))
+            ->where('openning', '<', now())
+            ->where('name', 'like', '%' . $searchMatchesRequest['name'] . '%')
+            ->orderBy('ending')->get();
 
-        // $articles = DB::table('articles')
-        //     ->join('users', 'users.id', '=', 'articles.user_id')
-        //     ->join('categories', 'categories.id', '=', 'articles.categorie_id')
-        //     ->select('articles.*', 'users.name', 'categories.nom')
-        //     ->whereRaw('concat(title," ",description," ",categories.nom) like "%' . $validatedData['title'] . '%' . $validatedData['description'] . '%' . $validatedData['categories'] . '%" ')
-        //     ->orderBy('articles.updated_at', 'desc')
-        //     ->paginate(5);
+        $most_popular = [];
+        foreach ($available as $value) {
+            if ($value->bets != '[]' | null) {
+                $count[$value->id] = $value->bets->count();
+                $most_popular[$value->id] = Matches::find($value->id);
+            }
+        }
+        return $available;
+        // return view('matches.index', compact('games', 'categories', 'available', 'finished', 'most_popular'));
     }
 }
