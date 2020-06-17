@@ -20,7 +20,7 @@
                             <p class="text-primary m-0">Match's closing</p>
                         </th>
                         <th>
-                            <a href="{{ route('matches.index') }}">
+                            <a href="{{ route('home') }}">
                                 <button class="btn btn-primary float-right mr-4 pl-3 pr-3">Back</button>
                             </a>
                         </th>
