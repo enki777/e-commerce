@@ -28,8 +28,8 @@
     </style>
 </head>
 
-<body class="bg-secondary">
-    <nav class="navbar navbar-expand navbar-dark bg-dark" style="position: sticky; z-index: 999; top: 0;">
+<body class="bg-white">
+    <nav class="navbar navbar-expand navbar-dark" style="position: sticky; z-index: 999; top: 0; background-color: black">
         <div class="container">
             <a class="navbar-brand" href="{{ route('home') }}">E'asyBet</a>
             <ul class="navbar-nav">
