@@ -15,7 +15,6 @@ class MatchesGameList extends Component {
         const GameId = this.props.match.params.id
 
         axios.get(`/api/matches/game/${GameId}`).then(response => {
-            // console.log(response.data[1])
             this.setState({
                 available: JSON.parse(response.data[0]),
                 finished: JSON.parse(response.data[1])
