@@ -25,7 +25,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest('updated_at')->get();
-        return view('category.index', compact('categories'));
+        return $categories->toJson();
+        // return view('category.index', compact('categories'));
     }
 
     /**
