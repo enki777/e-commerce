@@ -23,3 +23,21 @@ Route::get('matches/search/{name}', 'MatchesController@customSearch');
 Route::get('matches/category/{id}', 'MatchesController@customShowCategories');
 Route::get('matches/game/{id}', 'MatchesController@customShowGames');
 Route::resource('matches','MatchesController');
+
+
+//ADMIN
+Route::get('admin', 'AdminController@dashboard');
+//GAME
+Route::get('admin/game/create', 'AdminController@gameCreate');
+Route::post('admin/game/store', 'AdminController@gameStore');
+Route::get('admin/game/{game}', 'AdminController@gameShow');
+Route::get('admin/game/edit/{game}', 'AdminController@gameEdit');
+Route::patch('admin/game/update/{game}', 'AdminController@gameUpdate');
+Route::delete('admin/game/delete/{game}', 'AdminController@gameDelete');
+//CATEGORY
+Route::post('admin/category/store', 'AdminController@categoryStore');
+Route::get('admin/category/{category}', 'AdminController@categoryShow');
+Route::get('admin/category/edit/{category}', 'AdminController@categoryEdit');
+Route::patch('admin/category/update/{category}', 'AdminController@categoryUpdate');
+Route::delete('admin/category/delete/{category}', 'AdminController@categoryDelete');
+

@@ -4,49 +4,43 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Game;
+use App\User;
 use App\Http\Controllers\Controller;
+use App\Matches;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
+
 class AdminController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
-
-    /**
-     * Show dashboard for admin
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
     public function dashboard()
     {
         $games = Game::latest('updated_at')->get();
         $categories = Category::latest('updated_at')->get();
-        return view('admin.dashboard', compact('games', 'categories'));
+        $matches = Matches::with('games', 'team1', 'team2')->get();
+//        $users = User::all();
+        return [
+            'games' => $games,
+            'categories' => $categories,
+            'matches' => $matches,
+//            'users' => $users,
+        ];
     }
 
     //GAMES
     public function gameCreate()
     {
         $categories = Category::all();
-        return view('admin.game.create', compact('categories'));
+        return $categories->toJson();
     }
 
     public function gameStore(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $request->validate([
             'name' => ['required', 'max:35', 'string', 'unique:games'],
             'image' => ['nullable', 'image'],
             'categories.*' => ['nullable', 'integer'],
         ]);
-
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput();
-        }
 
         $file = null;
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -61,65 +55,49 @@ class AdminController extends Controller
         $categories = $request->categories;
         $game->categories()->attach($categories);
 
-        return redirect()
-            ->route('admin.dashboard')
-            ->with('game-created', 'Game created !');
+        return redirect('/admin')->with('game-created', 'Game created !');
     }
 
-    public function gameShow($id)
+    public function gameShow(Game $game)
     {
-        $game = Game::find($id);
-        return view('admin.game.show', compact('game'));
+        $game->categories;
+        return $game->toJson();
     }
 
-    public function gameEdit($id)
+    public function gameEdit(Game $game)
     {
-        $game = Game::find($id);
         $categories = Category::all();
-        return view('admin.game.edit', compact('game', 'categories'));
+        return [
+            'game' => $game,
+            'categories' => $categories,
+        ];
     }
 
-    public function gameUpdate(Request $request, $id)
+    public function gameUpdate(Request $request, Game $game)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'max:35', 'string', 'unique:games,name,' . $id],
+        $validatedData = $request->validate([
+            'name' => ['required', 'max:35', 'string', 'unique:games,name,' . $game->id],
             'image' => ['nullable', 'image'],
             'categories.*' => ['nullable', 'integer'],
         ]);
-
-        if ($validator->fails()) {
-            return back()
-                ->withErrors($validator)
-                ->withInput();
-        }
 
         $file = null;
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $file = $request->file('image')->store('images', 'public');
         }
 
-        $game = Game::find($id);
         $categories = $request->categories;
         $game->categories()->sync($categories);
         $game->image = $file;
         $game->save();
 
-        return redirect()
-            ->route('admin.dashboard')
-            ->with('game-updated', 'Game updated !');
+        return redirect('/admin');
     }
 
-    public function gameDelete($id)
+    public function gameDelete(Game $game)
     {
-        Game::find($id)->delete();
-        return redirect()
-            ->route('admin.dashboard')
-            ->with('game-deleted', 'Game deleted !');
-    }
-
-    public function categoryCreate()
-    {
-        return view('admin.category.create');
+        $game->delete();
+        return redirect('/admin');
     }
 
     // CATEGORIES
@@ -137,28 +115,27 @@ class AdminController extends Controller
 
         Category::create($request->all());
 
-        return redirect()
-            ->route('admin.dashboard')
-            ->with('category-created', 'Category created !');
+        return redirect('/admin');
     }
 
-    public function categoryShow($id)
+    public function categoryShow(Category $category)
     {
-        $category = Category::find($id);
         $games = $category->games;
-        return view('admin.category.show', compact('category', 'games'));
+        return [
+            'category' => $category,
+            'games' => $games,
+        ];
     }
 
-    public function categoryEdit($id)
+    public function categoryEdit(Category $category)
     {
-        $category = Category::find($id);
-        return view('admin.category.edit', compact('category'));
+        return $category;
     }
 
-    public function categoryUpdate(Request $request, $id)
+    public function categoryUpdate(Request $request, Category $category)
     {
         $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'max:30', 'unique:categories,name,' . $id],
+            'name' => ['required', 'string', 'max:30', 'unique:categories,name,' . $category->id],
         ]);
 
         if ($validator->fails()) {
@@ -167,20 +144,16 @@ class AdminController extends Controller
                 ->withInput();
         }
 
-        $category = Category::find($id);
         $category->name = $request->name;
         $category->save();
 
-        return redirect()
-            ->route('admin.dashboard')
-            ->with('category-updated', 'Category updated !');
+        return redirect('/admin');
     }
 
-    public function categoryDelete($id)
+    public function categoryDelete(Category $category)
     {
-        Category::find($id)->delete();
-        return redirect()
-            ->route('admin.dashboard')
-            ->with('category-deleted', 'Category deleted !');
+        $category->delete();
+        return redirect('/admin');
     }
+
 }

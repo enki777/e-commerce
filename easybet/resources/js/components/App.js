@@ -8,6 +8,14 @@ import MatchesGameList from './index/matches/MatchesGameList'
 import MatchesCategoryList from './index/matches/MatchesCategoryList'
 import MatchesSearch from './index/matches/MatchesSearch'
 
+import Dashboard from "./Admin/Dashboard";
+import GameDetails from "./Admin/Game/GameDetails";
+import GameCreate from "./Admin/Game/GameCreate";
+import GameEdit from "./Admin/Game/GameEdit";
+import CategoryCreate from "./Admin/Category/CategoryCreate";
+import CategoryDetails from "./Admin/Category/CategoryDetails";
+import CategoryEdit from "./Admin/Category/CategoryEdit";
+
 class App extends Component {
     render() {
         return (
@@ -16,10 +24,19 @@ class App extends Component {
                     <Header />
                     <Switch>
                         <Route exact path='/' component={Index} />
-                        <Route exact path='/:id' component={SingleMatch} />
+                        {/*<Route exact path='/:id' component={SingleMatch} />*/}
                         <Route exact path='/matches/game/:id' component={MatchesGameList} />
                         <Route exact path='/matches/category/:id' component={MatchesCategoryList} />
                         <Route exact path='/matches/search/:name' component={MatchesSearch} />
+
+                        <Route exact path='/admin' component={Dashboard} />
+                        <Route exact path='/admin/game/create' component={GameCreate} />
+                        <Route exact path='/admin/game/:id/' component={GameDetails} />
+                        <Route exact path='/admin/game/edit/:id/' component={GameEdit} />
+                        <Route exact path='/admin/category/create/' component={CategoryCreate} />
+                        <Route exact path='/admin/category/:id' component={CategoryDetails} />
+                        <Route exact path='/admin/category/edit/:id' component={CategoryEdit} />
+
                     </Switch>
                 </div>
             </BrowserRouter>

@@ -20,7 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7418526c-6801-45d1-8be7-1eb3e465ae8d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easybet/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easybet/resources/js/components/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/resources/js/components/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/easybet/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/easybet/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/easybet/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -148,7 +152,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../E_commerce/soif-d-esport-back" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RecentsManager">
@@ -173,6 +177,7 @@
       <workItem from="1592136730982" duration="14285000" />
       <workItem from="1592219974790" duration="7113000" />
       <workItem from="1592297620537" duration="19521000" />
+      <workItem from="1592594369480" duration="297000" />
     </task>
     <servers />
   </component>
@@ -196,19 +201,20 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="629" y="298" key="EditFileWatcherDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591634966887" />
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1591650381007">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1592594193978">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591650381007" />
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1592594193978" />
     <state x="794" y="443" key="NewPhpFileDialog" timestamp="1592315645532">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1591642445068" />
     <state x="794" y="443" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1592315645532" />
-    <state x="701" y="222" key="RollbackChangesDialog" timestamp="1592300372234">
+    <state x="701" y="222" key="RollbackChangesDialog" timestamp="1592593851450">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="701" y="222" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1592300372234" />
+    <state x="701" y="222" key="RollbackChangesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1592593851450" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1592318166477">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
