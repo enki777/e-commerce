@@ -14,7 +14,6 @@ export default class User extends Component {
             this.setState({
                 // users: res.data['users'],
             });
-            console.log(res.data);
         });
     }
 
