@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::view('/categories/{path?}/{id?}', 'app');
 
+Route::view('/matches/{path?}/{id?}', 'app');
 Route::view('/{path?}', 'app');
+
+
 // Auth::routes(['verify' => true]);
 
 // Route::get('/', 'MatchesController@index')->name('home');

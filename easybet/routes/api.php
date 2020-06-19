@@ -18,5 +18,8 @@ use Illuminate\Support\Facades\Auth;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
+// Route::get('categories','CategoryController@index');
+Route::get('matches/search/{name}', 'MatchesController@customSearch');
+Route::get('matches/category/{id}', 'MatchesController@customShowCategories');
+Route::get('matches/game/{id}', 'MatchesController@customShowGames');
 Route::resource('matches','MatchesController');

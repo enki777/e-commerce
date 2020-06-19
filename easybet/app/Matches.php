@@ -32,15 +32,5 @@ class Matches extends Model
         return $this->belongsToMany(User::class, 'bets', 'match_id', 'user_id')->withPivot('id', 'user_bet', 'created_at');
     }
 
-    // public function players1()
-    // {
-    //     return $this->hasManyThrough(
-    //         Players::class,
-    //         Teams::class,
-    //         'country_id',
-    //         'user_id',
-    //         'id',
-    //         'id'
-    //     );
-    // }
+    
 }

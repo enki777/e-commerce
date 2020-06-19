@@ -30,28 +30,18 @@ class MatchesController extends Controller
      */
     public function index()
     {
-        $available = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as "days",matches.name as "matchName",games.name as "gameName", team1.name as "team1", team2.name as "team2"  '))
-            ->join('games', 'matches.games_id', '=', 'games.id')
-            ->join('teams as team1', 'matches.teams_id', '=', 'team1.id')
-            ->join('teams as team2', 'matches.teams2_id', '=', 'team2.id')
-            ->where('openning', '>', now())->orderBy('openning')->get();
-        // $most_popular = [];
-        // foreach ($available as $value) {
-        //     if ($value->bets != '[]' | null) {
-        //         $count[$value->id] = $value->bets->count();
-        //         $most_popular[$value->id] = Matches::find($value->id);
-        //     }
-        // }
+        $categories = Category::all();
+        $games = Game::all();
 
-        $finished = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as "days",matches.name as "matchName",games.name as "gameName", team1.name as "team1", team2.name as "team2" '))
-            ->join('games', 'matches.games_id', '=', 'games.id')
-            ->join('teams as team1', 'matches.teams_id', '=', 'team1.id')
-            ->join('teams as team2', 'matches.teams2_id', '=', 'team2.id')
-            ->where('openning', '<', now())->orderBy('ending')->get();
-        return [$available->toJson(), $finished->toJson()];
-        // $games = Game::all();
-        // $categories = Category::all();
-        // return view('matches.index', compact('games', 'categories', 'available', 'finished', 'most_popular'));
+        $available = Matches::select(DB::raw('*,matches.id as "id",DATEDIFF(openning,now()) as days,matches.name as "matchName"'))
+            ->with('games', 'team1', 'team2')
+            ->where('openning', '>', now())->orderBy('openning')->get();
+
+        $finished = Matches::select(DB::raw('*,matches.id as "id",DATEDIFF(openning,now()) as "days",matches.name as "matchName"'))
+            ->with('games', 'team1', 'team2')
+            ->where('openning', '<', now())->orderBy('openning')->get();
+
+        return [$available, $finished, "categories"=>$categories, $games];
     }
 
     /**
@@ -87,11 +77,10 @@ class MatchesController extends Controller
      */
     public function show(Matches $match)
     {
-        $team1 = $match->team1;
-        $team2 = $match->team2;
-        $game = $match->games;
-        // return $match;
-        return view('matches.show', compact('match', 'game', 'team1', 'team2'));
+        $match->team1;
+        $match->team2;
+        $match->games;
+        return $match->toJson();
     }
 
     /**
@@ -199,58 +188,55 @@ class MatchesController extends Controller
             ->route('get-bets');
     }
 
+    // FINI
     public function customShowCategories($id)
     {
-        $available = Matches::select(DB::raw('matches.*,DATEDIFF(openning,now()) as days'))
+        $available = Matches::select(DB::raw('matches.*,DATEDIFF(openning,now()) as days,games.name as "gameName"'))
+            ->with('team1', 'team2')
             ->join('games', 'matches.games_id', '=', 'games.id')
             ->join('category_game', 'games.id', '=', 'category_game.game_id')
             ->where('category_game.category_id', $id)
             ->where('openning', '>', now())
             ->orderBy('openning')->get();
 
-        $finished = Matches::select(DB::raw('matches.*,DATEDIFF(openning,now()) as days'))
+        $finished = Matches::select(DB::raw('matches.*,DATEDIFF(openning,now()) as days,games.name as "gameName"'))
+            ->with('team1', 'team2')
             ->join('games', 'matches.games_id', '=', 'games.id')
             ->join('category_game', 'games.id', '=', 'category_game.game_id')
             ->where('category_game.category_id', $id)
-            ->where('openning', '<', now())
+            ->where('openning', '<=', now())
             ->orderBy('openning')->get();
 
-        $most_popular = [];
-        foreach ($available as $value) {
-            if ($value->bets != '[]' | null) {
-                $count[$value->id] = $value->bets->count();
-                $most_popular[$value->id] = Matches::find($value->id);
-            }
-        }
+        // $categories = Category::all();
+        // $games = Game::all();
 
-        $categories = Category::all();
-        $games = Game::all();
-        return view('matches.index', compact('games', 'categories', 'available', 'finished', 'most_popular'));
+        return [
+            $available->toJson(),
+            $finished->toJson()
+        ];
     }
 
+    // FINI
     public function customShowGames($id)
     {
         $categories = Category::all();
         $games = Game::all();
-        $available = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as days'))
+        $available = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as "days", matches.name as "matchesName"'))
+            ->with('games', 'team1', 'team2')
             ->where('openning', '>', now())
-            ->where('games_id', $id)
+            ->where('matches.games_id', '=', $id)
             ->orderBy('openning')->get();
 
-        $finished = Matches::select(DB::raw('*,DATEDIFF(now(),openning) as days'))
-            ->where('openning', '<', now())
-            ->where('games_id', $id)
+        $finished = Matches::select(DB::raw('*,DATEDIFF(now(),openning) as days,matches.name as "matchesName"'))
+            ->with('games', 'team1', 'team2')
+            ->where('openning', '<=', now())
+            ->where('matches.games_id', $id)
             ->orderBy('ending')->get();
 
-        $most_popular = [];
-        foreach ($available as $value) {
-            if ($value->bets != '[]' | null) {
-                $count[$value->id] = $value->bets->count();
-                $most_popular[$value->id] = Matches::find($value->id);
-            }
-        }
-
-        return view('matches.index', compact('games', 'categories', 'available', 'finished', 'most_popular'));
+        return [
+            $available->toJson(),
+            $finished->toJson(),
+        ];
     }
 
     public function customSearch(SearchMatchesRequest $searchMatchesRequest)
@@ -258,23 +244,17 @@ class MatchesController extends Controller
         $categories = Category::all();
         $games = Game::all();
         $available = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as days'))
+            ->with('games', 'team1', 'team2')
             ->where('openning', '>', now())
             ->where('name', 'like', '%' . $searchMatchesRequest['name'] . '%')
             ->orderBy('openning')->get();
 
         $finished = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as days'))
+            ->with('games', 'team1', 'team2')
             ->where('openning', '<', now())
             ->where('name', 'like', '%' . $searchMatchesRequest['name'] . '%')
             ->orderBy('ending')->get();
 
-        $most_popular = [];
-        foreach ($available as $value) {
-            if ($value->bets != '[]' | null) {
-                $count[$value->id] = $value->bets->count();
-                $most_popular[$value->id] = Matches::find($value->id);
-            }
-        }
-        return $available;
-        // return view('matches.index', compact('games', 'categories', 'available', 'finished', 'most_popular'));
+        return [$available->toJson(), $finished->toJson(), $categories->toJson(), $games->toJson()];
     }
 }
