@@ -16,7 +16,7 @@ class CreateMatchesTable extends Migration
         Schema::disableForeignKeyConstraints();
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->string('name');
             $table->timestamps();
             $table->foreignId('games_id')->constrained()->onDelete('cascade');
             $table->foreignId('teams_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
