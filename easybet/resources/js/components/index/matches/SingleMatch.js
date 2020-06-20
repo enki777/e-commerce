@@ -16,7 +16,6 @@ class SingleProject extends Component {
         const MatchId = this.props.match.params.id
 
         axios.get(`/api/matches/${MatchId}`).then(response => {
-            console.log(response.data)
 
             this.setState({
                 match: response.data,

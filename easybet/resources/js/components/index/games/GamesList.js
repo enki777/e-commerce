@@ -21,7 +21,6 @@ class GamesList extends Component {
 
     render() {
         const games = this.state.games
-        console.log(games)
         return (
             <div className="card bg-dark">
                 <div className="card-header text-white">
