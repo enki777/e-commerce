@@ -40,4 +40,8 @@ Route::get('admin/category/{category}', 'AdminController@categoryShow');
 Route::get('admin/category/edit/{category}', 'AdminController@categoryEdit');
 Route::patch('admin/category/update/{category}', 'AdminController@categoryUpdate');
 Route::delete('admin/category/delete/{category}', 'AdminController@categoryDelete');
+//MATCH
+Route::get('admin/match/create', 'AdminController@matchCreate');
+Route::post('admin/match/store', 'AdminController@matchStore');
+
 

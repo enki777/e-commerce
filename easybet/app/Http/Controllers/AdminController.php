@@ -179,10 +179,4 @@ class AdminController extends Controller
         ]);
         return redirect('/admin');
     }
-
-    public function matchDelete($id){
-        $match = Matches::find($id);
-        $match->delete();
-        return redirect('/admin');
-    }
 }

@@ -17,7 +17,6 @@ class MatchesSearch extends Component {
 
     componentDidMount() {
         axios.get('/api/matches/search/').then(response => {
-            console.log(response.data)
             this.setState({
                 available: response.data[0],
                 finished: response.data[1],

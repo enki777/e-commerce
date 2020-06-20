@@ -33,7 +33,6 @@ class Index extends Component {
 
     render() {
         const { available, finished,value } = this.state
-        console.log(value)
         return (
             <div className='container-fluid'>
                 <div className='row justify-content-center'>

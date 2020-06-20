@@ -24,7 +24,6 @@ class MatchesCategoryList extends Component {
 
     render() {
         const { available,finished } = this.state
-        // console.log(available)
 
         return (
             <div className='container-fluid'>

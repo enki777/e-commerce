@@ -17,7 +17,6 @@ export default class CategoryDetails extends Component {
                 category: res.data['category'],
                 games: res.data['games'],
             });
-            console.log(res.data);
         });
     }
 

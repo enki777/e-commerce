@@ -21,7 +21,6 @@ class CategoriesList extends Component {
 
     render() {
         const categories = this.state.categories
-        // console.log(categories)
         return (
             <div className="card bg-dark">
                 <div className="card-header text-white">

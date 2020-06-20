@@ -9,7 +9,7 @@ class Matches extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name','games_id','teams_id','teams2_id'];
+    protected $fillable = ['name','games_id','teams_id','teams2_id','openning'];
 
     public function games(){
         return $this->belongsTo(Game::class);

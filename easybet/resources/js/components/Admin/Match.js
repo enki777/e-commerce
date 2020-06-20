@@ -36,7 +36,7 @@ export default class Match extends Component {
                             <th className={'align-middle'}>VS</th>
                             <th className={'align-middle'}>Team 2</th>
                             <th>
-                                <a href={''}>
+                                <a href={'/admin/match/create'}>
                                     <button className={'btn btn-primary'}>
                                         Create Match
                                     </button>
