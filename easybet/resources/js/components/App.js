@@ -15,6 +15,8 @@ import GameEdit from "./Admin/Game/GameEdit";
 import CategoryCreate from "./Admin/Category/CategoryCreate";
 import CategoryDetails from "./Admin/Category/CategoryDetails";
 import CategoryEdit from "./Admin/Category/CategoryEdit";
+import MatchCreate from "./Admin/Match/MatchCreate";
+
 
 class App extends Component {
     render() {
@@ -36,6 +38,8 @@ class App extends Component {
                         <Route exact path='/admin/category/create/' component={CategoryCreate} />
                         <Route exact path='/admin/category/:id' component={CategoryDetails} />
                         <Route exact path='/admin/category/edit/:id' component={CategoryEdit} />
+                        <Route exact path='/admin/match/create' component={MatchCreate} />
+                        
 
                     </Switch>
                 </div>
