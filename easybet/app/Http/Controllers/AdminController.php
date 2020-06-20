@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Game;
-use App\User;
+use App\{Category, Game, User, Matches, Teams};
+// use App\Game;
+// use App\User;
+// use App\Matches;
 use App\Http\Controllers\Controller;
-use App\Matches;
+// use App\Http\Requests\Teams;
+use App\Http\Requests\Matches as MatchesRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
 
 
 class AdminController extends Controller
@@ -18,12 +21,12 @@ class AdminController extends Controller
         $games = Game::latest('updated_at')->get();
         $categories = Category::latest('updated_at')->get();
         $matches = Matches::with('games', 'team1', 'team2')->get();
-//        $users = User::all();
+        //        $users = User::all();
         return [
             'games' => $games,
             'categories' => $categories,
             'matches' => $matches,
-//            'users' => $users,
+            //            'users' => $users,
         ];
     }
 
@@ -156,4 +159,30 @@ class AdminController extends Controller
         return redirect('/admin');
     }
 
+    public function matchCreate()
+    {
+        $games = Game::all();
+        $team1 = Teams::all();
+        $team2 = Teams::all();
+        return [$games, $team1, $team2];
+    }
+
+    public function matchStore(MatchesRequest $matchesRequest)
+    {
+        $openning = Carbon::parse($matchesRequest->openning)->format('Y-m-d H:i:s');
+        Matches::create([
+            "name" => $matchesRequest->name,
+            "games_id" => $matchesRequest->games_id,
+            "teams_id" => $matchesRequest->teams_id,
+            "teams2_id" => $matchesRequest->teams2_id,
+            "openning" => $openning
+        ]);
+        return redirect('/admin');
+    }
+
+    public function matchDelete($id){
+        $match = Matches::find($id);
+        $match->delete();
+        return redirect('/admin');
+    }
 }
