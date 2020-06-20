@@ -35,7 +35,7 @@ export default class Match extends Component {
                             <th className={'align-middle'}>Team 1</th>
                             <th className={'align-middle'}>VS</th>
                             <th className={'align-middle'}>Team 2</th>
-                            <th>
+                            <th className='text-right'>
                                 <a href={''}>
                                     <button className={'btn btn-primary'}>
                                         Create Match
