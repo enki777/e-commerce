@@ -18,12 +18,12 @@ class AdminController extends Controller
         $games = Game::latest('updated_at')->get();
         $categories = Category::latest('updated_at')->get();
         $matches = Matches::with('games', 'team1', 'team2')->get();
-        //        $users = User::all();
+        $users = User::all();
         return [
             'games' => $games,
             'categories' => $categories,
             'matches' => $matches,
-            //            'users' => $users,
+            'users' => $users,
         ];
     }
 
