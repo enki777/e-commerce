@@ -71392,8 +71392,6 @@ var User = /*#__PURE__*/function (_Component) {
         _this2.setState({
           users: res.data['users']
         });
-
-        console.log(_this2.state.users);
       });
     }
   }, {
