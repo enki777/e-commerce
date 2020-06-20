@@ -69951,7 +69951,7 @@ var Category = /*#__PURE__*/function (_Component) {
             event.preventDefault();
 
             if (confirm("You are about to delete ".concat(category.name, ", are you sure ?"))) {
-              document.getElementById('delete-category').submit();
+              document.getElementById("delete-category-".concat(category.id)).submit();
             }
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -69968,7 +69968,7 @@ var Category = /*#__PURE__*/function (_Component) {
           d: "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           className: 'd-none',
-          id: 'delete-category',
+          id: "delete-category-".concat(category.id),
           method: 'post',
           action: "/api/admin/category/delete/".concat(category.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -70149,8 +70149,6 @@ var CategoryDetails = /*#__PURE__*/function (_Component) {
           category: res.data['category'],
           games: res.data['games']
         });
-
-        console.log(res.data);
       });
     }
   }, {
@@ -70532,10 +70530,17 @@ var Game = /*#__PURE__*/function (_Component) {
     _this.state = {
       games: []
     };
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Game, [{
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      console.log(event);
+      event.preventDefault();
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
@@ -70549,6 +70554,8 @@ var Game = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: 'card'
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -70616,7 +70623,7 @@ var Game = /*#__PURE__*/function (_Component) {
             event.preventDefault();
 
             if (confirm("You are about to delete ".concat(game.name, ", are you sure ?"))) {
-              document.getElementById('delete-game').submit();
+              document.getElementById("delete-game-".concat(game.id)).submit();
             }
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -70633,7 +70640,8 @@ var Game = /*#__PURE__*/function (_Component) {
           d: "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           className: 'd-none',
-          id: 'delete-game',
+          id: "delete-game-".concat(game.id),
+          onSubmit: _this3.handleSubmit,
           method: 'post',
           action: "/api/admin/game/delete/".concat(game.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -71382,8 +71390,6 @@ var User = /*#__PURE__*/function (_Component) {
       axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/admin').then(function (res) {
         _this2.setState({// users: res.data['users'],
         });
-
-        console.log(res.data);
       });
     }
   }, {
@@ -71652,8 +71658,7 @@ var CategoriesList = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var categories = this.state.categories; // console.log(categories)
-
+      var categories = this.state.categories;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "card bg-dark"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -71755,8 +71760,7 @@ var GamesList = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var games = this.state.games; // console.log(categories)
-
+      var games = this.state.games;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "card bg-dark"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -71879,7 +71883,6 @@ var Index = /*#__PURE__*/function (_Component) {
           available = _this$state.available,
           finished = _this$state.finished,
           value = _this$state.value;
-      console.log(value);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "container-fluid"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -72117,8 +72120,7 @@ var MatchesCategoryList = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this$state = this.state,
           available = _this$state.available,
-          finished = _this$state.finished; // console.log(available)
-
+          finished = _this$state.finished;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "container-fluid"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -72235,7 +72237,6 @@ var MatchesGameList = /*#__PURE__*/function (_Component) {
 
       var GameId = this.props.match.params.id;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/matches/game/".concat(GameId)).then(function (response) {
-        // console.log(response.data[1])
         _this2.setState({
           available: JSON.parse(response.data[0]),
           finished: JSON.parse(response.data[1])
@@ -72370,8 +72371,6 @@ var MatchesSearch = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/matches/search/').then(function (response) {
-        console.log(response.data);
-
         _this2.setState({
           available: response.data[0],
           finished: response.data[1]
@@ -72520,8 +72519,6 @@ var SingleProject = /*#__PURE__*/function (_Component) {
 
       var MatchId = this.props.match.params.id;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/matches/".concat(MatchId)).then(function (response) {
-        console.log(response.data);
-
         _this2.setState({
           match: response.data,
           games: response.data.games,
