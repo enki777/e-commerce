@@ -24,6 +24,7 @@ export default class Game extends Component {
     }
 
     render() {
+
         return(
             <div className={'card'}>
                 <div className={'card-header'}>
@@ -76,8 +77,13 @@ export default class Game extends Component {
                                         </a>
                                         <a href={''} onClick={(event) => {
                                             event.preventDefault();
+<<<<<<< HEAD
                                             if (confirm(`You are about to delete ${game.name}, are you sure ?`)) {
                                                 document.getElementById(`delete-game-${game.id}`).submit();
+=======
+                                            if (confirm(`You are about to delete ${game.id}, are you sure ?`)) {
+                                                document.getElementById('delete-game').submit();
+>>>>>>> 18f538359b9e3106416b678bf9f39b5729c51ea2
                                             }
                                         }}>
                                             <svg className="bi bi-trash ml-2" width="1.5em"
@@ -90,11 +96,18 @@ export default class Game extends Component {
                                                       d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                                             </svg>
                                         </a>
+<<<<<<< HEAD
                                         <form className={'d-none'} id={`delete-game-${game.id}`}
                                               onSubmit={this.handleSubmit}
                                               method={'post'}
                                               action={`/api/admin/game/delete/${game.id}`}
                                               >
+=======
+                                        
+                                        <form className={'d-none'} id={'delete-game'}
+                                              method="post"
+                                              action={`/api/admin/game/delete/${game.id}`}>
+>>>>>>> 18f538359b9e3106416b678bf9f39b5729c51ea2
                                             <input type={'hidden'} name={'_method'}
                                                    value={'DELETE'}/>
                                         </form>

@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
-use App\Game;
-use App\User;
+use App\{Category, Game, User, Matches, Teams};
+// use App\Game;
+// use App\User;
+// use App\Matches;
 use App\Http\Controllers\Controller;
-use App\Matches;
+// use App\Http\Requests\Teams;
+use App\Http\Requests\Matches as MatchesRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Carbon;
 
 
 class AdminController extends Controller
@@ -18,12 +21,12 @@ class AdminController extends Controller
         $games = Game::latest('updated_at')->get();
         $categories = Category::latest('updated_at')->get();
         $matches = Matches::with('games', 'team1', 'team2')->get();
-//        $users = User::all();
+        $deletedMatches = Matches::onlyTrashed()->latest('updated_at')->with('games', 'team1', 'team2')->get();
         return [
             'games' => $games,
             'categories' => $categories,
             'matches' => $matches,
-//            'users' => $users,
+            'deletedMatches' => $deletedMatches
         ];
     }
 
@@ -156,4 +159,70 @@ class AdminController extends Controller
         return redirect('/admin');
     }
 
+    ///////////////////////// MATCHES METHODS /////////////////////////
+
+    public function matchCreate()
+    {
+        $games = Game::all();
+        $team1 = Teams::all();
+        $team2 = Teams::all();
+        return [$games, $team1, $team2];
+    }
+
+    public function matchStore(MatchesRequest $matchesRequest)
+    {
+        $openning = Carbon::parse($matchesRequest->openning)->format('Y-m-d H:i:s');
+        Matches::create([
+            "name" => $matchesRequest->name,
+            "games_id" => $matchesRequest->games_id,
+            "teams_id" => $matchesRequest->teams_id,
+            "teams2_id" => $matchesRequest->teams2_id,
+            "openning" => $openning
+            // $matchesRequest->except($matchesRequest->openning),
+            // "openning" => $openning
+        ]);
+        return redirect('/admin');
+    }
+
+    public function matchEdit(Matches $matches)
+    {
+        // $match = Matches::find($id);
+        $matches->games;
+        $matches->team1;
+        $matches->team2;
+        // $openning = Carbon::parse($matches->openning)->format('Y-m-dTH:i:s');
+
+        $games = Game::all();
+        $team1 = Teams::all();
+        $team2 = Teams::all();
+        return [$matches, $games, $team1, $team2];
+    }
+
+    public function matchUpdate(MatchesRequest $matchesRequest, Matches $matches)
+    {
+        $openning = Carbon::parse($matchesRequest->openning)->format('Y-m-d H:i:s');
+        $matches->fill($matchesRequest->except('openning'));
+        $matches->openning = $openning;
+        $matches->save();
+        return redirect('/admin');
+    }
+
+    public function matchDelete($id)
+    {
+        $match = Matches::find($id);
+        $match->delete();
+        return redirect('/admin');
+    }
+
+    public function matchForceDestroy($id)
+    {
+        Matches::onlyTrashed()->whereId($id)->firstOrFail()->forceDelete();
+        return redirect('/admin');
+    }
+
+    public function matchRestore($id)
+    {
+        Matches::onlyTrashed()->whereId($id)->firstOrFail()->restore();
+        return redirect('/admin');
+    }
 }
