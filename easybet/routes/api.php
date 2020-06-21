@@ -24,17 +24,20 @@ Route::get('matches/category/{id}', 'MatchesController@customShowCategories');
 Route::get('matches/game/{id}', 'MatchesController@customShowGames');
 Route::resource('matches', 'MatchesController');
 
+// authentication
+Route::post('/register', 'Auth\RegisterController@register');
+Route::post('/login', 'Auth\LoginController@login');
 
-//ADMIN
+// ADMIN
 Route::get('admin', 'AdminController@dashboard');
-//GAME
+// GAME
 Route::get('admin/game/create', 'AdminController@gameCreate');
 Route::post('admin/game/store', 'AdminController@gameStore');
 Route::get('admin/game/{game}', 'AdminController@gameShow');
 Route::get('admin/game/edit/{game}', 'AdminController@gameEdit');
 Route::patch('admin/game/update/{game}', 'AdminController@gameUpdate');
 Route::delete('admin/game/delete/{game}', 'AdminController@gameDelete');
-//CATEGORY
+// CATEGORY
 Route::post('admin/category/store', 'AdminController@categoryStore');
 Route::get('admin/category/{category}', 'AdminController@categoryShow');
 Route::get('admin/category/edit/{category}', 'AdminController@categoryEdit');

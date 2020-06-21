@@ -15,9 +15,14 @@ import GameEdit from "./Admin/Game/GameEdit";
 import CategoryCreate from "./Admin/Category/CategoryCreate";
 import CategoryDetails from "./Admin/Category/CategoryDetails";
 import CategoryEdit from "./Admin/Category/CategoryEdit";
+<<<<<<< HEAD
+import Register from './User/Register'
+import Login from './User/Login'
+=======
 import MatchCreate from "./Admin/Match/MatchCreate";
 import MatchEdit from "./Admin/Match/MatchEdit";
 
+>>>>>>> master
 
 class App extends Component {
     render() {
@@ -31,6 +36,9 @@ class App extends Component {
                         <Route exact path='/matches/game/:id' component={MatchesGameList} />
                         <Route exact path='/matches/category/:id' component={MatchesCategoryList} />
                         <Route exact path='/matches/search/:name' component={MatchesSearch} />
+
+                        <Route exact path='/register' component={Register} />
+                        <Route exact path='/login' component={Login} />
 
                         <Route exact path='/admin' component={Dashboard} />
                         <Route exact path='/admin/game/create' component={GameCreate} />

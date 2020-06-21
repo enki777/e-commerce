@@ -31,6 +31,19 @@ export default class Match extends Component {
                 <div className={'card-body'}>
                     <table className={'table table-bordered table-striped'}>
                         <thead>
+<<<<<<< HEAD
+                        <tr>
+                            <th className={'align-middle'}>Date</th>
+                            <th className={'align-middle'}>Match</th>
+                            <th className={'align-middle'}>Game</th>
+                            <th className={'align-middle'}>Team 1</th>
+                            <th className={'align-middle'}>VS</th>
+                            <th className={'align-middle'}>Team 2</th>
+                            <th className='text-right'>
+                                <a href={''}>
+                                    <button className={'btn btn-primary'}>
+                                        Create Match
+=======
                             <tr>
                                 <th className={'align-middle'}>Date</th>
                                 <th className={'align-middle'}>Match</th>
@@ -42,6 +55,7 @@ export default class Match extends Component {
                                     <a href={'/admin/match/create'}>
                                         <button className={'btn btn-primary'}>
                                             Create Match
+>>>>>>> master
                                     </button>
                                     </a>
                                 </th>

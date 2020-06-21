@@ -21,11 +21,13 @@ class AdminController extends Controller
         $games = Game::latest('updated_at')->get();
         $categories = Category::latest('updated_at')->get();
         $matches = Matches::with('games', 'team1', 'team2')->get();
+        $users = User::all();
         $deletedMatches = Matches::onlyTrashed()->latest('updated_at')->with('games', 'team1', 'team2')->get();
         return [
             'games' => $games,
             'categories' => $categories,
             'matches' => $matches,
+            'users' => $users,
             'deletedMatches' => $deletedMatches
         ];
     }
@@ -39,11 +41,16 @@ class AdminController extends Controller
 
     public function gameStore(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name' => ['required', 'max:35', 'string', 'unique:games'],
             'image' => ['nullable', 'image'],
             'categories.*' => ['nullable', 'integer'],
         ]);
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator);
+        }
 
         $file = null;
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
@@ -58,7 +65,7 @@ class AdminController extends Controller
         $categories = $request->categories;
         $game->categories()->attach($categories);
 
-        return redirect('/admin')->with('game-created', 'Game created !');
+        return redirect('/admin');
     }
 
     public function gameShow(Game $game)
