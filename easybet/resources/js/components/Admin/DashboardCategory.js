@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import Game from './Game';
 import Category from './Category';
-import Match from './Match';
-import User from './User';
 
-export default class Dashboard extends Component {
+export default class DashboardCategory extends Component {
     render() {
         return (
             <div className={'card'}>
@@ -23,15 +20,22 @@ export default class Dashboard extends Component {
                 <div className={'card-body'}>
                     <div className={'container-fluid'}>
                         <div className={'row'}>
-                            <div className={'col-4'}>
-                                <Game />
-                                <br />
+                            <div className={'col-12'}>
+                                <ul className="nav nav-tabs">
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/admin">Matches</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/admin/game">Games</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link active" href="/admin/category">Categories</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/admin/user">Users</a>
+                                    </li>
+                                </ul>
                                 <Category />
-                            </div>
-                            <div className={'col-8'}>
-                                <Match />
-                                <br />
-                                <User />
                             </div>
                         </div>
                     </div>

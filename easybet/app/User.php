@@ -5,9 +5,11 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
+    use SoftDeletes;
     use Notifiable;
 
     /**
@@ -37,11 +39,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function matches(){
-        return $this->belongsToMany(Matches::class,'matches_user','users_id', 'matches_id')->as('bet');
+    public function matches()
+    {
+        return $this->belongsToMany(Matches::class, 'matches_user', 'users_id', 'matches_id')->as('bet');
     }
 
-    public function bets(){
+    public function bets()
+    {
         return $this->belongsToMany(Matches::class, 'bets', 'user_id', 'match_id')->withPivot('id', 'user_bet', 'created_at');
     }
 }
