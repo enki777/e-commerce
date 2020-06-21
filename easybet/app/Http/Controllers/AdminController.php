@@ -232,4 +232,9 @@ class AdminController extends Controller
         Matches::onlyTrashed()->whereId($id)->firstOrFail()->restore();
         return redirect('/admin');
     }
+
+    public function userShow(User $user)
+    {
+        return $user;
+    }
 }

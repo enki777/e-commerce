@@ -51,3 +51,5 @@ Route::patch('admin/match/update/{matches}', 'AdminController@matchUpdate');
 Route::delete('admin/match/delete/{id}', 'AdminController@matchDelete');
 Route::delete('admin/match/force/{id}', 'AdminController@matchForceDestroy');
 Route::put('admin/match/restore/{id}', 'AdminController@matchRestore');
+//USER
+Route::get('/admin/user/{user}', 'AdminController@userShow');
