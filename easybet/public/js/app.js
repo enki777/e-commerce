@@ -70620,13 +70620,8 @@ var Game = /*#__PURE__*/function (_Component) {
           onClick: function onClick(event) {
             event.preventDefault();
 
-<<<<<<< HEAD
             if (confirm("You are about to delete ".concat(game.name, ", are you sure ?"))) {
               document.getElementById("delete-game-".concat(game.id)).submit();
-=======
-            if (confirm("You are about to delete ".concat(game.id, ", are you sure ?"))) {
-              document.getElementById('delete-game').submit();
->>>>>>> 18f538359b9e3106416b678bf9f39b5729c51ea2
             }
           }
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
@@ -70643,14 +70638,9 @@ var Game = /*#__PURE__*/function (_Component) {
           d: "M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
         }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
           className: 'd-none',
-<<<<<<< HEAD
           id: "delete-game-".concat(game.id),
           onSubmit: _this3.handleSubmit,
           method: 'post',
-=======
-          id: 'delete-game',
-          method: "post",
->>>>>>> 18f538359b9e3106416b678bf9f39b5729c51ea2
           action: "/api/admin/game/delete/".concat(game.id)
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
           type: 'hidden',
@@ -71245,15 +71235,8 @@ var Match = /*#__PURE__*/function (_Component) {
         className: 'align-middle'
       }, "VS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
         className: 'align-middle'
-<<<<<<< HEAD
-      }, "Team 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", {
-        className: "text-right"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: ''
-=======
       }, "Team 2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: '/admin/match/create'
->>>>>>> master
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: 'btn btn-primary'
       }, "Create Match"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, this.state.matches.map(function (match) {
@@ -71957,13 +71940,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Admin_Category_CategoryCreate__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Admin/Category/CategoryCreate */ "./resources/js/components/Admin/Category/CategoryCreate.js");
 /* harmony import */ var _Admin_Category_CategoryDetails__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./Admin/Category/CategoryDetails */ "./resources/js/components/Admin/Category/CategoryDetails.js");
 /* harmony import */ var _Admin_Category_CategoryEdit__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./Admin/Category/CategoryEdit */ "./resources/js/components/Admin/Category/CategoryEdit.js");
-<<<<<<< HEAD
 /* harmony import */ var _User_Register__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./User/Register */ "./resources/js/components/User/Register.js");
 /* harmony import */ var _User_Login__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./User/Login */ "./resources/js/components/User/Login.js");
-=======
-/* harmony import */ var _Admin_Match_MatchCreate__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./Admin/Match/MatchCreate */ "./resources/js/components/Admin/Match/MatchCreate.js");
-/* harmony import */ var _Admin_Match_MatchEdit__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./Admin/Match/MatchEdit */ "./resources/js/components/Admin/Match/MatchEdit.js");
->>>>>>> master
+/* harmony import */ var _Admin_Match_MatchCreate__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./Admin/Match/MatchCreate */ "./resources/js/components/Admin/Match/MatchCreate.js");
+/* harmony import */ var _Admin_Match_MatchEdit__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./Admin/Match/MatchEdit */ "./resources/js/components/Admin/Match/MatchEdit.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -71985,6 +71965,8 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
 
 
 
@@ -72074,11 +72056,11 @@ var App = /*#__PURE__*/function (_Component) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/admin/match/create",
-        component: _Admin_Match_MatchCreate__WEBPACK_IMPORTED_MODULE_16__["default"]
+        component: _Admin_Match_MatchCreate__WEBPACK_IMPORTED_MODULE_18__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/admin/match/edit/:match",
-        component: _Admin_Match_MatchEdit__WEBPACK_IMPORTED_MODULE_17__["default"]
+        component: _Admin_Match_MatchEdit__WEBPACK_IMPORTED_MODULE_19__["default"]
       }))));
     }
   }]);
@@ -73501,8 +73483,8 @@ var SingleProject = /*#__PURE__*/function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /mnt/c/xampp/htdocs/samsung/easybet/easybet/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /mnt/c/xampp/htdocs/samsung/easybet/easybet/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Noam\Documents\Samsung\FirstY\WebProject\easybet\easybet\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Noam\Documents\Samsung\FirstY\WebProject\easybet\easybet\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
