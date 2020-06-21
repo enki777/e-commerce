@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('matches/search/{name}', 'MatchesController@customSearch');
 Route::get('matches/category/{id}', 'MatchesController@customShowCategories');
 Route::get('matches/game/{id}', 'MatchesController@customShowGames');
-Route::resource('matches','MatchesController');
+Route::resource('matches', 'MatchesController');
 
 // authentication
 Route::post('/register', 'Auth\RegisterController@register');
@@ -43,4 +43,11 @@ Route::get('admin/category/{category}', 'AdminController@categoryShow');
 Route::get('admin/category/edit/{category}', 'AdminController@categoryEdit');
 Route::patch('admin/category/update/{category}', 'AdminController@categoryUpdate');
 Route::delete('admin/category/delete/{category}', 'AdminController@categoryDelete');
-
+//MATCH
+Route::get('admin/match/create', 'AdminController@matchCreate');
+Route::post('admin/match/store', 'AdminController@matchStore');
+Route::get('admin/match/edit/{matches}', 'AdminController@matchEdit');
+Route::patch('admin/match/update/{matches}', 'AdminController@matchUpdate');
+Route::delete('admin/match/delete/{id}', 'AdminController@matchDelete');
+Route::delete('admin/match/force/{id}', 'AdminController@matchForceDestroy');
+Route::put('admin/match/restore/{id}', 'AdminController@matchRestore');
