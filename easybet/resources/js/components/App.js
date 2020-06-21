@@ -29,7 +29,7 @@ class App extends Component {
                     <Header />
                     <Switch>
                         <Route exact path='/' component={Index} />
-                        {/*<Route exact path='/:id' component={SingleMatch} />*/}
+                        <Route exact path='/matches/:id' component={SingleMatch} />
                         <Route exact path='/matches/game/:id' component={MatchesGameList} />
                         <Route exact path='/matches/category/:id' component={MatchesCategoryList} />
                         <Route exact path='/matches/search/:name' component={MatchesSearch} />
