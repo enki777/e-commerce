@@ -36,7 +36,7 @@ class Matches extends Component {
                             {available.map(match => (
                                 <Link
                                     className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
-                                    to={`/${match.id}`}
+                                    to={`/matches/${match.id}`}
                                     key={match.id}
                                 >
                                     <p className="list-group-item">{match.openning}</p>

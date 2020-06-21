@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Auth;
 
 //Route::view('/matches/{path?}/{id?}', 'app');
 
+Route::view('/admin/user/{path?}/{id?}', 'app');
 Route::view('/admin/match/{path?}/{id?}', 'app');
 Route::view('/admin/game/{path?}/{id?}', 'app');
 Route::view('/admin/category/{path?}/{id?}', 'app');
+Route::view('/matches/{path?}/{id?}', 'app');
 Route::view('/{path?}', 'app');
 
 // Auth::routes(['verify' => true]);
