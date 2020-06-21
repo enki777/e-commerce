@@ -11,6 +11,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        factory(App\User::class, 25)->create();
+
         factory(App\Structures::class, 10)->create()->each(function ($structures) {
             $i = rand(2, 8);
             while (--$i) {
@@ -22,8 +24,7 @@ class DatabaseSeeder extends Seeder
         factory(App\Category::class, 10)->create();
 
         factory(App\Matches::class, 10)->create();
-        
+
         factory(App\Players::class, 40)->create();
-        
     }
 }
