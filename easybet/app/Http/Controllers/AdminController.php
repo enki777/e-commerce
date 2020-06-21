@@ -237,4 +237,9 @@ class AdminController extends Controller
     {
         return $user;
     }
+
+    public function userSoftDelete(User $user)
+    {
+        $user->delete();
+    }
 }

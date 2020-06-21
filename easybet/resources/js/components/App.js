@@ -7,7 +7,6 @@ import SingleMatch from './index/matches/SingleMatch';
 import MatchesGameList from './index/matches/MatchesGameList';
 import MatchesCategoryList from './index/matches/MatchesCategoryList';
 import MatchesSearch from './index/matches/MatchesSearch';
-import Dashboard from "./Admin/Dashboard";
 import GameDetails from "./Admin/Game/GameDetails";
 import GameCreate from "./Admin/Game/GameCreate";
 import GameEdit from "./Admin/Game/GameEdit";
@@ -18,7 +17,11 @@ import Register from './User/Auth/Register';
 import Login from './User/Auth/Login';
 import MatchCreate from "./Admin/Match/MatchCreate";
 import MatchEdit from "./Admin/Match/MatchEdit";
-import UserDetails from './User/UserDetails';
+import UserDetails from './Admin/User/UserDetails';
+import DashboardMatch from './Admin/DashboardMatch';
+import DashboardGame from './Admin/DashboardGame';
+import DashboardCategory from './Admin/DashboardCategory';
+import DashboardUser from './Admin/DashboardUser';
 
 
 class App extends Component {
@@ -35,7 +38,10 @@ class App extends Component {
                         <Route exact path='/matches/search/:name' component={MatchesSearch} />
                         <Route exact path='/register' component={Register} />
                         <Route exact path='/login' component={Login} />
-                        <Route exact path='/admin' component={Dashboard} />
+                        <Route exact path='/admin' component={DashboardMatch} />
+                        <Route exact path='/admin/game' component={DashboardGame} />
+                        <Route exact path='/admin/category' component={DashboardCategory} />
+                        <Route exact path='/admin/user' component={DashboardUser} />
                         <Route exact path='/admin/game/create' component={GameCreate} />
                         <Route exact path='/admin/game/:id/' component={GameDetails} />
                         <Route exact path='/admin/game/edit/:id/' component={GameEdit} />
