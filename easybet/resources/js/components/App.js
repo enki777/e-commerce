@@ -16,6 +16,7 @@ import CategoryCreate from "./Admin/Category/CategoryCreate";
 import CategoryDetails from "./Admin/Category/CategoryDetails";
 import CategoryEdit from "./Admin/Category/CategoryEdit";
 import MatchCreate from "./Admin/Match/MatchCreate";
+import MatchEdit from "./Admin/Match/MatchEdit";
 
 
 class App extends Component {
@@ -39,8 +40,7 @@ class App extends Component {
                         <Route exact path='/admin/category/:id' component={CategoryDetails} />
                         <Route exact path='/admin/category/edit/:id' component={CategoryEdit} />
                         <Route exact path='/admin/match/create' component={MatchCreate} />
-                        
-
+                        <Route exact path='/admin/match/edit/:match' component={MatchEdit} />
                     </Switch>
                 </div>
             </BrowserRouter>
