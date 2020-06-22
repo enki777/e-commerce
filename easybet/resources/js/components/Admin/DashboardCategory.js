@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Category from './Category';
+import Category from './Category/Category';
 
 export default class DashboardCategory extends Component {
     render() {
@@ -29,7 +29,7 @@ export default class DashboardCategory extends Component {
                                         <a className="nav-link" href="/admin/game">Games</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/admin/category">Categories</a>
+                                        <a className="nav-link active border-bottom-0" href="/admin/category">Categories</a>
                                     </li>
                                     <li className="nav-item">
                                         <a className="nav-link" href="/admin/user">Users</a>

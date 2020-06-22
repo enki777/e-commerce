@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import User from './User';
+import User from './User/User';
+import DeletedUser from './User/DeletedUser';
 
 export default class DashboardUser extends Component {
     render() {
@@ -32,10 +33,17 @@ export default class DashboardUser extends Component {
                                         <a className="nav-link" href="/admin/category">Categories</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/admin/user">Users</a>
+                                        <a className="nav-link active border-bottom-0" href="/admin/user">Users</a>
                                     </li>
                                 </ul>
-                                <User />
+                                <div className='row'>
+                                    <div className='col-8 pr-0'>
+                                        <User />
+                                    </div>
+                                    <div className='col-4 pl-0'>
+                                        <DeletedUser />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

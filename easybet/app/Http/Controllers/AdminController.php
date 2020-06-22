@@ -22,12 +22,14 @@ class AdminController extends Controller
         $categories = Category::latest('updated_at')->get();
         $matches = Matches::with('games', 'team1', 'team2')->get();
         $users = User::all();
+        $deleted_users = User::onlyTrashed()->get();
         $deletedMatches = Matches::onlyTrashed()->latest('updated_at')->with('games', 'team1', 'team2')->get();
         return [
             'games' => $games,
             'categories' => $categories,
             'matches' => $matches,
             'users' => $users,
+            'deleted_users' => $deleted_users,
             'deletedMatches' => $deletedMatches
         ];
     }
@@ -241,5 +243,18 @@ class AdminController extends Controller
     public function userSoftDelete(User $user)
     {
         $user->delete();
+        return redirect('/admin/user');
+    }
+
+    public function userRestore($id)
+    {
+        User::onlyTrashed()->find($id)->restore();
+        return redirect('/admin/user');
+    }
+
+    public function userForceDelete($id)
+    {
+        User::onlyTrashed()->find($id)->forceDelete();
+        return redirect('/admin/user');
     }
 }

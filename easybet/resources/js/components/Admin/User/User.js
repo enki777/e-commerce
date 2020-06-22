@@ -17,10 +17,16 @@ export default class User extends Component {
         });
     }
 
+    formatDate(date) {
+        let a = new Date(date).toISOString().slice(0, 10);
+        let b = new Date(date).toISOString().slice(11, 19);
+        return `${a} ${b}`;
+    }
+
     render() {
         return (
-            <div className={'card'}>
-                <div className={'card-header'}>
+            <div className={'card rounded-0 border-right-0 border-bottom-0'}>
+                <div className={'card-header text-center'}>
                     <h4 className={'card-title'}>Manage Users</h4>
                 </div>
                 <div className={'card-body'}>
@@ -32,7 +38,7 @@ export default class User extends Component {
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Created At</th>
-                                <th>Manage</th>
+                                <th className='text-center'>Manage</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,9 +47,9 @@ export default class User extends Component {
                                     <td>{user.id}</td>
                                     <td>{user.username}</td>
                                     <td>{user.email}</td>
-                                    <td>{user.created_at}</td>
-                                    <td>
-                                        <a href={`/admin/user/${user.id}`}>
+                                    <td>{this.formatDate(user.created_at)}</td>
+                                    <td className='text-center'>
+                                        <a href={`/admin/user/${user.id}`} data-toggle="tooltip" title="Show more details">
                                             <svg className="bi bi-eye mr-2" width="1.5em"
                                                 height="1.5em"
                                                 viewBox="0 0 16 16" fill="dark"
@@ -54,23 +60,10 @@ export default class User extends Component {
                                                     d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                                             </svg>
                                         </a>
-                                        <a href={`/admin/user/edit/${user.id}`}>
-                                            <svg className="bi bi-pencil-square" width="1.5em"
-                                                height="1.5em"
-                                                viewBox="0 0 16 16" fill="green"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456l-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                <path fillRule={'evenodd'}
-                                                    d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                            </svg>
-                                        </a>
                                         <a href={''} onClick={(event) => {
                                             event.preventDefault();
-                                            if (confirm(`You are about to delete ${user.username}, are you sure ?`)) {
-                                                document.getElementById(`delete-user-${user.id}`).submit();
-                                            }
-                                        }}>
+                                            document.getElementById(`delete-user-${user.id}`).submit();
+                                        }} data-toggle="tooltip" title="Delete user">
                                             <svg className="bi bi-trash ml-2" width="1.5em"
                                                 height="1.5em"
                                                 viewBox="0 0 16 16" fill="red"
