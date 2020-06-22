@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 //     return $request->user();
 // });
 // Route::get('categories','CategoryController@index');
-Route::get('matches/search/{name}', 'MatchesController@customSearch');
+Route::get('matches/search/{matches}', 'MatchesController@customSearch');
 Route::get('matches/category/{id}', 'MatchesController@customShowCategories');
 Route::get('matches/game/{id}', 'MatchesController@customShowGames');
 Route::resource('matches', 'MatchesController');
