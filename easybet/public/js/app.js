@@ -72922,7 +72922,8 @@ var Login = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
     _this.state = {
       username: '',
-      password: ''
+      password: '',
+      error: ''
     };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -72937,8 +72938,19 @@ var Login = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
-      console.log(this.state); // axios.post('/api/login', this.state);
+      var _this2 = this;
 
+      axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/login', this.state).then(function (res) {
+        if (res.data) {
+          window.location.href = '/';
+        } else {
+          throw 'Wrong password or username';
+        }
+      })["catch"](function (err) {
+        _this2.setState({
+          error: err
+        });
+      });
       event.preventDefault();
     }
   }, {
@@ -72990,7 +73002,9 @@ var Login = /*#__PURE__*/function (_Component) {
         className: "col-6 offset-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         className: "btn btn-primary"
-      }, "Sign in")))))))));
+      }, "Sign in"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "col-6 offset-4 text-danger"
+      }, this.state.error)))))));
     }
   }]);
 

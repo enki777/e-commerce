@@ -26,7 +26,7 @@ Route::resource('matches', 'MatchesController');
 
 // authentication
 Route::post('/register', 'Auth\RegisterController@register');
-Route::post('/login', 'Auth\LoginController@login');
+Route::post('/login', 'Auth\LoginController@authenticate');
 
 // ADMIN
 Route::get('admin', 'AdminController@dashboard');

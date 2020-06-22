@@ -49,4 +49,13 @@ class LoginController extends Controller
             return back()->withErrors($validator)->withInput();
         }
     }
+
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+
+        if (Auth::attempt($credentials)) {
+            return response()->redirectTo('/');
+        }
+    }
 }
