@@ -66,6 +66,7 @@ export default class UserDetails extends Component {
                                         </tr>
                                     </tbody>
                                 </table>
+                                <a href='/admin/user'>Back to dashboard</a>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 export default class CategoryCreate extends Component {
     render() {
@@ -15,7 +15,7 @@ export default class CategoryCreate extends Component {
                                     <div className={'form-group row'}>
                                         <label className={'col-4 col-form-label text-right'}>Name</label>
                                         <div className={'col-6'}>
-                                            <input className={'form-control'} type={'text'} name={'name'}/>
+                                            <input className={'form-control'} type={'text'} name={'name'} />
                                         </div>
                                     </div>
                                     <div className={'form-group row'}>
@@ -26,6 +26,9 @@ export default class CategoryCreate extends Component {
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                            <div className='card-footer'>
+                                <a href='/admin/category'>Back to dashboard</a>
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import axios from 'axios';
 
 export default class CategoryEdit extends Component {
@@ -12,7 +12,7 @@ export default class CategoryEdit extends Component {
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        this.setState({ value: event.target.value });
     }
 
     componentDidMount() {
@@ -36,12 +36,12 @@ export default class CategoryEdit extends Component {
                             </div>
                             <div className={'card-body'}>
                                 <form method={'post'} action={`/api/admin/category/update/${this.state.category.id}`}>
-                                    <input type={'hidden'} name={'_method'} value={'PATCH'}/>
+                                    <input type={'hidden'} name={'_method'} value={'PATCH'} />
                                     <div className={'form-group row'}>
                                         <label className={'col-4 col-form-label text-right'}>Name</label>
                                         <div className={'col-6'}>
                                             <input className={'form-control'} type={'text'} name={'name'}
-                                                   value={this.state.value} onChange={this.handleChange}/>
+                                                value={this.state.value} onChange={this.handleChange} />
                                         </div>
                                     </div>
                                     <div className={'form-group row'}>
@@ -52,6 +52,9 @@ export default class CategoryEdit extends Component {
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                            <div className='card-footer'>
+                                <a href='/admin/category'>Back to dashboard</a>
                             </div>
                         </div>
                     </div>
