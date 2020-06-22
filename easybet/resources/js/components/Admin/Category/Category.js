@@ -1,59 +1,51 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-export default class Game extends Component {
+export default class Category extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            games: [],
+            categories: [],
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(event) {
-        console.log(event);
-        event.preventDefault();
     }
 
     componentDidMount() {
         axios.get('/api/admin').then(res => {
             this.setState({
-                games: res.data['games'],
+                categories: res.data['categories'],
             });
-        })
+        });
     }
 
     render() {
-
         return (
-            <div className={'card'}>
+            <div className={'card rounded-0'}>
                 <div className={'card-header'}>
-                    <h4 className={'card-title'}>Manage Games</h4>
+                    <h4 className={'card-title'}>
+                        Manage Categories
+                    </h4>
                 </div>
                 <div className={'card-body'}>
                     <table className={'table table-bordered table-striped'}>
                         <thead>
                             <tr>
-                                <th className={'align-middle text-center'}>Games</th>
+                                <th className={'align-middle text-center'}>Categories</th>
                                 <th className={'text-right'}>
-                                    <a href={'/admin/game/create'}>
-                                        <button className={'btn btn-primary'}>Create Game</button>
+                                    <a href={'/admin/category/create'}>
+                                        <button className={'btn btn-primary'}>
+                                            Create Category
+                                    </button>
                                     </a>
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.games.map(game => (
-                                <tr key={game.id}>
-                                    <td className={'text-center'}>
-                                        <img src={`/storage/${game.image}`}
-                                            className={'bg-transparent p-0'} width={'50'}
-                                            alt={'game'} />
-                                    </td>
-                                    <td className={'align-middle'}>
-                                        {game.name}
+                            {this.state.categories.map(category => (
+                                <tr key={category.id}>
+                                    <td colSpan={2}>
+                                        {category.name}
                                         <div className={'float-right'}>
-                                            <a href={`/admin/game/${game.id}`}>
+                                            <a href={`/admin/category/${category.id}`} data-toggle="tooltip" title="Show more details">
                                                 <svg className="bi bi-eye mr-2" width="1.5em"
                                                     height="1.5em"
                                                     viewBox="0 0 16 16" fill="dark"
@@ -64,7 +56,7 @@ export default class Game extends Component {
                                                         d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z" />
                                                 </svg>
                                             </a>
-                                            <a href={`/admin/game/edit/${game.id}`}>
+                                            <a href={`/admin/category/edit/${category.id}`} data-toggle="tooltip" title="Edit category">
                                                 <svg className="bi bi-pencil-square" width="1.5em"
                                                     height="1.5em"
                                                     viewBox="0 0 16 16" fill="green"
@@ -77,10 +69,10 @@ export default class Game extends Component {
                                             </a>
                                             <a href={''} onClick={(event) => {
                                                 event.preventDefault();
-                                                if (confirm(`You are about to delete ${game.name}, are you sure ?`)) {
-                                                    document.getElementById(`delete-game-${game.id}`).submit();
+                                                if (confirm(`You are about to delete ${category.name}, are you sure ?`)) {
+                                                    document.getElementById(`delete-category-${category.id}`).submit();
                                                 }
-                                            }}>
+                                            }} data-toggle="tooltip" title="Delete category">
                                                 <svg className="bi bi-trash ml-2" width="1.5em"
                                                     height="1.5em"
                                                     viewBox="0 0 16 16" fill="red"
@@ -91,11 +83,9 @@ export default class Game extends Component {
                                                         d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4L4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
                                                 </svg>
                                             </a>
-                                            <form className={'d-none'} id={`delete-game-${game.id}`}
-                                                onSubmit={this.handleSubmit}
+                                            <form className={'d-none'} id={`delete-category-${category.id}`}
                                                 method={'post'}
-                                                action={`/api/admin/game/delete/${game.id}`}
-                                            >
+                                                action={`/api/admin/category/delete/${category.id}`}>
                                                 <input type={'hidden'} name={'_method'}
                                                     value={'DELETE'} />
                                             </form>

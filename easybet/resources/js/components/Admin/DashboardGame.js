@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Game from './Game';
+import Game from './Game/Game';
 
 export default class DashboardGame extends Component {
     render() {
@@ -26,7 +26,7 @@ export default class DashboardGame extends Component {
                                         <a className="nav-link" href="/admin">Matches</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/admin/game">Games</a>
+                                        <a className="nav-link active border-bottom-0" href="/admin/game">Games</a>
                                     </li>
                                     <li className="nav-item">
                                         <a className="nav-link" href="/admin/category">Categories</a>

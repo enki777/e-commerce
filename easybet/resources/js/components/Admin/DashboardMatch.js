@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Match from './Match';
+import Match from './Match/Match';
 
 export default class DashboardMatch extends Component {
     render() {
@@ -23,7 +23,7 @@ export default class DashboardMatch extends Component {
                             <div className={'col-12'}>
                                 <ul className="nav nav-tabs">
                                     <li className="nav-item">
-                                        <a className="nav-link active" href="/admin">Matches</a>
+                                        <a className="nav-link active border-bottom-0" href="/admin">Matches</a>
                                     </li>
                                     <li className="nav-item">
                                         <a className="nav-link" href="/admin/game">Games</a>

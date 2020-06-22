@@ -52,4 +52,7 @@ Route::delete('admin/match/delete/{id}', 'AdminController@matchDelete');
 Route::delete('admin/match/force/{id}', 'AdminController@matchForceDestroy');
 Route::put('admin/match/restore/{id}', 'AdminController@matchRestore');
 //USER
-Route::get('/admin/user/{user}', 'AdminController@userShow');
+Route::get('admin/user/{user}', 'AdminController@userShow');
+Route::delete('admin/user/delete/{user}', 'AdminController@userSoftDelete');
+Route::patch('admin/user/restore/{user}', 'AdminController@userRestore');
+Route::delete('admin/user/remove/{user}', 'AdminController@userForceDelete');
