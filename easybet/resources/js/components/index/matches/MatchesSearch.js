@@ -13,7 +13,7 @@ class MatchesSearch extends Component {
             games: [],
             teams: [],
             categories: [],
-            value: ''
+            value: '',
             // finished: [],
         }
         this.handleChange = this.handleChange.bind(this);
@@ -50,26 +50,19 @@ class MatchesSearch extends Component {
                                 <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} id="inputPassword2" placeholder="Type a match" />
                             </div>
                             <select className="form-control form-control-sm">
-                                <option selected disabled>Choose a Game</option>
-                                {games.map(game => (
-                                    <option defaultValue={game.id}>{game.name}</option>
-                                ))}
-                            </select>
-                            <br />
-                            <select className="form-control form-control-sm">
-                                <option selected disabled>Choose a Team</option>
+                                <option defaultValue disabled>Choose a Team</option>
                                 {teams.map(team => (
-                                    <option defaultValue={team.id}>{team.name}</option>
+                                    <option key={team.id} defaultValue={team.id}>{team.name}</option>
                                 ))}
                             </select>
                             <br />
-                                <h4 className="text-success border-bottom border-success">Choose categories</h4>
-                                {categories.map(category => (
-                                    <div className="form-check">
-                                        <input className="form-check-input" type="checkbox" defaultValue={category.id} key={category.id} />
-                                        <label className="form-check-label text-success">{category.name}</label>
-                                    </div>
-                                ))}
+                            <h4 className="text-success border-bottom border-success">Choose categories</h4>
+                            {categories.map(category => (
+                                <div key={category.id} className="form-check">
+                                    <input className="form-check-input" type="checkbox" defaultValue={category.id} key={category.id} />
+                                    <label className="form-check-label text-success">{category.name}</label>
+                                </div>
+                            ))}
                         </div>
                         <div className="card-footer">
                             <button type="submit" className="btn btn-success">

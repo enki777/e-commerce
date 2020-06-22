@@ -64,7 +64,7 @@ class Index extends Component {
                                         </form>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link  bg-dark border-dark text-light border-bottom-0 border-left-0" href="#" tabindex="-1" aria-disabled="true">Finished Matches</a>
+                                        <a className="nav-link  bg-dark border-dark text-light border-bottom-0 border-left-0" href="#" tabIndex="-1" aria-disabled="true">Finished Matches</a>
                                     </li>
                                 </ul>
                             </div>

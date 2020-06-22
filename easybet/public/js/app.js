@@ -73710,7 +73710,7 @@ var Index = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
         className: "nav-link  bg-dark border-dark text-light border-bottom-0 border-left-0",
         href: "#",
-        tabindex: "-1",
+        tabIndex: "-1",
         "aria-disabled": "true"
       }, "Finished Matches")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "card-body p-0",
@@ -74428,25 +74428,18 @@ var MatchesSearch = /*#__PURE__*/function (_Component) {
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
         className: "form-control form-control-sm"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-        selected: true,
-        disabled: true
-      }, "Choose a Game"), games.map(function (game) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-          defaultValue: game.id
-        }, game.name);
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
-        className: "form-control form-control-sm"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
-        selected: true,
+        defaultValue: true,
         disabled: true
       }, "Choose a Team"), teams.map(function (team) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+          key: team.id,
           defaultValue: team.id
         }, team.name);
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
         className: "text-success border-bottom border-success"
       }, "Choose categories"), categories.map(function (category) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          key: category.id,
           className: "form-check"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
           className: "form-check-input",
@@ -74764,8 +74757,8 @@ var UpcomingMatches = /*#__PURE__*/function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /mnt/c/xampp/htdocs/samsung/easybet/easybet/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /mnt/c/xampp/htdocs/samsung/easybet/easybet/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Noam\Documents\Samsung\FirstY\WebProject\easybet\easybet\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Noam\Documents\Samsung\FirstY\WebProject\easybet\easybet\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
