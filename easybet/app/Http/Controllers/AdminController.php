@@ -22,12 +22,14 @@ class AdminController extends Controller
         $categories = Category::latest('updated_at')->get();
         $matches = Matches::with('games', 'team1', 'team2')->get();
         $users = User::all();
+        $deleted_users = User::onlyTrashed()->get();
         $deletedMatches = Matches::onlyTrashed()->latest('updated_at')->with('games', 'team1', 'team2')->get();
         return [
             'games' => $games,
             'categories' => $categories,
             'matches' => $matches,
             'users' => $users,
+            'deleted_users' => $deleted_users,
             'deletedMatches' => $deletedMatches
         ];
     }
@@ -65,7 +67,7 @@ class AdminController extends Controller
         $categories = $request->categories;
         $game->categories()->attach($categories);
 
-        return redirect('/admin');
+        return redirect('/admin/game');
     }
 
     public function gameShow(Game $game)
@@ -101,13 +103,13 @@ class AdminController extends Controller
         $game->image = $file;
         $game->save();
 
-        return redirect('/admin');
+        return redirect('/admin/game');
     }
 
     public function gameDelete(Game $game)
     {
         $game->delete();
-        return redirect('/admin');
+        return redirect('/admin/game');
     }
 
     // CATEGORIES
@@ -125,7 +127,7 @@ class AdminController extends Controller
 
         Category::create($request->all());
 
-        return redirect('/admin');
+        return redirect('/admin/category');
     }
 
     public function categoryShow(Category $category)
@@ -157,13 +159,13 @@ class AdminController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        return redirect('/admin');
+        return redirect('/admin/category');
     }
 
     public function categoryDelete(Category $category)
     {
         $category->delete();
-        return redirect('/admin');
+        return redirect('/admin/category');
     }
 
     ///////////////////////// MATCHES METHODS /////////////////////////
@@ -241,5 +243,18 @@ class AdminController extends Controller
     public function userSoftDelete(User $user)
     {
         $user->delete();
+        return redirect('/admin/user');
+    }
+
+    public function userRestore($id)
+    {
+        User::onlyTrashed()->find($id)->restore();
+        return redirect('/admin/user');
+    }
+
+    public function userForceDelete($id)
+    {
+        User::onlyTrashed()->find($id)->forceDelete();
+        return redirect('/admin/user');
     }
 }

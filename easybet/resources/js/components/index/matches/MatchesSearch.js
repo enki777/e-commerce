@@ -10,97 +10,66 @@ class MatchesSearch extends Component {
     constructor() {
         super()
         this.state = {
-            available: [],
-            finished: [],
+            games: [],
+            teams: [],
+            categories: [],
+            value: '',
+            // finished: [],
         }
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(event) {
+        this.setState({ value: event.target.value });
     }
 
     componentDidMount() {
-        axios.get('/api/matches/search/').then(response => {
+        axios.get('/api/matches/').then(response => {
             this.setState({
-                available: response.data[0],
-                finished: response.data[1],
+                games: response.data['games'],
+                teams: response.data['teams'],
+                categories: response.data['categories'],
             })
         })
     }
 
     render() {
-        const { available, finished } = this.state
-
+        const { games, teams, categories, value } = this.state
         return (
-            <div className='container-fluid'>
-                <div className='row justify-content-center'>
-                    <div className="col-2 mt-5">
-                        <CategoriesList />
-                        <br />
-                    </div>
-                    <div className='col-8 mt-5'>
-                        <div className="card-header bg-dark">
-                            <form action="/api/matches/search/" method="get">
-                                <input type="text" name="name" placeholder="Search matches" />
-                                <input type="submit" value="Search" />
-                            </form>
+            <div>
+                <form action={`/matches/search/${value}`} method="GET">
+                    <div className="card bg-dark mt-5" >
+                        <div className="card-header">
+                            <h4 className="text-success">Matches Research</h4>
                         </div>
-                        <div className="card bg-dark">
-                            <div className="card-header text-primary">
-                                <h3 className="float-left">All available matches</h3>
+                        <div className="card-body">
+                            <div className="form-group">
+                                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} id="inputPassword2" placeholder="Type a match" />
                             </div>
-                            <div className="card-body">
-                                <ul className='list-group'>
-                                    {available.map(match => (
-                                        <Link
-                                            className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
-                                            to={`/${match.id}`}
-                                            key={match.id}
-                                        >
-                                            <p className="list-group-item">{match.openning}</p>
-                                            <p>{match.name}</p>
-                                            <p>{match.games.name}</p>
-                                            <p>{match.team1.name}</p>
-                                            <p>VS</p>
-                                            <p>{match.team2.name}</p>
-
-                                            <span className='badge badge-primary badge-pill p-2'>
-                                                {match.days} days left
-                                            </span>
-
-                                        </Link>
-                                    ))}
-                                </ul>
-                            </div>
+                            <select className="form-control form-control-sm">
+                                <option defaultValue disabled>Choose a Team</option>
+                                {teams.map(team => (
+                                    <option key={team.id} defaultValue={team.id}>{team.name}</option>
+                                ))}
+                            </select>
+                            <br />
+                            <h4 className="text-success border-bottom border-success">Choose categories</h4>
+                            {categories.map(category => (
+                                <div key={category.id} className="form-check">
+                                    <input className="form-check-input" type="checkbox" defaultValue={category.id} key={category.id} />
+                                    <label className="form-check-label text-success">{category.name}</label>
+                                </div>
+                            ))}
                         </div>
-                        <div className="card bg-dark mt-2">
-                            <div className="card-header text-danger">
-                                <h3>All finished matches</h3>
-                            </div>
-                            <div className="card-body">
-                                <ul className='list-group'>
-                                    {finished.map(match => (
-                                        <Link
-                                            className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
-                                            to={`/${match.id}`}
-                                            key={match.id}
-                                        >
-                                            <p className="list-group-item">{match.openning}</p>
-                                            <p>{match.name}</p>
-                                            <p>{match.team1.name}</p>
-                                            <p>VS</p>
-                                            <p>{match.team2.name}</p>
-
-                                            <span className='badge badge-primary badge-pill p-2'>
-                                                {match.days} days left
-                                            </span>
-
-                                        </Link>
-                                    ))}
-                                </ul>
-                            </div>
+                        <div className="card-footer">
+                            <button type="submit" className="btn btn-success">
+                                Search
+                            </button>
+                            {/* <input type={'hidden'} name={'_method'}
+                                value={'GET'} /> */}
                         </div>
                     </div>
-                    <div className="col-2 mt-5">
-                        <GamesList />
-                    </div>
-                </div>
+                </form>
             </div>
         )
     }

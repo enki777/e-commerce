@@ -22,22 +22,26 @@ class CategoriesList extends Component {
     render() {
         const categories = this.state.categories
         return (
-            <div className="card bg-dark">
-                <div className="card-header text-white">
-                    <h3>Categories</h3>
+            <div className="card bg-dark text-white border-success">
+                <div className="card-header" id="headingTwo">
+                    <h2 className="mb-0">
+                        <button className="btn btn-link btn-block text-left collapsed text-decoration-none" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <span className="text-success text-decoration-none">Categories</span>
+                        </button>
+                    </h2>
                 </div>
-                <div className="card-body">
-                    <ul className="list-group">
+                <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div className="card-body">
                         {categories.map(category => (
                             <Link
-                                className="list-group-item bg-dark text-primary text-decoration-none list-unstyled"
+                                className="list-group-item bg-dark text-success text-decoration-none list-unstyled"
                                 to={`/matches/category/${category.id}`}
                                 key={category.id}
                             >
                                 <li key={category.id}>{category.name}</li>
                             </Link>
                         ))}
-                    </ul>
+                    </div>
                 </div>
             </div>
         )

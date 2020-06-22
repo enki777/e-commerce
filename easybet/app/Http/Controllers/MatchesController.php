@@ -32,16 +32,34 @@ class MatchesController extends Controller
     {
         $categories = Category::all();
         $games = Game::all();
+        $teams = Teams::all();
 
-        $available = Matches::select(DB::raw('*,matches.id as "id",DATEDIFF(openning,now()) as days,matches.name as "matchName"'))
+        $currentMatches = Matches::select(DB::raw('*,matches.id as "id",DATEDIFF(openning,now()) as days,matches.name as "matchName"'))
             ->with('games', 'team1', 'team2')
-            ->where('openning', '>', now())->orderBy('openning')->get();
+            ->where('openning', '<=', now())
+            ->where('ending', '>=', now())
+            ->orderBy('openning')->get();
+
+        if (!$currentMatches) {
+            $currentMatches = "No current matches";
+        }
+
+        $upcoming = Matches::select(DB::raw('*,matches.id as "id",DATEDIFF(openning,now()) as days,matches.name as "matchName"'))
+            ->with('games', 'team1', 'team2')
+            ->where('openning', '>', now())
+            ->orderBy('openning')->get();
+
+        $mostBets = Matches::with('bets')->get();
+        // $mostBets->bets;
+
+
 
         $finished = Matches::select(DB::raw('*,matches.id as "id",DATEDIFF(openning,now()) as "days",matches.name as "matchName"'))
             ->with('games', 'team1', 'team2')
-            ->where('openning', '<', now())->orderBy('openning')->get();
+            ->whereNotNull('ending')->orderBy('openning')->get();
 
-        return [$available, $finished, "categories"=>$categories, $games];
+
+        return ["currentMatches" => $currentMatches, "finished" => $finished, "categories" => $categories, "games" => $games, "upcoming" => $upcoming, "teams" => $teams, "mostBets" => $mostBets];
     }
 
     /**
@@ -243,7 +261,7 @@ class MatchesController extends Controller
     {
         $categories = Category::all();
         $games = Game::all();
-        $available = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as days'))
+        $upcoming = Matches::select(DB::raw('*,DATEDIFF(openning,now()) as days'))
             ->with('games', 'team1', 'team2')
             ->where('openning', '>', now())
             ->where('name', 'like', '%' . $searchMatchesRequest['name'] . '%')
@@ -255,6 +273,6 @@ class MatchesController extends Controller
             ->where('name', 'like', '%' . $searchMatchesRequest['name'] . '%')
             ->orderBy('ending')->get();
 
-        return [$available->toJson(), $finished->toJson(), $categories->toJson(), $games->toJson()];
+        return ["upcoming" => $upcoming, $finished->toJson(), $categories->toJson(), $games->toJson()];
     }
 }
