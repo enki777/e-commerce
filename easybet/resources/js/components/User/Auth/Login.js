@@ -19,9 +19,14 @@ export default class Login extends Component {
     }
 
     handleSubmit(event) {
-        console.log(this.state);
-        // axios.post('/api/login', this.state);
-        event.preventDefault();
+        // componentDidMount() {
+            axios.post('/api/matches')
+                .then(res => {
+                    // const persons = res.data;
+                    // this.setState({ persons });
+                })
+        // }
+        // event.preventDefault();
     }
 
     render() {

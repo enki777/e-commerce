@@ -14,7 +14,6 @@ class MatchesSearch extends Component {
             teams: [],
             categories: [],
             value: '',
-            // finished: [],
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -23,6 +22,10 @@ class MatchesSearch extends Component {
         this.setState({ value: event.target.value });
     }
 
+    handleSubmit(event){
+        alert('Le nom a été soumis : ' + this.state.value);
+        event.preventDefault();
+    }
     componentDidMount() {
         axios.get('/api/matches/').then(response => {
             this.setState({
@@ -37,7 +40,7 @@ class MatchesSearch extends Component {
         const { games, teams, categories, value } = this.state
         return (
             <div>
-                <form action={`/matches/search/${value}`} method="GET">
+                <form onSubmit={this.handleSubmit} method="GET">
                     <div className="card bg-dark mt-5" >
                         <div className="card-header">
                             <h4 className="text-success">Matches Research</h4>

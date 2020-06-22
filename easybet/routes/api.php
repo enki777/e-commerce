@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('matches/search/{matches}', 'MatchesController@customSearch');
 Route::get('matches/category/{id}', 'MatchesController@customShowCategories');
 Route::get('matches/game/{id}', 'MatchesController@customShowGames');
+Route::get('matches/bet/{id}','MatchesController@storeBet');
 Route::resource('matches', 'MatchesController');
 
 // authentication
