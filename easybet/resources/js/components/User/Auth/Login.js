@@ -7,6 +7,7 @@ export default class Login extends Component {
         this.state = {
             username: '',
             password: '',
+            error: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,10 +20,22 @@ export default class Login extends Component {
     }
 
     handleSubmit(event) {
-        console.log(this.state);
-        // axios.post('/api/login', this.state);
+        axios.post('/api/login', this.state)
+            .then(res => {
+                if (res.data) {
+                    window.location.href = '/';
+                } else {
+                    throw ('Wrong password or username');
+                }
+            })
+            .catch(err => {
+                this.setState({
+                    error: err,
+                })
+            });
         event.preventDefault();
     }
+
 
     render() {
         return (
@@ -54,6 +67,9 @@ export default class Login extends Component {
                                             </button>
                                         </div>
                                     </div>
+                                    <span className='col-6 offset-4 text-danger'>
+                                        {this.state.error}
+                                    </span>
                                 </form>
                             </div>
                         </div>
