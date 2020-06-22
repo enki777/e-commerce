@@ -52,9 +52,9 @@ class CurrentMatches extends Component {
                                     <th scope="col" className="border border-left-0 border-right-0 border-success">Name</th>
                                     <th scope="col" className="border border-left-0 border-right-0 border-success">Game</th>
                                     <th scope="col" className="border  border-right-0 border-left-0 border-success">Team 1</th>
-                                    <th scope="col" className="border  border-right-0 border-left-0 border-success">betting odds T1</th>
-                                    <th scope="col" className="border  border-right-0 border-left-0 border-success">Score</th>
-                                    <th scope="col" className="border  border-right-0 border-left-0 border-success">betting odds T2</th>
+                                    {/* <th scope="col" className="border  border-right-0 border-left-0 border-success">betting odds T1</th> */}
+                                    <th scope="col" className="border  border-right-0 border-left-0 border-success">VS</th>
+                                    {/* <th scope="col" className="border  border-right-0 border-left-0 border-success">betting odds T2</th> */}
                                     <th scope="col" className="border border-left-0 border-success">Team 2</th>
                                 </tr>
                             </thead>
@@ -67,8 +67,6 @@ class CurrentMatches extends Component {
                                         <td>{match.name}</td>
                                         <td>{match.games.name}</td>
                                         <td>{match.team1.name}</td>
-                                        <td></td>
-                                        <td></td>
                                         <td></td>
                                         <td>{match.team2.name}</td>
                                     </tr>

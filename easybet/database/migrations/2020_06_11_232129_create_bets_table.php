@@ -17,7 +17,7 @@ class CreateBetsTable extends Migration
             $table->id();
             $table->float('user_bet');
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('match_id');
+            $table->unsignedBigInteger('teams_id');
             $table->timestamps();
         });
     }

@@ -8,8 +8,24 @@ class UpcomingMatches extends Component {
         super()
         this.state = {
             upcoming: [],
+            value: ''
         }
+        this.handleChange = this.handleChange.bind(this);
+        // this.handleSubmit = this.handleSubmit.bind(this);
     }
+    handleChange(event) {
+        this.setState({ value: event.target.value });
+    }
+
+    // handleSubmit(event) {
+    //     event.preventDefault();
+
+    //     axios.get('/api/matches/bet/')
+    //         .then(res => {
+    //             const persons = res.data;
+    //             this.setState({ persons });
+    //         })
+    // }
 
     componentDidMount() {
         axios.get('/api/matches/').then(response => {
@@ -48,9 +64,9 @@ class UpcomingMatches extends Component {
                                     <th scope="col" className="border border-left-0 border-right-0 border-info">Name</th>
                                     <th scope="col" className="border border-left-0 border-right-0 border-info">Game</th>
                                     <th scope="col" className="border  border-right-0 border-left-0 border-info">Team 1</th>
-                                    <th scope="col" className="border  border-right-0 border-left-0 border-info">betting odds T1</th>
-                                    <th scope="col" className="border  border-right-0 border-left-0 border-info">Score</th>
-                                    <th scope="col" className="border  border-right-0 border-left-0 border-info">betting odds T2</th>
+                                    {/* <th scope="col" className="border  border-right-0 border-left-0 border-info">betting odds T1</th> */}
+                                    <th scope="col" className="border  border-right-0 border-left-0 border-info">VS</th>
+                                    {/* <th scope="col" className="border  border-right-0 border-left-0 border-info">betting odds T2</th> */}
                                     <th scope="col" className="border border-left-0 border-info">Team 2</th>
                                 </tr>
                             </thead>
@@ -62,11 +78,79 @@ class UpcomingMatches extends Component {
                                         </td>
                                         <td>{match.name}</td>
                                         <td>{match.games.name}</td>
-                                        <td>{match.team1.name}</td>
+                                        <td>
+                                            <button type="button" className="btn btn-primary" style={{ width: "200px" }} data-toggle="modal" data-target="#staticBackdrop">
+                                                <span>{match.team1.name}</span>
+                                            </button>
+                                            <div className="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div className="modal-dialog modal-dialog-centered">
+                                                    <div className="modal-content">
+                                                        <div className="modal-header">
+                                                            <h5 className="modal-title" id="staticBackdropLabel" className="text-dark">Bet</h5>
+                                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action={`/api/matches/bet/${match.team1.id}`}>
+                                                            <div className="modal-body">
+                                                                <span className="text-primary">Match : {match.name}</span><br />
+                                                                <span className="text-primary">Team : {match.team1.name}</span>
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">$</span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control" name="amount" aria-label="Amount (to the nearest dollar)" />
+                                                                    <div class="input-group-append">
+                                                                        <span class="input-group-text">.00</span>
+                                                                    </div>
+                                                                </div>
+                                                                {/* <input class="form-control form-control-sm" type="number"
+                                                                    step="0.1" name="amount" value={this.state.value}  onChange={this.handleChange} placeholder="Amount" /> */}
+                                                            </div>
+                                                            <div className="modal-footer">
+                                                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Abort</button>
+                                                                <button type="submit" className="btn btn-primary">Confirm</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                         <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>{match.team2.name}</td>
+                                        <td>
+                                            <button type="button" className="btn btn-primary" style={{ width: "200px" }} data-toggle="modal" data-target="#staticBackdrop">
+                                                <span>{match.team2.name}</span>
+                                            </button>
+                                            <div className="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                <div className="modal-dialog modal-dialog-centered">
+                                                    <div className="modal-content">
+                                                        <div className="modal-header">
+                                                            <h5 className="modal-title" id="staticBackdropLabel" className="text-dark">Bet</h5>
+                                                            <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div className="modal-body" className="text-primary">
+                                                            <span className="text-primary">Match : {match.name}</span><br />
+                                                            <span className="text-primary">Team : {match.team2.name}</span>
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text">$</span>
+                                                                </div>
+                                                                <input type="text" class="form-control" name="amount" aria-label="Amount (to the nearest dollar)" />
+                                                                <div class="input-group-append">
+                                                                    <span class="input-group-text">.00</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div className="modal-footer">
+                                                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Abort</button>
+                                                            <button type="button" className="btn btn-primary">Confirm</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 ))}
                             </tbody>
