@@ -49,7 +49,7 @@ class MatchesController extends Controller
             ->where('openning', '>', now())
             ->orderBy('openning')->get();
 
-        $mostBets = Matches::with('bets')->get();
+        // $mostBets = Matches::with('bets')->get();
         // $mostBets->bets;
 
 
@@ -59,7 +59,7 @@ class MatchesController extends Controller
             ->whereNotNull('ending')->orderBy('openning')->get();
 
 
-        return ["currentMatches" => $currentMatches, "finished" => $finished, "categories" => $categories, "games" => $games, "upcoming" => $upcoming, "teams" => $teams, "mostBets" => $mostBets];
+        return ["currentMatches" => $currentMatches, "finished" => $finished, "categories" => $categories, "games" => $games, "upcoming" => $upcoming, "teams" => $teams];
     }
 
     /**
@@ -165,20 +165,7 @@ class MatchesController extends Controller
         return view('matches.teamsDetails', compact('t1Players', 't2Players', 't1', 't2', 'match'));
     }
 
-    /**
-     * @param $id
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function bet($id)
-    {
-        $match = Matches::find($id);
-        $team1 = $match->team1;
-        $team2 = $match->team2;
-        $game = $match->games;
-        return view('matches.user.bet', compact('match', 'team1', 'team2', 'game'));
-    }
-
-    public function betConfirm(Request $request, $id)
+    public function storeBet(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'amount' => ['required', 'regex:/^[1-9]{1}+[0-9]*(\.[1-9]{1})?$/'],
@@ -192,8 +179,8 @@ class MatchesController extends Controller
 
         $user = User::find(Auth::id());
         if (($user->wallet - $request->amount) >= 0) {
-            $match = Matches::find($id);
-            $user->bets()->attach($match, ['user_bet' => $request->amount, 'created_at' => now('Europe/Paris'), 'updated_at' => now('Europe/Paris')]);
+            $team = Teams::find($id);
+            $user->bets()->attach($team, ['user_bet' => $request->amount, 'created_at' => now('Europe/Paris'), 'updated_at' => now('Europe/Paris')]);
             $user->wallet -= $request->amount;
             $user->save();
         } else {
@@ -203,7 +190,7 @@ class MatchesController extends Controller
         }
 
         return redirect()
-            ->route('get-bets');
+            ->route('/');
     }
 
     // FINI

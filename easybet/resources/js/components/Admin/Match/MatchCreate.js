@@ -76,22 +76,25 @@ export default class MatchCreate extends Component {
                                         <div className={'col-6'}>
                                             <input className={'form-control'} type="datetime-local" name="openning"
                                                 min="2020-06-20" max="2040-01-01" step="1"
-                                                defaultValue="2020-06-20T12:30:00"/>
+                                                defaultValue="2020-06-20T12:30:00" />
                                         </div>
-                                        </div>
-                                        <div className={'form-group row'}>
-                                            <div className={'col-6 offset-4'}>
-                                                <button className={'btn btn-primary'}>
-                                                    Create
+                                    </div>
+                                    <div className={'form-group row'}>
+                                        <div className={'col-6 offset-4'}>
+                                            <button className={'btn btn-primary'}>
+                                                Create
                                             </button>
-                                            </div>
                                         </div>
+                                    </div>
                                 </form>
                             </div>
+                            <div className='card-footer'>
+                                <a href='/admin'>Back to dashboard</a>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
         );
     }
 }

@@ -103,10 +103,13 @@ export default class MatchEdit extends Component {
                                                 Update
                                             </button>
                                             <input type={'hidden'} name={'_method'}
-                                                    value={'PATCH'} />
+                                                value={'PATCH'} />
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                            <div className='card-footer'>
+                                <a href='/admin'>Back to dashboard</a>
                             </div>
                         </div>
                     </div>

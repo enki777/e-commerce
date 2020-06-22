@@ -35,6 +35,7 @@ class App extends Component {
                     <Switch>
                         {/* <Route exact path='/matches/index/:id' component={Index} /> */}
                         <Route exact path='/' component={Index} />
+                        <Route exact path='/matches/bet/:id' component={Index} />
                         <Route exact path='/matches/upcoming' component={IndexUpcoming} />
                         <Route exact path='/matches/finished' component={IndexFinished} />
                         <Route exact path='/matches/:id' component={SingleMatch} />
