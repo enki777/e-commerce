@@ -72734,8 +72734,8 @@ var App = /*#__PURE__*/function (_Component) {
         component: _index_matches_MatchesCategoryList__WEBPACK_IMPORTED_MODULE_7__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
-        path: "/matches/search/:name",
-        component: _index_matches_MatchesSearch__WEBPACK_IMPORTED_MODULE_8__["default"]
+        path: "/matches/search/:matches",
+        component: _index_index__WEBPACK_IMPORTED_MODULE_4__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
         path: "/register",
@@ -72835,7 +72835,18 @@ var Header = function Header() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "navbar-brand",
     to: "/"
-  }, "Easybet"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "Easybet"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
+    "aria-label": "breadcrumb"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ol", {
+    className: "breadcrumb bg-dark"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "breadcrumb-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "#"
+  }, "Home")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "breadcrumb-item active",
+    "aria-current": "page"
+  }, "Matches"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "navbar-brand",
     to: "/admin"
   }, "Admin")));
@@ -73212,6 +73223,123 @@ var Register = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/index/bets/MostBets.js":
+/*!********************************************************!*\
+  !*** ./resources/js/components/index/bets/MostBets.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom/cjs/react-router-dom.min */ "./node_modules/react-router-dom/cjs/react-router-dom.min.js");
+/* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var MostBets = /*#__PURE__*/function (_Component) {
+  _inherits(MostBets, _Component);
+
+  var _super = _createSuper(MostBets);
+
+  function MostBets() {
+    var _this;
+
+    _classCallCheck(this, MostBets);
+
+    _this = _super.call(this);
+    _this.state = {
+      categories: []
+    };
+    return _this;
+  }
+
+  _createClass(MostBets, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/matches/').then(function (response) {
+        _this2.setState({
+          categories: response.data['categories']
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var categories = this.state.categories;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card bg-dark text-white border-success"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-header",
+        id: "headingTwo"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+        className: "mb-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "btn btn-link btn-block text-left collapsed text-decoration-none",
+        type: "button",
+        "data-toggle": "collapse",
+        "data-target": "#collapseThree",
+        "aria-expanded": "false",
+        "aria-controls": "collapseThree"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "text-success text-decoration-none"
+      }, "Most bet on Upcoming matches")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        id: "collapseThree",
+        className: "collapse",
+        "aria-labelledby": "headingThree",
+        "data-parent": "#accordionExample"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-body"
+      }, categories.map(function (category) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+          className: "list-group-item bg-dark text-success text-decoration-none list-unstyled",
+          to: "/matches/category/".concat(category.id),
+          key: category.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+          key: category.id
+        }, category.name));
+      }))));
+    }
+  }]);
+
+  return MostBets;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (MostBets);
+
+/***/ }),
+
 /***/ "./resources/js/components/index/categories/CategoriesList.js":
 /*!********************************************************************!*\
   !*** ./resources/js/components/index/categories/CategoriesList.js ***!
@@ -73288,16 +73416,31 @@ var CategoriesList = /*#__PURE__*/function (_Component) {
     value: function render() {
       var categories = this.state.categories;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card bg-dark"
+        className: "card bg-dark text-white border-success"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-header text-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Categories")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-header",
+        id: "headingTwo"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+        className: "mb-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "btn btn-link btn-block text-left collapsed text-decoration-none",
+        type: "button",
+        "data-toggle": "collapse",
+        "data-target": "#collapseThree",
+        "aria-expanded": "false",
+        "aria-controls": "collapseThree"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "text-success text-decoration-none"
+      }, "Categories")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        id: "collapseThree",
+        className: "collapse",
+        "aria-labelledby": "headingThree",
+        "data-parent": "#accordionExample"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-        className: "list-group"
       }, categories.map(function (category) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          className: "list-group-item bg-dark text-primary text-decoration-none list-unstyled",
+          className: "list-group-item bg-dark text-success text-decoration-none list-unstyled",
           to: "/matches/category/".concat(category.id),
           key: category.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
@@ -73381,7 +73524,7 @@ var GamesList = /*#__PURE__*/function (_Component) {
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/matches/').then(function (response) {
         _this2.setState({
-          games: response.data[2]
+          games: response.data['games']
         });
       });
     }
@@ -73390,28 +73533,38 @@ var GamesList = /*#__PURE__*/function (_Component) {
     value: function render() {
       var games = this.state.games;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card bg-dark"
+        className: "card bg-dark border border-success  "
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-header text-white"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Games")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-header",
+        id: "headingOne"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+        className: "mb-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "btn btn-link btn-block text-left text-decoration-none",
+        type: "button",
+        "data-toggle": "collapse",
+        "data-target": "#collapseOne",
+        "aria-expanded": "true",
+        "aria-controls": "collapseOne"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "text-success "
+      }, "Games")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        id: "collapseOne",
+        className: "collapse",
+        "aria-labelledby": "headingOne",
+        "data-parent": "#accordionExample"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-        className: "list-group"
       }, games.map(function (game) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          className: "list-group-item bg-dark text-primary text-decoration-none list-unstyled",
+          className: "list-group-item bg-dark text-success text-decoration-none list-unstyled",
           to: "/matches/game/".concat(game.id),
           key: game.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
           key: game.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
           className: "d-flex justify-content-between"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-          src: "/storage/".concat(game.image),
-          className: 'bg-transparent p-0 rounded',
-          width: '40',
-          alt: 'game'
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, game.name))));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, game.name))));
       }))));
     }
   }]);
@@ -73441,7 +73594,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _categories_CategoriesList__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./categories/CategoriesList */ "./resources/js/components/index/categories/CategoriesList.js");
 /* harmony import */ var _games_GamesList__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./games/GamesList */ "./resources/js/components/index/games/GamesList.js");
-/* harmony import */ var _matches_Matches__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./matches/Matches */ "./resources/js/components/index/matches/Matches.js");
+/* harmony import */ var _matches_CurrentMatches__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./matches/CurrentMatches */ "./resources/js/components/index/matches/CurrentMatches.js");
+/* harmony import */ var _matches_UpcomingMatches__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./matches/UpcomingMatches */ "./resources/js/components/index/matches/UpcomingMatches.js");
+/* harmony import */ var _matches_FinishedMatches__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./matches/FinishedMatches */ "./resources/js/components/index/matches/FinishedMatches.js");
+/* harmony import */ var _matches_MatchesSearch__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./matches/MatchesSearch */ "./resources/js/components/index/matches/MatchesSearch.js");
+/* harmony import */ var _bets_MostBets__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./bets/MostBets */ "./resources/js/components/index/bets/MostBets.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -73472,6 +73629,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+
+
 var Index = /*#__PURE__*/function (_Component) {
   _inherits(Index, _Component);
 
@@ -73484,64 +73645,79 @@ var Index = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this);
     _this.state = {
-      available: [],
-      finished: [],
-      value: ''
+      pagination: []
     };
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Index, [{
-    key: "handleChange",
-    value: function handleChange(event) {
-      this.setState({
-        value: event.target.value
-      });
+    key: "upcomingMatches",
+    value: function upcomingMatches() {
+      console.log("salut");
+      e.preventDefault(); // $('#currentMatchesLink').css('border','none');
+
+      $('#currentMatchesLink').css('borderStyle: none'); // $('#test').append(<UpcomingMatches />);
     }
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
+      var pagination = this.props.match.params.id;
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/matches/').then(function (response) {
-        _this2.setState({
-          available: response.data[0],
-          finished: response.data[1]
+        console.log(response.data);
+
+        _this2.setState({//    pagination: response.data[0]
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$state = this.state,
-          available = _this$state.available,
-          finished = _this$state.finished,
-          value = _this$state.value;
+      var pagination = this.state.pagination;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "container-fluid"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "row justify-content-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "col-2 mt-5"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_categories_CategoriesList__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "accordion",
+        id: "accordionExample"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_games_GamesList__WEBPACK_IMPORTED_MODULE_5__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_categories_CategoriesList__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "col-8 mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-header bg-dark"
+        className: "card text-center bg-dark border-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-header "
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
+        className: "nav nav-tabs card-header-tabs"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+        className: "nav-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        id: "currentMatchesLink",
+        className: "nav-link active  bg-dark border-success text-success border-bottom-0",
+        href: ""
+      }, "Current Matches")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+        className: "nav-item"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
-        action: "/matches/search/".concat(value),
-        method: "get"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-        type: "text",
-        value: this.state.value,
-        placeholder: "Search matches",
-        onChange: this.handleChange
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        onSubmit: this.upcomingMatches
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         type: "submit",
-        value: "Search"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_matches_Matches__WEBPACK_IMPORTED_MODULE_6__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "col-2 mt-5"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_games_GamesList__WEBPACK_IMPORTED_MODULE_5__["default"], null))));
+        className: "nav-link bg-dark text-light border-dark"
+      }, "Upcoming Matches"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("li", {
+        className: "nav-item"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "nav-link  bg-dark border-dark text-light border-bottom-0 border-left-0",
+        href: "#",
+        tabindex: "-1",
+        "aria-disabled": "true"
+      }, "Finished Matches")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-body p-0",
+        id: "test"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_matches_CurrentMatches__WEBPACK_IMPORTED_MODULE_6__["default"], null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "col-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_matches_MatchesSearch__WEBPACK_IMPORTED_MODULE_9__["default"], null))));
     }
   }]);
 
@@ -73552,10 +73728,10 @@ var Index = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/index/matches/Matches.js":
-/*!**********************************************************!*\
-  !*** ./resources/js/components/index/matches/Matches.js ***!
-  \**********************************************************/
+/***/ "./resources/js/components/index/matches/CurrentMatches.js":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/index/matches/CurrentMatches.js ***!
+  \*****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -73595,87 +73771,281 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var Matches = /*#__PURE__*/function (_Component) {
-  _inherits(Matches, _Component);
+var CurrentMatches = /*#__PURE__*/function (_Component) {
+  _inherits(CurrentMatches, _Component);
 
-  var _super = _createSuper(Matches);
+  var _super = _createSuper(CurrentMatches);
 
-  function Matches() {
+  function CurrentMatches() {
     var _this;
 
-    _classCallCheck(this, Matches);
+    _classCallCheck(this, CurrentMatches);
 
     _this = _super.call(this);
     _this.state = {
-      available: [],
-      finished: []
+      CurrentMatches: [] // nbMatches: 
+      // finished: [],
+
     };
     return _this;
   }
 
-  _createClass(Matches, [{
+  _createClass(CurrentMatches, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/matches/').then(function (response) {
+        // console.log(response.data)
         _this2.setState({
-          available: response.data[0],
-          finished: response.data[1]
+          CurrentMatches: response.data['currentMatches'] // finished: response.data[1],
+
         });
       });
     }
   }, {
     key: "render",
     value: function render() {
-      var available = this.state.available;
-      var finished = this.state.finished;
+      var CurrentMatches = this.state.CurrentMatches; // const { finished } = this.state
+
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card bg-dark"
+        className: "card bg-dark border border-success"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-header text-primary"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
-        className: "float-left"
-      }, "All available matches")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-        className: "list-group"
-      }, available.map(function (match) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          className: "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
-          to: "/matches/".concat(match.id),
-          key: match.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-          className: "list-group-item"
-        }, match.openning), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.games.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.team1.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "VS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.team2.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-          className: "badge badge-primary badge-pill p-2"
-        }, match.days, " days left"));
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card bg-dark mt-2"
+        className: "card-header text-primary "
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-header text-danger"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "All finished matches")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-        className: "list-group"
-      }, finished.map(function (match) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          className: "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
-          to: "/".concat(match.id),
+        className: "btn-group dropup float-right"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "btn btn-success btn-sm dropdown-toggle",
+        type: "button",
+        "data-toggle": "dropdown",
+        "aria-haspopup": "true",
+        "aria-expanded": "false"
+      }, "Filter by"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "dropdown-menu mb-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+        className: "dropdown-item text-success d-flex justify-content-center",
+        value: this.state.value,
+        onChange: this.handleChange
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+        className: "dropdown-item",
+        defaultValue: "categories"
+      }, "Categories"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+        className: "dropdown-item",
+        defaultValue: "lime"
+      }, "Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+        className: "dropdown-item",
+        defaultValue: "coconut"
+      }, "Teams"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+        className: "dropdown-item",
+        defaultValue: "mango"
+      }, "Openning Date")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "dropdown-divider"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        type: "submit",
+        className: "btn btn-success ml-2"
+      }, "Up"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        type: "submit",
+        className: "btn btn-success ml-2"
+      }, "Down")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-body "
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+        className: "table table-striped table-bordered table-dark"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-right-0 border-success "
+      }, "Openning"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-left-0 border-right-0 border-success"
+      }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-left-0 border-right-0 border-success"
+      }, "Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-success"
+      }, "Team 1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-success"
+      }, "betting odds T1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-success"
+      }, "Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-success"
+      }, "betting odds T2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-left-0 border-success"
+      }, "Team 2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, CurrentMatches.map(function (match) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
           key: match.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-          className: "list-group-item"
-        }, match.openning), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.team1.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "VS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.team2.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-          className: "badge badge-primary badge-pill p-2"
-        }, match.days, " days left"));
-      })))));
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.openning), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.games.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.team1.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.team2.name));
+      }))))));
     }
   }]);
 
-  return Matches;
+  return CurrentMatches;
 }(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Matches);
+/* harmony default export */ __webpack_exports__["default"] = (CurrentMatches);
+
+/***/ }),
+
+/***/ "./resources/js/components/index/matches/FinishedMatches.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/index/matches/FinishedMatches.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom/cjs/react-router-dom.min */ "./node_modules/react-router-dom/cjs/react-router-dom.min.js");
+/* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var FinishedMatches = /*#__PURE__*/function (_Component) {
+  _inherits(FinishedMatches, _Component);
+
+  var _super = _createSuper(FinishedMatches);
+
+  function FinishedMatches() {
+    var _this;
+
+    _classCallCheck(this, FinishedMatches);
+
+    _this = _super.call(this);
+    _this.state = {
+      finished: [] // nbMatches: 
+      // finished: [],
+
+    };
+    return _this;
+  }
+
+  _createClass(FinishedMatches, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/matches/').then(function (response) {
+        // console.log(response.data)
+        _this2.setState({
+          finished: response.data['finished'] // finished: response.data[1],
+
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var finished = this.state.finished; // const { finished } = this.state
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card bg-dark border border-danger   "
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-header text-primary "
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "btn btn-danger float-left",
+        type: "button"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "spinner-grow spinner-grow-sm",
+        role: "status",
+        "aria-hidden": "true"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "ml-1"
+      }, "Finished Matches ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "btn-group float-right"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "btn btn-danger btn-sm dropdown-toggle",
+        type: "button",
+        "data-toggle": "dropdown",
+        "aria-haspopup": "true",
+        "aria-expanded": "false"
+      }, "Filters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "dropdown-menu"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "dropdown-item",
+        href: "#"
+      }, "Categories"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "dropdown-item",
+        href: "#"
+      }, "Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "dropdown-item",
+        href: "#"
+      }, "Something else here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "dropdown-divider"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "dropdown-item",
+        href: "#"
+      }, "Separated link"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-body "
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+        className: "table table-striped table-bordered table-dark"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-right-0 border-danger "
+      }, "Openning"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-left-0 border-right-0 border-danger"
+      }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-left-0 border-right-0 border-danger"
+      }, "Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-danger"
+      }, "Team 1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-danger"
+      }, "betting odds T1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-danger"
+      }, "Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-danger"
+      }, "betting odds T2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-left-0 border-danger"
+      }, "Team 2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, finished.map(function (match) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
+          key: match.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.openning), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.games.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.team1.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.team2.name));
+      }))))));
+    }
+  }]);
+
+  return FinishedMatches;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (FinishedMatches);
 
 /***/ }),
 
@@ -73994,21 +74364,34 @@ var MatchesSearch = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this);
     _this.state = {
-      available: [],
-      finished: []
+      games: [],
+      teams: [],
+      categories: [],
+      value: '' // finished: [],
+
     };
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(MatchesSearch, [{
+    key: "handleChange",
+    value: function handleChange(event) {
+      this.setState({
+        value: event.target.value
+      });
+    }
+  }, {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/matches/search/').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/matches/').then(function (response) {
         _this2.setState({
-          available: response.data[0],
-          finished: response.data[1]
+          games: response.data['games'],
+          teams: response.data['teams'],
+          categories: response.data['categories'] // finished: response.data[1],
+
         });
       });
     }
@@ -74016,69 +74399,69 @@ var MatchesSearch = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var _this$state = this.state,
-          available = _this$state.available,
-          finished = _this$state.finished;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "container-fluid"
+          games = _this$state.games,
+          teams = _this$state.teams,
+          categories = _this$state.categories,
+          value = _this$state.value; // console.log(games)
+      // const matchName = this.props.match.params.name;
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+        action: "/matches/search/".concat(value),
+        method: "GET"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "row justify-content-center"
+        className: "card bg-dark mt-5"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "col-2 mt-5"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_categories_CategoriesList__WEBPACK_IMPORTED_MODULE_4__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "col-8 mt-5"
+        className: "card-header"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
+        className: "text-success"
+      }, "Matches Research")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-header bg-dark"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
-        action: "/api/matches/search/",
-        method: "get"
+        className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
         type: "text",
-        name: "name",
-        placeholder: "Search matches"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        className: "form-control",
+        value: this.state.value,
+        onChange: this.handleChange,
+        id: "inputPassword2",
+        placeholder: "Type a match"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+        className: "form-control form-control-sm"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+        selected: true,
+        disabled: true
+      }, "Choose a Game"), games.map(function (game) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+          defaultValue: game.id
+        }, game.name);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+        className: "form-control form-control-sm"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+        selected: true,
+        disabled: true
+      }, "Choose a Team"), teams.map(function (team) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+          defaultValue: team.id
+        }, team.name);
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", {
+        className: "text-success border-bottom border-success"
+      }, "Choose categories"), categories.map(function (category) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          className: "form-check"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+          className: "form-check-input",
+          type: "checkbox",
+          defaultValue: category.id,
+          key: category.id
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+          className: "form-check-label text-success"
+        }, category.name));
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-footer"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
         type: "submit",
-        value: "Search"
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card bg-dark"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-header text-primary"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
-        className: "float-left"
-      }, "All available matches")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-        className: "list-group"
-      }, available.map(function (match) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          className: "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
-          to: "/".concat(match.id),
-          key: match.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-          className: "list-group-item"
-        }, match.openning), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.games.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.team1.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "VS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.team2.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-          className: "badge badge-primary badge-pill p-2"
-        }, match.days, " days left"));
-      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card bg-dark mt-2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-header text-danger"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "All finished matches")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("ul", {
-        className: "list-group"
-      }, finished.map(function (match) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-          className: "list-group-item list-group-item-action d-flex justify-content-between align-items-center",
-          to: "/".concat(match.id),
-          key: match.id
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", {
-          className: "list-group-item"
-        }, match.openning), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.team1.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, "VS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, match.team2.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-          className: "badge badge-primary badge-pill p-2"
-        }, match.days, " days left"));
-      }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        className: "col-2 mt-5"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_games_GamesList__WEBPACK_IMPORTED_MODULE_5__["default"], null))));
+        className: "btn btn-success"
+      }, "Search")))));
     }
   }]);
 
@@ -74200,6 +74583,169 @@ var SingleProject = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/components/index/matches/UpcomingMatches.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/index/matches/UpcomingMatches.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-router-dom/cjs/react-router-dom.min */ "./node_modules/react-router-dom/cjs/react-router-dom.min.js");
+/* harmony import */ var react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_router_dom_cjs_react_router_dom_min__WEBPACK_IMPORTED_MODULE_3__);
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var UpcomingMatches = /*#__PURE__*/function (_Component) {
+  _inherits(UpcomingMatches, _Component);
+
+  var _super = _createSuper(UpcomingMatches);
+
+  function UpcomingMatches() {
+    var _this;
+
+    _classCallCheck(this, UpcomingMatches);
+
+    _this = _super.call(this);
+    _this.state = {
+      upcoming: [] // nbMatches: 
+      // finished: [],
+
+    };
+    return _this;
+  }
+
+  _createClass(UpcomingMatches, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/matches/').then(function (response) {
+        // console.log(response.data)
+        _this2.setState({
+          upcoming: response.data['upcoming'] // finished: response.data[1],
+
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var upcoming = this.state.upcoming; // const { finished } = this.state
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card bg-dark border rounded-bottom border-primary "
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-header text-white "
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "btn btn-primary float-left",
+        type: "button"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "spinner-grow spinner-grow-sm text-white",
+        role: "status",
+        "aria-hidden": "true"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+        className: "ml-1 text-white"
+      }, "Upcoming Matches ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "btn-group dropright float-right"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        className: "btn btn-primary btn-sm dropdown-toggle text-white",
+        type: "button",
+        "data-toggle": "dropdown",
+        "aria-haspopup": "true",
+        "aria-expanded": "false"
+      }, "Filters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "dropdown-menu bg-dark"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "dropdown-item text-primary",
+        href: "#"
+      }, "Categories"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "dropdown-item text-primary",
+        href: "#"
+      }, "Games"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "dropdown-item text-primary",
+        href: "#"
+      }, "Teams"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "dropdown-item text-primary",
+        href: "#"
+      }, "Openning date"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "dropdown-divider border-primary"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("a", {
+        className: "dropdown-item text-primary",
+        href: "#"
+      }, "Betting odds"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        className: "card-body "
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("table", {
+        className: "table table-striped table-bordered table-dark"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-right-0 border-info "
+      }, "Openning"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-left-0 border-right-0 border-info"
+      }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-left-0 border-right-0 border-info"
+      }, "Game"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-info"
+      }, "Team 1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-info"
+      }, "betting odds T1"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-info"
+      }, "Score"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border  border-right-0 border-left-0 border-info"
+      }, "betting odds T2"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("th", {
+        scope: "col",
+        className: "border border-left-0 border-info"
+      }, "Team 2"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tbody", null, upcoming.map(function (match) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("tr", {
+          key: match.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.openning), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.games.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.team1.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("td", null, match.team2.name));
+      }))))));
+    }
+  }]);
+
+  return UpcomingMatches;
+}(react__WEBPACK_IMPORTED_MODULE_1__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (UpcomingMatches);
+
+/***/ }),
+
 /***/ "./resources/sass/app.scss":
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
@@ -74218,8 +74764,8 @@ var SingleProject = /*#__PURE__*/function (_Component) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Noam\Documents\Samsung\FirstY\WebProject\easybet\easybet\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Noam\Documents\Samsung\FirstY\WebProject\easybet\easybet\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /mnt/c/xampp/htdocs/samsung/easybet/easybet/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /mnt/c/xampp/htdocs/samsung/easybet/easybet/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
