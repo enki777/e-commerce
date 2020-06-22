@@ -29,15 +29,12 @@ class MatchesSearch extends Component {
                 games: response.data['games'],
                 teams: response.data['teams'],
                 categories: response.data['categories'],
-                // finished: response.data[1],
             })
         })
     }
 
     render() {
         const { games, teams, categories, value } = this.state
-        // console.log(games)
-        // const matchName = this.props.match.params.name;
         return (
             <div>
                 <form action={`/matches/search/${value}`} method="GET">

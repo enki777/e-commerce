@@ -22,6 +22,8 @@ import DashboardMatch from './Admin/DashboardMatch';
 import DashboardGame from './Admin/DashboardGame';
 import DashboardCategory from './Admin/DashboardCategory';
 import DashboardUser from './Admin/DashboardUser';
+import IndexUpcoming from './index/IndexUpcoming';
+import IndexFinished from './index/IndexFinished';
 
 
 class App extends Component {
@@ -33,7 +35,8 @@ class App extends Component {
                     <Switch>
                         {/* <Route exact path='/matches/index/:id' component={Index} /> */}
                         <Route exact path='/' component={Index} />
-                        
+                        <Route exact path='/matches/upcoming' component={IndexUpcoming} />
+                        <Route exact path='/matches/finished' component={IndexFinished} />
                         <Route exact path='/matches/:id' component={SingleMatch} />
                         <Route exact path='/matches/game/:id' component={MatchesGameList} />
                         <Route exact path='/matches/category/:id' component={MatchesCategoryList} />

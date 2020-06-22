@@ -8,48 +8,31 @@ class CurrentMatches extends Component {
         super()
         this.state = {
             CurrentMatches: [],
-            // nbMatches: 
-            // finished: [],
         }
     }
 
     componentDidMount() {
         axios.get('/api/matches/').then(response => {
-            // console.log(response.data)
             this.setState({
                 CurrentMatches: response.data['currentMatches'],
-                // finished: response.data[1],
             })
         })
     }
 
     render() {
         const { CurrentMatches } = this.state
-        // const { finished } = this.state
 
         return (
             <div>
                 <div className="card bg-dark border border-success" >
                     <div className="card-header text-primary ">
-                        {/* <a>
-                            <button className="btn btn-success float-left" type="button">
-                                <span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                                <span className="ml-1">Current Matches </span>
-                            </button>
-                        </a> */}
                         <div className="btn-group dropup float-right">
                             <button className="btn btn-success btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Filter by
                                 </button>
                             <div className="dropdown-menu mb-2">
-                                {/* <a className="dropdown-item text-success" href="#">Categories</a>
-                                <a className="dropdown-item text-success" href="#">Games</a>
-                                <a className="dropdown-item text-success" href="#">Teams</a>
-                                <div className="dropdown-divider"></div>
-
-                                <a className="dropdown-item text-success" href="#">Openning date</a> */}
                                 <select className="dropdown-item text-success d-flex justify-content-center" value={this.state.value} onChange={this.handleChange}>
-                                    <option  className="dropdown-item" defaultValue="categories">Categories</option>
+                                    <option className="dropdown-item" defaultValue="categories">Categories</option>
                                     <option className="dropdown-item" defaultValue="lime">Games</option>
                                     <option className="dropdown-item" defaultValue="coconut">Teams</option>
                                     <option className="dropdown-item" defaultValue="mango">Openning Date</option>
@@ -76,7 +59,6 @@ class CurrentMatches extends Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* {CurrentMatches} */}
                                 {CurrentMatches.map(match => (
                                     <tr key={match.id}>
                                         <td>

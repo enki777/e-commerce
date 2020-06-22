@@ -1,27 +1,22 @@
-import axios from 'axios'
-import React, { Component, forwardRef } from 'react'
-import { Link } from 'react-router-dom'
-import { Route } from 'react-router-dom/cjs/react-router-dom.min'
-import CategoriesList from './categories/CategoriesList'
-import GamesList from './games/GamesList'
-import CurrentMatches from './matches/CurrentMatches'
-import UpcomingMatches from './matches/UpcomingMatches'
-import FinishedMatches from './matches/FinishedMatches'
-import MatchesSearch from './matches/MatchesSearch'
-import MostBets from './bets/MostBets'
+import axios from 'axios';
+import React, { Component, forwardRef } from 'react';
+import CategoriesList from './categories/CategoriesList';
+import GamesList from './games/GamesList';
+import UpcomingMatches from './matches/UpcomingMatches';
+import MatchesSearch from './matches/MatchesSearch';
 
 
 class Index extends Component {
     constructor() {
         super()
         this.state = {
-            pagination: [],
+            // pagination: [],
         }
     }
 
     upcomingMatches() {
         e.preventDefault();
-        $('#currentMatchesLink').css('borderStyle: none');
+        // $('#currentMatchesLink').css('borderStyle: none');
     }
 
     componentDidMount() {
@@ -50,11 +45,11 @@ class Index extends Component {
                             <div className="card-header ">
                                 <ul className="nav nav-tabs card-header-tabs">
                                     <li className="nav-item">
-                                        <a id="currentMatchesLink" className="nav-link active  bg-dark border-success text-success border-bottom-0" href="/"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Current Matches</a>
+                                        <a className="nav-link bg-dark border-dark text-light border-bottom-0 border-left-0" href="/" tabIndex="-1" aria-disabled="true">Current Matches</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a href='/matches/upcoming'>
-                                            <button className="nav-link bg-dark text-light border-dark">Upcoming Matches</button>
+                                        <a href='/matches/upcoming' className='text-decoration-none'>
+                                            <button className="nav-link active bg-dark border-primary text-primary border-bottom-0"><span className="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span> Upcoming Matches</button>
                                         </a>
                                     </li>
                                     <li className="nav-item">
@@ -63,7 +58,7 @@ class Index extends Component {
                                 </ul>
                             </div>
                             <div className="card-body p-0">
-                                <CurrentMatches />
+                                <UpcomingMatches />
                             </div>
                         </div>
                     </div>

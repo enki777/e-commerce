@@ -8,49 +8,37 @@ class UpcomingMatches extends Component {
         super()
         this.state = {
             upcoming: [],
-            // nbMatches: 
-            // finished: [],
         }
     }
 
     componentDidMount() {
         axios.get('/api/matches/').then(response => {
-            // console.log(response.data)
             this.setState({
                 upcoming: response.data['upcoming'],
-                // finished: response.data[1],
             })
         })
     }
 
     render() {
         const { upcoming } = this.state
-        // const { finished } = this.state
 
         return (
             <div>
                 <div className="card bg-dark border rounded-bottom border-primary ">
                     <div className="card-header text-white ">
-                        <a>
-                            <button className="btn btn-primary float-left" type="button">
-                                <span className="spinner-grow spinner-grow-sm text-white" role="status" aria-hidden="true"></span>
-                                <span className="ml-1 text-white">Upcoming Matches </span>
-                            </button>
-
-                            <div className="btn-group dropright float-right">
-                                <button className="btn btn-primary btn-sm dropdown-toggle text-white" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Filters
+                        <div className="btn-group dropright float-right">
+                            <button className="btn btn-primary btn-sm dropdown-toggle text-white" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Filters
                                 </button>
-                                <div className="dropdown-menu bg-dark">
-                                    <a className="dropdown-item text-primary" href="#">Categories</a>
-                                    <a className="dropdown-item text-primary" href="#">Games</a>
-                                    <a className="dropdown-item text-primary" href="#">Teams</a>
-                                    <a className="dropdown-item text-primary" href="#">Openning date</a>
-                                    <div className="dropdown-divider border-primary"></div>
-                                    <a className="dropdown-item text-primary" href="#">Betting odds</a>
-                                </div>
+                            <div className="dropdown-menu bg-dark">
+                                <a className="dropdown-item text-primary" href="#">Categories</a>
+                                <a className="dropdown-item text-primary" href="#">Games</a>
+                                <a className="dropdown-item text-primary" href="#">Teams</a>
+                                <a className="dropdown-item text-primary" href="#">Openning date</a>
+                                <div className="dropdown-divider border-primary"></div>
+                                <a className="dropdown-item text-primary" href="#">Betting odds</a>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     <div className="card-body ">
                         <table className="table table-striped table-bordered table-dark">
