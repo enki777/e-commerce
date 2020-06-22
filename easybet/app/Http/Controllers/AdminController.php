@@ -67,7 +67,7 @@ class AdminController extends Controller
         $categories = $request->categories;
         $game->categories()->attach($categories);
 
-        return redirect('/admin');
+        return redirect('/admin/game');
     }
 
     public function gameShow(Game $game)
@@ -103,13 +103,13 @@ class AdminController extends Controller
         $game->image = $file;
         $game->save();
 
-        return redirect('/admin');
+        return redirect('/admin/game');
     }
 
     public function gameDelete(Game $game)
     {
         $game->delete();
-        return redirect('/admin');
+        return redirect('/admin/game');
     }
 
     // CATEGORIES
@@ -127,7 +127,7 @@ class AdminController extends Controller
 
         Category::create($request->all());
 
-        return redirect('/admin');
+        return redirect('/admin/category');
     }
 
     public function categoryShow(Category $category)
@@ -159,13 +159,13 @@ class AdminController extends Controller
         $category->name = $request->name;
         $category->save();
 
-        return redirect('/admin');
+        return redirect('/admin/category');
     }
 
     public function categoryDelete(Category $category)
     {
         $category->delete();
-        return redirect('/admin');
+        return redirect('/admin/category');
     }
 
     ///////////////////////// MATCHES METHODS /////////////////////////

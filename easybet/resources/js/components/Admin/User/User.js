@@ -25,8 +25,8 @@ export default class User extends Component {
 
     render() {
         return (
-            <div className={'card rounded-0 border-right-0 border-bottom-0'}>
-                <div className={'card-header text-center'}>
+            <div className={'card rounded-0 border-0'}>
+                <div className={'card-header text-center rounded-0 border-left'}>
                     <h4 className={'card-title'}>Manage Users</h4>
                 </div>
                 <div className={'card-body'}>

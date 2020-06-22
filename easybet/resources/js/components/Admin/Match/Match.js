@@ -22,7 +22,7 @@ export default class Match extends Component {
     render() {
         return (
             <div>
-                <div className={'card rounded-0'}>
+                <div className={'card rounded-0 border-top-0'}>
                     <div className={'card-header'}>
                         <h4 className={'card-title'}>
                             Manage Matches

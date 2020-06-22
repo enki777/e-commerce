@@ -26,8 +26,8 @@ export default class DeletedUser extends Component {
     render() {
         const { dUsers } = this.state;
         return (
-            <div className='card rounded-0 border-left-0 border-bottom-0'>
-                <div className='card-header text-center'>
+            <div className='card rounded-0 border-0'>
+                <div className='card-header text-center rounded-0 border-right'>
                     <h4 className='card-title'>Manage Deleted Users</h4>
                 </div>
                 <div className='card-body'>
