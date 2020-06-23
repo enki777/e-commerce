@@ -5,7 +5,7 @@ const Header = () => (
     <nav className='navbar navbar-expand-md navbar-dark navbar-laravel bg-dark' style={{ position: "sticky", top: "0", zIndex: "999" }}>
         <div className='container'>
             <Link className='navbar-brand' to='/'>Easybet</Link>
-            <Link className='navbar-brand' to='/admin/match'>Admin</Link>
+            <a className='navbar-brand' href='/admin/match'>Admin</a>
         </div>
     </nav>
 )
