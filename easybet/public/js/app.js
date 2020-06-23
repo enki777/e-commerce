@@ -72784,7 +72784,7 @@ var App = /*#__PURE__*/function (_Component) {
         component: _User_Auth_Login__WEBPACK_IMPORTED_MODULE_16__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
-        path: "/admin",
+        path: "/admin/match",
         component: _Admin_DashboardMatch__WEBPACK_IMPORTED_MODULE_20__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         exact: true,
@@ -72875,7 +72875,7 @@ var Header = function Header() {
     to: "/"
   }, "Easybet"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "navbar-brand",
-    to: "/admin"
+    to: "/admin/match"
   }, "Admin")));
 };
 

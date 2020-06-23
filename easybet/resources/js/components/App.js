@@ -44,7 +44,7 @@ class App extends Component {
                         <Route exact path='/matches/search/:matches' component={Index} />
                         <Route exact path='/register' component={Register} />
                         <Route exact path='/login' component={Login} />
-                        <Route exact path='/admin' component={DashboardMatch} />
+                        <Route exact path='/admin/match' component={DashboardMatch} />
                         <Route exact path='/admin/game' component={DashboardGame} />
                         <Route exact path='/admin/category' component={DashboardCategory} />
                         <Route exact path='/admin/user' component={DashboardUser} />
