@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Game from './Game/Game';
 
 export default class DashboardGame extends Component {
@@ -23,16 +24,16 @@ export default class DashboardGame extends Component {
                             <div className={'col-12'}>
                                 <ul className="nav nav-tabs">
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/admin">Matches</a>
+                                        <Link className="nav-link" to="/admin/match">Matches</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link active border-bottom-0" href="/admin/game">Games</a>
+                                        <Link className="nav-link active border-bottom-0" to="/admin/game">Games</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/admin/category">Categories</a>
+                                        <Link className="nav-link" to="/admin/category">Categories</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link" href="/admin/user">Users</a>
+                                        <Link className="nav-link" to="/admin/user">Users</Link>
                                     </li>
                                 </ul>
                                 <Game />
