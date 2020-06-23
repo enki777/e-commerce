@@ -75032,7 +75032,7 @@ var UpcomingMatches = /*#__PURE__*/function (_Component) {
           id: "staticBackdrop",
           "data-backdrop": "static",
           "data-keyboard": "false",
-          tabindex: "-1",
+          tabIndex: "-1",
           role: "dialog",
           "aria-labelledby": "staticBackdropLabel",
           "aria-hidden": "true"
@@ -75061,20 +75061,20 @@ var UpcomingMatches = /*#__PURE__*/function (_Component) {
         }, "Match : ", match.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
           className: "text-primary"
         }, "Team : ", match.team1.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          "class": "input-group mb-3"
+          className: "input-group mb-3"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          "class": "input-group-prepend"
+          className: "input-group-prepend"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-          "class": "input-group-text"
+          className: "input-group-text"
         }, "$")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
           type: "text",
-          "class": "form-control",
+          className: "form-control",
           name: "amount",
           "aria-label": "Amount (to the nearest dollar)"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          "class": "input-group-append"
+          className: "input-group-append"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-          "class": "input-group-text"
+          className: "input-group-text"
         }, ".00")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
           className: "modal-footer"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
@@ -75097,7 +75097,7 @@ var UpcomingMatches = /*#__PURE__*/function (_Component) {
           id: "staticBackdrop",
           "data-backdrop": "static",
           "data-keyboard": "false",
-          tabindex: "-1",
+          tabIndex: "-1",
           role: "dialog",
           "aria-labelledby": "staticBackdropLabel",
           "aria-hidden": "true"
@@ -75124,20 +75124,20 @@ var UpcomingMatches = /*#__PURE__*/function (_Component) {
         }, "Match : ", match.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
           className: "text-primary"
         }, "Team : ", match.team2.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          "class": "input-group mb-3"
+          className: "input-group mb-3"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          "class": "input-group-prepend"
+          className: "input-group-prepend"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-          "class": "input-group-text"
+          className: "input-group-text"
         }, "$")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
           type: "text",
-          "class": "form-control",
+          className: "form-control",
           name: "amount",
           "aria-label": "Amount (to the nearest dollar)"
         }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          "class": "input-group-append"
+          className: "input-group-append"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-          "class": "input-group-text"
+          className: "input-group-text"
         }, ".00")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
           className: "modal-footer"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {

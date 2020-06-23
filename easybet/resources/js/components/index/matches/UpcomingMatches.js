@@ -82,7 +82,7 @@ class UpcomingMatches extends Component {
                                             <button type="button" className="btn btn-primary" style={{ width: "200px" }} data-toggle="modal" data-target="#staticBackdrop">
                                                 <span>{match.team1.name}</span>
                                             </button>
-                                            <div className="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div className="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                 <div className="modal-dialog modal-dialog-centered">
                                                     <div className="modal-content">
                                                         <div className="modal-header">
@@ -95,13 +95,13 @@ class UpcomingMatches extends Component {
                                                             <div className="modal-body">
                                                                 <span className="text-primary">Match : {match.name}</span><br />
                                                                 <span className="text-primary">Team : {match.team1.name}</span>
-                                                                <div class="input-group mb-3">
-                                                                    <div class="input-group-prepend">
-                                                                        <span class="input-group-text">$</span>
+                                                                <div className="input-group mb-3">
+                                                                    <div className="input-group-prepend">
+                                                                        <span className="input-group-text">$</span>
                                                                     </div>
-                                                                    <input type="text" class="form-control" name="amount" aria-label="Amount (to the nearest dollar)" />
-                                                                    <div class="input-group-append">
-                                                                        <span class="input-group-text">.00</span>
+                                                                    <input type="text" className="form-control" name="amount" aria-label="Amount (to the nearest dollar)" />
+                                                                    <div className="input-group-append">
+                                                                        <span className="input-group-text">.00</span>
                                                                     </div>
                                                                 </div>
                                                                 {/* <input class="form-control form-control-sm" type="number"
@@ -121,7 +121,7 @@ class UpcomingMatches extends Component {
                                             <button type="button" className="btn btn-primary" style={{ width: "200px" }} data-toggle="modal" data-target="#staticBackdrop">
                                                 <span>{match.team2.name}</span>
                                             </button>
-                                            <div className="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                            <div className="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabIndex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                                                 <div className="modal-dialog modal-dialog-centered">
                                                     <div className="modal-content">
                                                         <div className="modal-header">
@@ -133,13 +133,13 @@ class UpcomingMatches extends Component {
                                                         <div className="modal-body" className="text-primary">
                                                             <span className="text-primary">Match : {match.name}</span><br />
                                                             <span className="text-primary">Team : {match.team2.name}</span>
-                                                            <div class="input-group mb-3">
-                                                                <div class="input-group-prepend">
-                                                                    <span class="input-group-text">$</span>
+                                                            <div className="input-group mb-3">
+                                                                <div className="input-group-prepend">
+                                                                    <span className="input-group-text">$</span>
                                                                 </div>
-                                                                <input type="text" class="form-control" name="amount" aria-label="Amount (to the nearest dollar)" />
-                                                                <div class="input-group-append">
-                                                                    <span class="input-group-text">.00</span>
+                                                                <input type="text" className="form-control" name="amount" aria-label="Amount (to the nearest dollar)" />
+                                                                <div className="input-group-append">
+                                                                    <span className="input-group-text">.00</span>
                                                                 </div>
                                                             </div>
                                                         </div>
